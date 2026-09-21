@@ -1,0 +1,124 @@
+<div class="wrapper" [attr.data-loading]="loading() || null">
+  <div class="scroll" role="region" tabindex="0" [attr.aria-label]="label()">
+    <table
+      cdk-table
+      [dataSource]="rows()"
+      [trackBy]="trackBy"
+      [attr.aria-busy]="loading() || null"
+    >
+      <caption class="visually-hidden">
+        {{ label() }}
+      </caption>
+
+      @if (selectable()) {
+      <ng-container [cdkColumnDef]="selectColumn">
+        <th *cdkHeaderCellDef cdk-header-cell scope="col" class="cell select">
+          <input
+            type="checkbox"
+            [checked]="allSelected()"
+            [indeterminate]="someSelected()"
+            [disabled]="rows().length === 0"
+            [attr.aria-label]="selectAllLabel()"
+            (change)="toggleAll()"
+          />
+        </th>
+        <td *cdkCellDef="let row" cdk-cell class="cell select">
+          <input
+            type="checkbox"
+            [checked]="isSelected(row)"
+            [attr.aria-label]="selectRowLabel()"
+            (change)="toggleRow(row)"
+          />
+        </td>
+      </ng-container>
+      } @for (column of columns(); track column.key) {
+      <ng-container [cdkColumnDef]="column.key">
+        <th
+          *cdkHeaderCellDef
+          cdk-header-cell
+          scope="col"
+          class="cell"
+          [attr.data-align]="column.align || null"
+          [style.width]="column.width || null"
+          [attr.aria-sort]="ariaSort(column)"
+        >
+          @if (column.sortable) {
+          <button type="button" class="sort" (click)="toggleSort(column)">
+            <ng-container
+              *ngTemplateOutlet="headerContent; context: { $implicit: column }"
+            />
+            <svg
+              class="sort-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path class="up" d="M5 6.5l3-3 3 3" />
+              <path class="down" d="M5 9.5l3 3 3-3" />
+            </svg>
+          </button>
+          } @else {
+          <ng-container
+            *ngTemplateOutlet="headerContent; context: { $implicit: column }"
+          />
+          }
+        </th>
+        <td
+          *cdkCellDef="let row; let index = index"
+          cdk-cell
+          class="cell"
+          [attr.data-align]="column.align || null"
+        >
+          @if (cellTemplates().get(column.key); as template) {
+          <ng-container
+            *ngTemplateOutlet="
+                  template;
+                  context: { $implicit: row, value: value(row, column), column: column, index: index }
+                "
+          />
+          } @else { {{ value(row, column) }} }
+        </td>
+      </ng-container>
+      }
+
+      <tr *cdkHeaderRowDef="displayedColumns()" cdk-header-row></tr>
+      <tr
+        *cdkRowDef="let row; columns: displayedColumns()"
+        cdk-row
+        [attr.data-selected]="isSelected(row) || null"
+      ></tr>
+    </table>
+
+    @if (!loading() && rows().length === 0) {
+    <div class="empty" role="status">
+      @if (emptyDef(); as empty) {
+      <ng-container *ngTemplateOutlet="empty.template" />
+      } @else { {{ emptyText() }} }
+    </div>
+    }
+  </div>
+
+  @if (loading()) {
+  <div class="loading"><lc-spinner [label]="loadingLabel()" /></div>
+  }
+</div>
+
+@if (paged() && totalRows() > 0) {
+<div class="footer">
+  <span class="summary" aria-live="polite">{{ summaryText() }}</span>
+  <lc-pagination
+    size="sm"
+    [label]="paginationLabel()"
+    [total]="totalRows()"
+    [pageSize]="pageSize()"
+    [page]="currentPage()"
+    (pageChange)="onPageChange($event)"
+  />
+</div>
+}
+
+<ng-template #headerContent let-column>
+  @if (headerTemplates().get(column.key); as template) {
+  <ng-container *ngTemplateOutlet="template; context: { $implicit: column }" />
+  } @else { {{ column.header }} }
+</ng-template>

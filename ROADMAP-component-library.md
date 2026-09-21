@@ -56,9 +56,9 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
 
 ## Phase 6: Tabla
 
-- [ ] Tabla básica (CDK table): orden, paginación, selección, slots de celda
+- [x] Tabla básica (CDK table): orden, paginación, selección, slots de celda
       Acceptance: celdas y cabeceras personalizables vía templates.
-      Status: 🚧 In Progress
+      Status: ✅ Completed
 
 ## Phase 7+: Dominios
 

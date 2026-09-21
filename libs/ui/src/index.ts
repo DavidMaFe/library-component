@@ -30,3 +30,7 @@ export * from './lib/breadcrumb/breadcrumb';
 export * from './lib/breadcrumb/breadcrumb-item';
 export * from './lib/pagination/pagination-items';
 export * from './lib/pagination/pagination';
+export * from './lib/table/table.types';
+export * from './lib/table/table-sort';
+export * from './lib/table/table-defs';
+export * from './lib/table/table';
