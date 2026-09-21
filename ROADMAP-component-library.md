@@ -31,16 +31,16 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
 
 ## Phase 2: Primitivos básicos
 
-- [ ] button, icon-button, badge, card, spinner, divider (tests + stories)
+- [x] button, icon-button, badge, card, spinner, divider (tests + stories)
       Acceptance: variantes/tamaños vía inputs, personalizables por tokens, a11y verificada.
-      Status: ⏳ Pending
+      Status: ✅ Completed
 
 ## Phase 3: Formularios
 
 - [ ] input, textarea, select, checkbox, radio, switch, form-field
 - [ ] ControlValueAccessor + Reactive Forms
       Acceptance: validación y mensajes de error accesibles.
-      Status: ⏳ Pending
+      Status: 🚧 In Progress
 
 ## Phase 4: Overlays y feedback
 

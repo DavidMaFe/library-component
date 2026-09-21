@@ -1,0 +1,64 @@
+:host {
+  --_padding: var(--lc-card-padding, var(--lc-space-4));
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--lc-card-border-color, var(--lc-color-border));
+  border-radius: var(--lc-card-radius, var(--lc-radius-lg));
+  background: var(--lc-card-bg, var(--lc-color-surface));
+  color: var(--lc-color-text);
+  box-shadow: var(--lc-card-shadow, none);
+}
+
+:host([data-variant='elevated']) {
+  --lc-card-shadow: var(--lc-shadow-md);
+  border-color: var(--lc-card-border-color, transparent);
+}
+
+:host([data-padding='none']) {
+  --_padding: 0;
+}
+
+:host([data-padding='sm']) {
+  --_padding: var(--lc-card-padding, var(--lc-space-2));
+}
+
+:host([data-padding='lg']) {
+  --_padding: var(--lc-card-padding, var(--lc-space-6));
+}
+
+.header,
+.body,
+.footer {
+  padding: var(--_padding);
+}
+
+.header {
+  padding-bottom: 0;
+  font-family: var(--lc-font-family-heading);
+  font-weight: var(--lc-font-weight-semibold);
+}
+
+.body {
+  flex: 1;
+}
+
+.footer {
+  padding-top: 0;
+}
+
+// Empty slots must not take space.
+.media:empty,
+.header:empty,
+.footer:empty {
+  display: none;
+}
+
+.media ::ng-deep > img,
+.media ::ng-deep > video {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}

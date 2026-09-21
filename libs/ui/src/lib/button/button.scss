@@ -1,0 +1,12 @@
+@use 'button-styles';
+
+@include button-styles.button-styles;
+
+:host([data-block]) {
+  display: flex;
+  width: 100%;
+}
+
+lc-spinner {
+  --lc-spinner-color: currentColor;
+}

@@ -1,0 +1,16 @@
+@use '../button/button-styles';
+
+@include button-styles.button-styles;
+
+:host {
+  width: var(--_height);
+  padding: 0;
+}
+
+:host([data-shape='round']) {
+  border-radius: var(--lc-radius-full);
+}
+
+lc-spinner {
+  --lc-spinner-color: currentColor;
+}

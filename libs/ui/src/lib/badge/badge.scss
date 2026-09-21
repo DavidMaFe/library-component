@@ -1,0 +1,65 @@
+// `--_tone` is the strong color of the variant, `--_tone-subtle` its tinted background.
+:host {
+  --_tone: var(--lc-color-text-muted);
+  --_tone-subtle: var(--lc-color-bg-subtle);
+  --_on-tone: var(--lc-color-text-inverse);
+
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--lc-badge-padding-y, var(--lc-space-1))
+    var(--lc-badge-padding-x, var(--lc-space-2));
+  border: 1px solid var(--lc-badge-border-color, transparent);
+  border-radius: var(--lc-badge-radius, var(--lc-radius-full));
+  background: var(--lc-badge-bg, var(--_tone-subtle));
+  color: var(--lc-badge-color, var(--_tone));
+  font-size: var(--lc-badge-font-size, var(--lc-font-size-sm));
+  font-weight: var(--lc-font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+:host([data-variant='primary']) {
+  --_tone: var(--lc-color-action);
+  --_tone-subtle: var(--lc-color-action-subtle);
+  --_on-tone: var(--lc-color-on-action);
+}
+
+:host([data-variant='success']) {
+  --_tone: var(--lc-color-success);
+  --_tone-subtle: var(--lc-color-success-subtle);
+  --_on-tone: var(--lc-color-on-status);
+}
+
+:host([data-variant='warning']) {
+  --_tone: var(--lc-color-warning);
+  --_tone-subtle: var(--lc-color-warning-subtle);
+  --_on-tone: var(--lc-color-on-status);
+}
+
+:host([data-variant='danger']) {
+  --_tone: var(--lc-color-danger);
+  --_tone-subtle: var(--lc-color-danger-subtle);
+  --_on-tone: var(--lc-color-on-status);
+}
+
+:host([data-variant='info']) {
+  --_tone: var(--lc-color-info);
+  --_tone-subtle: var(--lc-color-info-subtle);
+  --_on-tone: var(--lc-color-on-status);
+}
+
+:host([data-appearance='solid']) {
+  background: var(--lc-badge-bg, var(--_tone));
+  color: var(--lc-badge-color, var(--_on-tone));
+}
+
+:host([data-appearance='outline']) {
+  background: var(--lc-badge-bg, transparent);
+  border-color: var(--lc-badge-border-color, var(--_tone));
+}
+
+:host([data-size='sm']) {
+  --lc-badge-font-size: var(--lc-font-size-xs);
+  padding: 0.125rem var(--lc-badge-padding-x, var(--lc-space-2));
+}

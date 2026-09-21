@@ -1,0 +1,21 @@
+:host {
+  --_thickness: var(--lc-divider-thickness, 1px);
+  --_spacing: var(--lc-divider-spacing, var(--lc-space-4));
+
+  display: block;
+  flex-shrink: 0;
+  background: var(--lc-divider-color, var(--lc-color-border));
+}
+
+:host([data-orientation='horizontal']) {
+  width: 100%;
+  height: var(--_thickness);
+  margin: var(--_spacing) 0;
+}
+
+:host([data-orientation='vertical']) {
+  align-self: stretch;
+  width: var(--_thickness);
+  min-height: 1em;
+  margin: 0 var(--_spacing);
+}

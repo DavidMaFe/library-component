@@ -1,0 +1,99 @@
+// Shared by `lc-button` and `lc-icon-button`.
+// Every visual property can be overridden with a `--lc-button-*` custom property.
+@mixin button-styles {
+  :host {
+    --_height: var(--lc-button-height, var(--lc-control-height-md));
+    --_padding-x: var(--lc-button-padding-x, var(--lc-space-4));
+    --_font-size: var(--lc-button-font-size, var(--lc-font-size-md));
+    --_bg: var(--lc-button-bg, var(--lc-color-action));
+    --_bg-hover: var(--lc-button-bg-hover, var(--lc-color-action-hover));
+    --_bg-active: var(--lc-button-bg-active, var(--lc-color-action-active));
+    --_color: var(--lc-button-color, var(--lc-color-on-action));
+    --_border: var(--lc-button-border-color, transparent);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--lc-button-gap, var(--lc-space-2));
+    box-sizing: border-box;
+    min-height: var(--_height);
+    padding: 0 var(--_padding-x);
+    border: 1px solid var(--_border);
+    border-radius: var(--lc-button-radius, var(--lc-radius-md));
+    background: var(--_bg);
+    color: var(--_color);
+    font-family: inherit;
+    font-size: var(--_font-size);
+    font-weight: var(--lc-button-font-weight, var(--lc-font-weight-medium));
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background var(--lc-duration-fast) var(--lc-easing-standard),
+      border-color var(--lc-duration-fast) var(--lc-easing-standard);
+  }
+
+  :host([data-variant='secondary']) {
+    --_bg: var(--lc-button-bg, var(--lc-color-surface));
+    --_bg-hover: var(--lc-button-bg-hover, var(--lc-color-bg-subtle));
+    --_bg-active: var(--lc-button-bg-active, var(--lc-color-border));
+    --_color: var(--lc-button-color, var(--lc-color-text));
+    --_border: var(--lc-button-border-color, var(--lc-color-border-strong));
+  }
+
+  :host([data-variant='ghost']) {
+    --_bg: var(--lc-button-bg, transparent);
+    --_bg-hover: var(--lc-button-bg-hover, var(--lc-color-action-subtle));
+    --_bg-active: var(--lc-button-bg-active, var(--lc-color-action-subtle));
+    --_color: var(--lc-button-color, var(--lc-color-action));
+  }
+
+  :host([data-variant='danger']) {
+    --_bg: var(--lc-button-bg, var(--lc-color-danger));
+    --_bg-hover: var(
+      --lc-button-bg-hover,
+      color-mix(in srgb, var(--lc-color-danger) 88%, black)
+    );
+    --_bg-active: var(
+      --lc-button-bg-active,
+      color-mix(in srgb, var(--lc-color-danger) 76%, black)
+    );
+    --_color: var(--lc-button-color, var(--lc-color-on-status));
+  }
+
+  :host([data-size='sm']) {
+    --_height: var(--lc-button-height, var(--lc-control-height-sm));
+    --_padding-x: var(--lc-button-padding-x, var(--lc-space-3));
+    --_font-size: var(--lc-button-font-size, var(--lc-font-size-sm));
+  }
+
+  :host([data-size='lg']) {
+    --_height: var(--lc-button-height, var(--lc-control-height-lg));
+    --_padding-x: var(--lc-button-padding-x, var(--lc-space-6));
+    --_font-size: var(--lc-button-font-size, var(--lc-font-size-lg));
+  }
+
+  :host(:hover:not([aria-disabled='true'])) {
+    background: var(--_bg-hover);
+  }
+
+  :host(:active:not([aria-disabled='true'])) {
+    background: var(--_bg-active);
+  }
+
+  :host(:focus-visible) {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: var(--lc-focus-ring-offset);
+  }
+
+  :host([aria-disabled='true']) {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  :host([data-loading]) {
+    cursor: progress;
+  }
+}
