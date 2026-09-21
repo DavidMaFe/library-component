@@ -1,2 +1,104 @@
-<lc-nx-welcome></lc-nx-welcome>
-<router-outlet></router-outlet>
+<header class="toolbar">
+  <h1>@lc design tokens</h1>
+
+  <div class="control" role="group" aria-label="Theme">
+    <span class="control__label">Theme</span>
+    @for (preference of preferences; track preference) {
+    <button
+      type="button"
+      [attr.aria-pressed]="themeService.preference() === preference"
+      (click)="themeService.setPreference(preference)"
+    >
+      {{ preference }}
+    </button>
+    }
+  </div>
+
+  <div class="control" role="group" aria-label="Brand">
+    <span class="control__label">Brand</span>
+    @for (brand of brands; track brand.id) {
+    <button
+      type="button"
+      [attr.aria-pressed]="activeBrandId() === brand.id"
+      (click)="selectBrand(brand.id)"
+    >
+      {{ brand.label }}
+    </button>
+    }
+  </div>
+</header>
+
+<main>
+  <p class="muted">Active theme: {{ themeLabel() }}</p>
+
+  <section>
+    <h2>Primary scale</h2>
+    <div class="row">
+      @for (step of primaryScale; track step) {
+      <div class="chip" [style.background]="'var(--lc-primary-' + step + ')'">
+        <span [style.color]="+step >= 500 ? 'white' : 'black'">{{ step }}</span>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section>
+    <h2>Semantic colors</h2>
+    <div class="row">
+      @for (token of colorTokens; track token) {
+      <div class="swatch">
+        <div
+          class="swatch__color"
+          [style.background]="'var(--lc-color-' + token + ')'"
+        ></div>
+        <code>{{ token }}</code>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section>
+    <h2>Typography</h2>
+    @for (size of fontSizeTokens; track size) {
+    <p class="type" [style.fontSize]="'var(--lc-font-size-' + size + ')'">
+      {{ size }} — The quick brown fox jumps over the lazy dog
+    </p>
+    }
+    <h3 class="heading-sample">Heading font family</h3>
+  </section>
+
+  <section>
+    <h2>Spacing</h2>
+    @for (space of spaceTokens; track space) {
+    <div class="space">
+      <code>{{ space }}</code>
+      <div
+        class="space__bar"
+        [style.width]="'var(--lc-space-' + space + ')'"
+      ></div>
+    </div>
+    }
+  </section>
+
+  <section>
+    <h2>Radius</h2>
+    <div class="row">
+      @for (radius of radiusTokens; track radius) {
+      <div class="box" [style.borderRadius]="'var(--lc-radius-' + radius + ')'">
+        {{ radius }}
+      </div>
+      }
+    </div>
+  </section>
+
+  <section>
+    <h2>Shadows</h2>
+    <div class="row">
+      @for (shadow of shadowTokens; track shadow) {
+      <div class="box" [style.boxShadow]="'var(--lc-shadow-' + shadow + ')'">
+        {{ shadow }}
+      </div>
+      }
+    </div>
+  </section>
+</main>

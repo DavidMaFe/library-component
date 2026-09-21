@@ -1,8 +1,12 @@
 {
   "name": "@lc/tokens",
   "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/core": "^22.1.0"
+  "peerDependencies": {},
+  "exports": {
+    "./styles/*": {
+      "sass": "./styles/*.scss",
+      "default": "./styles/*.scss"
+    }
   },
   "sideEffects": false
 }

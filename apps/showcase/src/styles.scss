@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@use '../../../libs/tokens/src/styles';
+
+body {
+  margin: 0;
+  background: var(--lc-color-bg);
+  color: var(--lc-color-text);
+  font-family: var(--lc-font-family-base);
+  line-height: var(--lc-line-height-normal);
+  transition:
+    background var(--lc-duration-base) var(--lc-easing-standard),
+    color var(--lc-duration-base) var(--lc-easing-standard);
+}

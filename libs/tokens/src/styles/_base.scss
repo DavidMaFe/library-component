@@ -1,0 +1,124 @@
+// Theme-independent design tokens. Every value is exposed as a CSS custom
+// property so consumers can override any of them at runtime.
+:root {
+  // ---- Palette: neutral (grays) ----
+  --lc-neutral-0: #ffffff;
+  --lc-neutral-50: #f8fafc;
+  --lc-neutral-100: #f1f5f9;
+  --lc-neutral-200: #e2e8f0;
+  --lc-neutral-300: #cbd5e1;
+  --lc-neutral-400: #94a3b8;
+  --lc-neutral-500: #64748b;
+  --lc-neutral-600: #475569;
+  --lc-neutral-700: #334155;
+  --lc-neutral-800: #1e293b;
+  --lc-neutral-900: #0f172a;
+  --lc-neutral-950: #020617;
+
+  // ---- Palette: primary (brand). Override this scale to rebrand the library ----
+  --lc-primary-50: #eff6ff;
+  --lc-primary-100: #dbeafe;
+  --lc-primary-200: #bfdbfe;
+  --lc-primary-300: #93c5fd;
+  --lc-primary-400: #60a5fa;
+  --lc-primary-500: #3b82f6;
+  --lc-primary-600: #2563eb;
+  --lc-primary-700: #1d4ed8;
+  --lc-primary-800: #1e40af;
+  --lc-primary-900: #1e3a8a;
+
+  // ---- Palette: status ----
+  --lc-green-500: #22c55e;
+  --lc-green-700: #15803d;
+  --lc-amber-500: #f59e0b;
+  --lc-amber-700: #b45309;
+  --lc-red-500: #ef4444;
+  --lc-red-700: #b91c1c;
+  --lc-sky-500: #0ea5e9;
+  --lc-sky-700: #0369a1;
+
+  // ---- Spacing ----
+  --lc-space-0: 0;
+  --lc-space-1: 0.25rem;
+  --lc-space-2: 0.5rem;
+  --lc-space-3: 0.75rem;
+  --lc-space-4: 1rem;
+  --lc-space-5: 1.25rem;
+  --lc-space-6: 1.5rem;
+  --lc-space-8: 2rem;
+  --lc-space-10: 2.5rem;
+  --lc-space-12: 3rem;
+  --lc-space-16: 4rem;
+
+  // ---- Radius ----
+  --lc-radius-none: 0;
+  --lc-radius-sm: 0.25rem;
+  --lc-radius-md: 0.5rem;
+  --lc-radius-lg: 0.75rem;
+  --lc-radius-xl: 1rem;
+  --lc-radius-full: 9999px;
+
+  // ---- Typography ----
+  --lc-font-family-base:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --lc-font-family-heading: var(--lc-font-family-base);
+  --lc-font-family-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --lc-font-size-xs: 0.75rem;
+  --lc-font-size-sm: 0.875rem;
+  --lc-font-size-md: 1rem;
+  --lc-font-size-lg: 1.125rem;
+  --lc-font-size-xl: 1.25rem;
+  --lc-font-size-2xl: 1.5rem;
+  --lc-font-size-3xl: 1.875rem;
+  --lc-font-size-4xl: 2.25rem;
+
+  --lc-font-weight-regular: 400;
+  --lc-font-weight-medium: 500;
+  --lc-font-weight-semibold: 600;
+  --lc-font-weight-bold: 700;
+
+  --lc-line-height-tight: 1.25;
+  --lc-line-height-normal: 1.5;
+  --lc-line-height-relaxed: 1.75;
+
+  // ---- Controls ----
+  --lc-control-height-sm: 2rem;
+  --lc-control-height-md: 2.5rem;
+  --lc-control-height-lg: 3rem;
+  --lc-focus-ring-width: 2px;
+  --lc-focus-ring-offset: 2px;
+
+  // ---- Shadows (color comes from the active theme) ----
+  --lc-shadow-sm: 0 1px 2px 0 var(--lc-shadow-color);
+  --lc-shadow-md:
+    0 4px 6px -1px var(--lc-shadow-color), 0 2px 4px -2px var(--lc-shadow-color);
+  --lc-shadow-lg:
+    0 10px 15px -3px var(--lc-shadow-color),
+    0 4px 6px -4px var(--lc-shadow-color);
+
+  // ---- Motion ----
+  --lc-duration-fast: 120ms;
+  --lc-duration-base: 200ms;
+  --lc-duration-slow: 320ms;
+  --lc-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --lc-easing-emphasized: cubic-bezier(0.3, 0, 0, 1.2);
+
+  // ---- Layers ----
+  --lc-z-dropdown: 1000;
+  --lc-z-sticky: 1100;
+  --lc-z-overlay: 1200;
+  --lc-z-modal: 1300;
+  --lc-z-popover: 1400;
+  --lc-z-toast: 1500;
+  --lc-z-tooltip: 1600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --lc-duration-fast: 0ms;
+    --lc-duration-base: 0ms;
+    --lc-duration-slow: 0ms;
+  }
+}

@@ -1,0 +1,55 @@
+// Semantic color tokens for the light theme. Also the default when no
+// `data-lc-theme` attribute is present. Components must only consume these
+// semantic tokens, never the raw palette.
+:root,
+[data-lc-theme='light'] {
+  color-scheme: light;
+
+  --lc-color-bg: var(--lc-neutral-50);
+  --lc-color-bg-subtle: var(--lc-neutral-100);
+  --lc-color-surface: var(--lc-neutral-0);
+  --lc-color-surface-raised: var(--lc-neutral-0);
+  --lc-color-border: var(--lc-neutral-200);
+  --lc-color-border-strong: var(--lc-neutral-300);
+
+  --lc-color-text: var(--lc-neutral-900);
+  --lc-color-text-muted: var(--lc-neutral-600);
+  --lc-color-text-disabled: var(--lc-neutral-400);
+  --lc-color-text-inverse: var(--lc-neutral-0);
+
+  --lc-color-action: var(--lc-primary-600);
+  --lc-color-action-hover: var(--lc-primary-700);
+  --lc-color-action-active: var(--lc-primary-800);
+  --lc-color-action-subtle: var(--lc-primary-50);
+  --lc-color-on-action: var(--lc-neutral-0);
+  --lc-color-focus-ring: var(--lc-primary-500);
+
+  --lc-color-success: var(--lc-green-700);
+  --lc-color-success-subtle: color-mix(
+    in srgb,
+    var(--lc-green-500) 14%,
+    transparent
+  );
+  --lc-color-warning: var(--lc-amber-700);
+  --lc-color-warning-subtle: color-mix(
+    in srgb,
+    var(--lc-amber-500) 16%,
+    transparent
+  );
+  --lc-color-danger: var(--lc-red-700);
+  --lc-color-danger-subtle: color-mix(
+    in srgb,
+    var(--lc-red-500) 12%,
+    transparent
+  );
+  --lc-color-info: var(--lc-sky-700);
+  --lc-color-info-subtle: color-mix(
+    in srgb,
+    var(--lc-sky-500) 14%,
+    transparent
+  );
+  --lc-color-on-status: var(--lc-neutral-0);
+
+  --lc-color-backdrop: rgb(15 23 42 / 50%);
+  --lc-shadow-color: rgb(15 23 42 / 12%);
+}

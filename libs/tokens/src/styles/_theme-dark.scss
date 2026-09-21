@@ -1,0 +1,57 @@
+// Semantic color tokens for the dark theme. Must define exactly the same
+// keys as `_theme-light.scss` (enforced by the tokens test suite).
+[data-lc-theme='dark'] {
+  color-scheme: dark;
+
+  --lc-color-bg: var(--lc-neutral-950);
+  --lc-color-bg-subtle: var(--lc-neutral-900);
+  --lc-color-surface: var(--lc-neutral-900);
+  --lc-color-surface-raised: var(--lc-neutral-800);
+  --lc-color-border: var(--lc-neutral-800);
+  --lc-color-border-strong: var(--lc-neutral-700);
+
+  --lc-color-text: var(--lc-neutral-50);
+  --lc-color-text-muted: var(--lc-neutral-400);
+  --lc-color-text-disabled: var(--lc-neutral-600);
+  --lc-color-text-inverse: var(--lc-neutral-950);
+
+  --lc-color-action: var(--lc-primary-400);
+  --lc-color-action-hover: var(--lc-primary-300);
+  --lc-color-action-active: var(--lc-primary-200);
+  --lc-color-action-subtle: color-mix(
+    in srgb,
+    var(--lc-primary-500) 16%,
+    transparent
+  );
+  --lc-color-on-action: var(--lc-neutral-950);
+  --lc-color-focus-ring: var(--lc-primary-400);
+
+  --lc-color-success: var(--lc-green-500);
+  --lc-color-success-subtle: color-mix(
+    in srgb,
+    var(--lc-green-500) 18%,
+    transparent
+  );
+  --lc-color-warning: var(--lc-amber-500);
+  --lc-color-warning-subtle: color-mix(
+    in srgb,
+    var(--lc-amber-500) 18%,
+    transparent
+  );
+  --lc-color-danger: var(--lc-red-500);
+  --lc-color-danger-subtle: color-mix(
+    in srgb,
+    var(--lc-red-500) 18%,
+    transparent
+  );
+  --lc-color-info: var(--lc-sky-500);
+  --lc-color-info-subtle: color-mix(
+    in srgb,
+    var(--lc-sky-500) 18%,
+    transparent
+  );
+  --lc-color-on-status: var(--lc-neutral-950);
+
+  --lc-color-backdrop: rgb(0 0 0 / 65%);
+  --lc-shadow-color: rgb(0 0 0 / 50%);
+}

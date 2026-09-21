@@ -1,0 +1,21 @@
+@use 'sass:map';
+
+// Breakpoints cannot be CSS variables (not usable inside media queries),
+// so they are exposed as a Sass map plus a mixin. Emits no CSS by itself.
+$lc-breakpoints: (
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px,
+) !default;
+
+@mixin lc-up($name) {
+  $width: map.get($lc-breakpoints, $name);
+  @if $width == null {
+    @error 'Unknown breakpoint `#{$name}`. Available: #{map.keys($lc-breakpoints)}';
+  }
+  @media (min-width: $width) {
+    @content;
+  }
+}

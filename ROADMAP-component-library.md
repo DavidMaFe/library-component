@@ -22,12 +22,12 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
 
 ## Phase 1: Tokens y theming
 
-- [ ] Tokens (color, tipografía, espaciado, radios, sombras, motion)
-- [ ] Temas claro/oscuro con CSS variables
-- [ ] `ThemeService` en `core`
-- [ ] Guía de override por marca
+- [x] Tokens (color, tipografía, espaciado, radios, sombras, motion)
+- [x] Temas claro/oscuro con CSS variables
+- [x] `ThemeService` en `core`
+- [x] Guía de override por marca
       Acceptance: cambiar de tema en runtime en el showcase sin recompilar.
-      Status: ⏳ Pending
+      Status: ✅ Completed
 
 ## Phase 2: Primitivos básicos
 
