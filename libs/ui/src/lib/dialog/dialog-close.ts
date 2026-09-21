@@ -14,7 +14,7 @@ import { Directive, ElementRef, inject, input } from '@angular/core';
 })
 export class LcDialogClose {
   /** Value the dialog closes with. */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
+
   readonly result = input<unknown>(undefined, { alias: 'lcDialogClose' });
 
   readonly #dialogRef = inject(DialogRef);

@@ -1,0 +1,10 @@
+@use '../shared/spacing';
+
+:host {
+  --_gap: var(--lc-space-4);
+
+  display: grid;
+  gap: var(--lc-grid-gap, var(--_gap));
+}
+
+@include spacing.gap-variants;

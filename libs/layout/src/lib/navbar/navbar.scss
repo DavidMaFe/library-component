@@ -1,0 +1,120 @@
+:host {
+  display: block;
+  border-bottom: 1px solid var(--lc-navbar-border-color, var(--lc-color-border));
+  background: var(--lc-navbar-bg, var(--lc-color-surface));
+  color: var(--lc-navbar-color, var(--lc-color-text));
+}
+
+:host([data-sticky]) {
+  position: sticky;
+  top: 0;
+  z-index: var(--lc-z-sticky);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas:
+    'brand actions toggle'
+    'menu menu menu';
+  align-items: center;
+  gap: 0 var(--lc-navbar-gap, var(--lc-space-4));
+  box-sizing: border-box;
+  min-height: var(--lc-navbar-height, 4rem);
+  padding: 0 var(--lc-space-4);
+}
+
+.brand {
+  grid-area: brand;
+  font-family: var(--lc-font-family-heading);
+  font-size: var(--lc-font-size-lg);
+  font-weight: var(--lc-font-weight-semibold);
+}
+
+.actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  gap: var(--lc-space-2);
+}
+
+.toggle {
+  grid-area: toggle;
+  display: inline-grid;
+  place-items: center;
+  width: var(--lc-control-height-md);
+  height: var(--lc-control-height-md);
+  padding: 0;
+  border: 0;
+  border-radius: var(--lc-radius-md);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+  }
+
+  &:hover {
+    background: var(--lc-color-bg-subtle);
+  }
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: 0;
+  }
+}
+
+.menu {
+  grid-area: menu;
+  display: none;
+  flex-direction: column;
+  gap: var(--lc-space-1);
+  padding-bottom: var(--lc-space-3);
+
+  ::ng-deep a {
+    padding: var(--lc-space-2) var(--lc-space-3);
+    border-radius: var(--lc-radius-md);
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      background: var(--lc-color-bg-subtle);
+    }
+
+    &:focus-visible {
+      outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+      outline-offset: 0;
+    }
+  }
+}
+
+:host([data-open]) .menu {
+  display: flex;
+}
+
+// 48rem is the `md` breakpoint (CSS variables cannot be used in media queries).
+@media (min-width: 48rem) {
+  .bar {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'brand menu actions';
+    padding: 0 var(--lc-space-6);
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  .menu,
+  :host([data-open]) .menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 0;
+  }
+}

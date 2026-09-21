@@ -156,7 +156,7 @@ describe('LcMenu', () => {
     it('should close with Escape and return focus to the trigger', async () => {
       const { trigger } = await opened();
 
-      key(menu()!, 'Escape', 27);
+      key(menu() as HTMLElement, 'Escape', 27);
       await settle();
 
       expect(menu()).toBeNull();

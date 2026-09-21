@@ -1,0 +1,35 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lc-space-2);
+  color: var(--lc-breadcrumb-color, var(--lc-color-text-muted));
+  font-size: var(--lc-font-size-sm);
+}
+
+// Separator between items; the empty alternative text hides it from screen readers.
+:host:not(:first-child)::before {
+  color: var(--lc-breadcrumb-separator-color, var(--lc-color-text-disabled));
+  content: '/';
+  content: '/' / '';
+}
+
+:host ::ng-deep a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--lc-color-action);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--lc-radius-sm);
+  }
+}
+
+.current {
+  color: var(--lc-breadcrumb-color-current, var(--lc-color-text));
+  font-weight: var(--lc-font-weight-medium);
+}

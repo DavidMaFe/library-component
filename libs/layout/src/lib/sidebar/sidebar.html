@@ -1,0 +1,20 @@
+<div class="header"><ng-content select="[lcSidebarHeader]" /></div>
+<nav class="nav" [attr.aria-label]="label()">
+  <ng-content />
+</nav>
+<div class="footer">
+  <ng-content select="[lcSidebarFooter]" />
+  @if (collapsible()) {
+  <button
+    type="button"
+    class="toggle"
+    [attr.aria-expanded]="!collapsed()"
+    [attr.aria-label]="collapsed() ? expandLabel() : collapseLabel()"
+    (click)="toggle()"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M10 3L5 8l5 5" />
+    </svg>
+  </button>
+  }
+</div>

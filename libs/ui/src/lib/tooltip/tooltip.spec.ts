@@ -74,7 +74,7 @@ describe('LcTooltip', () => {
     });
 
     it('should respect a custom delay', () => {
-      const { fixture, host, button } = setup();
+      const { host, button } = setup();
       host.delay.set(0);
       TestBed.tick();
 
@@ -86,7 +86,7 @@ describe('LcTooltip', () => {
     });
 
     it('should not show when disabled or empty', () => {
-      const { fixture, host, button } = setup();
+      const { host, button } = setup();
       host.disabled.set(true);
       TestBed.tick();
 
@@ -169,7 +169,7 @@ describe('LcTooltip', () => {
     });
 
     it('should hide when it becomes disabled', () => {
-      const { fixture, host } = shown();
+      const { host } = shown();
 
       host.disabled.set(true);
       TestBed.tick();
@@ -198,7 +198,7 @@ describe('LcTooltip', () => {
     });
 
     it('should update the description when the text changes', () => {
-      const { fixture, host, button } = setup();
+      const { host, button } = setup();
 
       host.text.set('Remove dish');
       TestBed.tick();
@@ -208,7 +208,7 @@ describe('LcTooltip', () => {
     });
 
     it('should update the visible text when the text changes', () => {
-      const { fixture, host, button } = setup();
+      const { host, button } = setup();
       button.dispatchEvent(new MouseEvent('mouseenter'));
       jest.advanceTimersByTime(300);
       flush();

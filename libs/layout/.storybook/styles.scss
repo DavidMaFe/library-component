@@ -1,0 +1,8 @@
+@use '../../tokens/src/styles';
+
+body {
+  margin: 0;
+  background: var(--lc-color-bg);
+  color: var(--lc-color-text);
+  font-family: var(--lc-font-family-base);
+}

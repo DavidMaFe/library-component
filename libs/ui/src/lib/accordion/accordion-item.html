@@ -1,0 +1,30 @@
+<div class="heading" role="heading" [attr.aria-level]="headingLevel()">
+  <button
+    type="button"
+    class="trigger"
+    [id]="triggerId"
+    [attr.aria-expanded]="item.expanded"
+    [attr.aria-controls]="panelId"
+    [disabled]="item.disabled"
+    (click)="item.toggle()"
+  >
+    <span class="title">{{ heading() }}</span>
+    <svg
+      class="chevron"
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M4 6l4 4 4-4" />
+    </svg>
+  </button>
+</div>
+<div
+  class="panel"
+  role="region"
+  [id]="panelId"
+  [attr.aria-labelledby]="triggerId"
+  [hidden]="!item.expanded"
+>
+  <div class="content"><ng-content /></div>
+</div>

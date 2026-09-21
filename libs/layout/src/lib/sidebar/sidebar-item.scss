@@ -1,0 +1,62 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--lc-space-3);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--lc-control-height-md);
+  padding: 0 var(--lc-space-3);
+  border: 0;
+  border-radius: var(--lc-radius-md);
+  background: transparent;
+  color: var(--lc-sidebar-item-color, var(--lc-color-text-muted));
+  font-family: inherit;
+  font-size: var(--lc-font-size-md);
+  text-align: start;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+:host(:hover) {
+  background: var(--lc-sidebar-item-bg-hover, var(--lc-color-bg-subtle));
+  color: var(--lc-color-text);
+}
+
+:host([data-active]) {
+  background: var(--lc-sidebar-item-bg-active, var(--lc-color-action-subtle));
+  color: var(--lc-color-action);
+  font-weight: var(--lc-font-weight-medium);
+}
+
+:host(:focus-visible) {
+  outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+  outline-offset: -2px;
+}
+
+.icon {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon ::ng-deep svg {
+  width: 100%;
+  height: 100%;
+}
+
+:host([data-collapsed]) {
+  justify-content: center;
+  padding: 0;
+}
+
+// Visually hidden but still read by screen readers.
+:host([data-collapsed]) .label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

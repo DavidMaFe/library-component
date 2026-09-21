@@ -1,0 +1,59 @@
+@use '../shared/spacing';
+
+:host {
+  --_gap: var(--lc-space-4);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--lc-stack-gap, var(--_gap));
+}
+
+@include spacing.gap-variants;
+
+:host([data-direction='row']) {
+  flex-direction: row;
+}
+
+:host([data-wrap]) {
+  flex-wrap: wrap;
+}
+
+:host([data-align='start']) {
+  align-items: flex-start;
+}
+
+:host([data-align='center']) {
+  align-items: center;
+}
+
+:host([data-align='end']) {
+  align-items: flex-end;
+}
+
+:host([data-align='stretch']) {
+  align-items: stretch;
+}
+
+:host([data-align='baseline']) {
+  align-items: baseline;
+}
+
+:host([data-justify='start']) {
+  justify-content: flex-start;
+}
+
+:host([data-justify='center']) {
+  justify-content: center;
+}
+
+:host([data-justify='end']) {
+  justify-content: flex-end;
+}
+
+:host([data-justify='between']) {
+  justify-content: space-between;
+}
+
+:host([data-justify='around']) {
+  justify-content: space-around;
+}

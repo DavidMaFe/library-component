@@ -170,7 +170,8 @@ describe('LcDialog', () => {
     it('should hide the close button when not dismissible', async () => {
       const { dialog } = await setup();
       const ref = dialog.open(ConfirmDialog);
-      ref.componentInstance!.dismissible = false;
+      const instance = ref.componentInstance;
+      if (instance) instance.dismissible = false;
       await settle();
 
       expect(query('lc-dialog-panel')).not.toBeNull();

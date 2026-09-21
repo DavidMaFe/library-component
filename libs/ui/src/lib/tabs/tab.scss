@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.panel {
+  padding-block: var(--lc-tabs-panel-padding, var(--lc-space-4));
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: 0;
+  }
+}

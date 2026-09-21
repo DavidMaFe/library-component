@@ -50,15 +50,15 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
 
 ## Phase 5: Layout y navegación
 
-- [ ] container/grid/stack, navbar, sidebar, tabs, breadcrumb, accordion, pagination
+- [x] container/grid/stack, navbar, sidebar, tabs, breadcrumb, accordion, pagination
       Acceptance: responsive y navegable por teclado.
-      Status: 🚧 In Progress
+      Status: ✅ Completed
 
 ## Phase 6: Tabla
 
 - [ ] Tabla básica (CDK table): orden, paginación, selección, slots de celda
       Acceptance: celdas y cabeceras personalizables vía templates.
-      Status: ⏳ Pending
+      Status: 🚧 In Progress
 
 ## Phase 7+: Dominios
 

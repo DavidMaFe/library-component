@@ -1,0 +1,8 @@
+// Emits `:host([data-gap='N'])` rules that map to the spacing scale.
+@mixin gap-variants($property: '--_gap') {
+  @each $space in (0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16) {
+    :host([data-gap='#{$space}']) {
+      #{$property}: var(--lc-space-#{$space});
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<nav [attr.aria-label]="label()">
+  <ul>
+    <li>
+      <button
+        type="button"
+        class="button"
+        [attr.aria-label]="previousLabel()"
+        [disabled]="current() === 1"
+        (click)="select(current() - 1)"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path d="M10 3L5 8l5 5" />
+        </svg>
+      </button>
+    </li>
+    @for (item of items(); track item) { @if (item === 'ellipsis-start' || item
+    === 'ellipsis-end') {
+    <li class="ellipsis" aria-hidden="true">…</li>
+    } @else {
+    <li>
+      <button
+        type="button"
+        class="button"
+        [attr.aria-label]="pageLabel()(item)"
+        [attr.aria-current]="item === current() ? 'page' : null"
+        (click)="select(item)"
+      >
+        {{ item }}
+      </button>
+    </li>
+    } }
+    <li>
+      <button
+        type="button"
+        class="button"
+        [attr.aria-label]="nextLabel()"
+        [disabled]="current() === pageCount()"
+        (click)="select(current() + 1)"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path d="M6 3l5 5-5 5" />
+        </svg>
+      </button>
+    </li>
+  </ul>
+</nav>

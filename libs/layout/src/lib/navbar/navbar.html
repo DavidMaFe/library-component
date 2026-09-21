@@ -1,0 +1,24 @@
+<header class="bar">
+  <div class="brand"><ng-content select="[lcNavbarBrand]" /></div>
+  <div class="actions"><ng-content select="[lcNavbarActions]" /></div>
+  <button
+    #toggleButton
+    type="button"
+    class="toggle"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="menuId"
+    [attr.aria-label]="toggleLabel()"
+    (click)="toggle()"
+  >
+    <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+      @if (open()) {
+      <path d="M5 5l10 10m0-10L5 15" />
+      } @else {
+      <path d="M3 6h14M3 10h14M3 14h14" />
+      }
+    </svg>
+  </button>
+  <nav #menu class="menu" [id]="menuId" [attr.aria-label]="label()">
+    <ng-content />
+  </nav>
+</header>

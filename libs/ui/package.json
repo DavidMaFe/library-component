@@ -4,7 +4,8 @@
   "peerDependencies": {
     "@angular/core": "^22.1.0",
     "@angular/cdk": "^22.1.4",
-    "rxjs": "~7.8.0"
+    "rxjs": "~7.8.0",
+    "@angular/common": "~22.1.0"
   },
   "sideEffects": false,
   "exports": {

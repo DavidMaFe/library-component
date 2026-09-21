@@ -1,0 +1,34 @@
+:host {
+  --_max-width: var(--lc-container-max-width, 64rem);
+  --_gutter: var(--lc-container-gutter, var(--lc-space-4));
+
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--_max-width);
+  margin-inline: auto;
+  padding-inline: var(--_gutter);
+}
+
+:host([data-size='sm']) {
+  --_max-width: var(--lc-container-max-width, 40rem);
+}
+
+:host([data-size='md']) {
+  --_max-width: var(--lc-container-max-width, 48rem);
+}
+
+:host([data-size='xl']) {
+  --_max-width: var(--lc-container-max-width, 80rem);
+}
+
+:host([data-size='full']) {
+  --_max-width: none;
+}
+
+// 48rem is the `md` breakpoint (CSS variables cannot be used in media queries).
+@media (min-width: 48rem) {
+  :host {
+    --_gutter: var(--lc-container-gutter, var(--lc-space-6));
+  }
+}
