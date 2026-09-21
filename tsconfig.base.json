@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2022", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "paths": {
+      "@lc/tokens": ["./libs/tokens/src/index.ts"],
+      "@lc/core": ["./libs/core/src/index.ts"],
+      "@lc/ui": ["./libs/ui/src/index.ts"],
+      "@lc/forms": ["./libs/forms/src/index.ts"],
+      "@lc/layout": ["./libs/layout/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
