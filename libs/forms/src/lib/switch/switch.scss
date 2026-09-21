@@ -1,0 +1,67 @@
+:host {
+  --_width: var(--lc-switch-width, 2.5rem);
+  --_height: var(--lc-switch-height, 1.5rem);
+  --_gap: 0.125rem;
+
+  display: inline-flex;
+}
+
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lc-space-3);
+  cursor: pointer;
+}
+
+:host([data-disabled]) .root {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.track {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--_width);
+  height: var(--_height);
+  padding: var(--_gap);
+  border-radius: var(--lc-radius-full);
+  background: var(--lc-switch-bg, var(--lc-color-border-strong));
+  transition: background var(--lc-duration-base) var(--lc-easing-standard);
+}
+
+.thumb {
+  width: calc(var(--_height) - var(--_gap) * 2);
+  height: calc(var(--_height) - var(--_gap) * 2);
+  border-radius: var(--lc-radius-full);
+  background: var(--lc-switch-thumb-color, var(--lc-neutral-0));
+  box-shadow: var(--lc-shadow-sm);
+  transition: transform var(--lc-duration-base) var(--lc-easing-standard);
+}
+
+.native:checked + .track {
+  background: var(--lc-switch-bg-checked, var(--lc-color-action));
+
+  .thumb {
+    transform: translateX(calc(var(--_width) - var(--_height)));
+  }
+}
+
+.native:focus-visible + .track {
+  outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+  outline-offset: var(--lc-focus-ring-offset);
+}
+
+.text {
+  color: var(--lc-color-text);
+}

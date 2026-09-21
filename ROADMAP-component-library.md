@@ -37,16 +37,16 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
 
 ## Phase 3: Formularios
 
-- [ ] input, textarea, select, checkbox, radio, switch, form-field
-- [ ] ControlValueAccessor + Reactive Forms
+- [x] input, textarea, select, checkbox, radio, switch, form-field
+- [x] ControlValueAccessor + Reactive Forms
       Acceptance: validación y mensajes de error accesibles.
-      Status: 🚧 In Progress
+      Status: ✅ Completed
 
 ## Phase 4: Overlays y feedback
 
 - [ ] modal/dialog, tooltip, dropdown/menu, toast (CDK Overlay)
       Acceptance: focus trap, ESC, navegación por teclado.
-      Status: ⏳ Pending
+      Status: 🚧 In Progress
 
 ## Phase 5: Layout y navegación
 

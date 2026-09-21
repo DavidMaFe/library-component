@@ -26,4 +26,4 @@ jobs:
 
       - run: npx nx format:check --base="remotes/origin/main"
       - run: npx nx run-many -t lint test build
-      - run: npx nx run-many -t build-storybook
+      - run: npx nx run-many -t build-storybook --parallel=1

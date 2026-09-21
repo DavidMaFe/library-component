@@ -1,0 +1,22 @@
+@if (label()) { @if (isGroup()) {
+<span class="label" [id]="labelId">
+  {{ label() }} @if (isRequired()) {
+  <span class="required" aria-hidden="true">*</span>
+  }
+</span>
+} @else {
+<label class="label" [id]="labelId" [attr.for]="controlId()">
+  {{ label() }} @if (isRequired()) {
+  <span class="required" aria-hidden="true">*</span>
+  }
+</label>
+} }
+<div class="control"><ng-content /></div>
+@if (hint()) {
+<p class="hint" [id]="hintId">{{ hint() }}</p>
+}
+<div class="error" [id]="errorId" aria-live="polite">
+  @if (messages()[0]; as message) {
+  <p>{{ message }}</p>
+  }
+</div>

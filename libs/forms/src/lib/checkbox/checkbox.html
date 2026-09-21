@@ -1,0 +1,24 @@
+<label class="root">
+  <input
+    class="native"
+    type="checkbox"
+    [id]="inputId"
+    [checked]="value()"
+    [indeterminate]="indeterminate()"
+    [disabled]="isDisabled()"
+    [attr.aria-describedby]="describedBy()"
+    [attr.aria-invalid]="invalid() || null"
+    (change)="onToggle($event)"
+    (blur)="onBlur()"
+  />
+  <span class="box" aria-hidden="true">
+    <svg viewBox="0 0 16 16" focusable="false">
+      @if (indeterminate()) {
+      <path d="M3.5 8h9" />
+      } @else {
+      <path d="M3.5 8.5l3 3 6-7" />
+      }
+    </svg>
+  </span>
+  <span class="text"><ng-content /></span>
+</label>

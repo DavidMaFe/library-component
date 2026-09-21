@@ -1,0 +1,38 @@
+:host {
+  --_gap: var(--lc-field-gap, var(--lc-space-1));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_gap);
+}
+
+.label {
+  color: var(--lc-field-label-color, var(--lc-color-text));
+  font-size: var(--lc-font-size-sm);
+  font-weight: var(--lc-font-weight-medium);
+}
+
+.required {
+  margin-inline-start: var(--lc-space-1);
+  color: var(--lc-field-error-color, var(--lc-color-danger));
+}
+
+.hint,
+.error p {
+  margin: 0;
+  font-size: var(--lc-font-size-sm);
+}
+
+.hint {
+  color: var(--lc-field-hint-color, var(--lc-color-text-muted));
+}
+
+.error {
+  color: var(--lc-field-error-color, var(--lc-color-danger));
+
+  // Kept in the DOM so screen readers announce messages added later,
+  // but without taking space while empty.
+  &:empty {
+    margin-top: calc(var(--_gap) * -1);
+  }
+}

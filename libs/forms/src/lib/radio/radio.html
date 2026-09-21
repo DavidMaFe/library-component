@@ -1,0 +1,12 @@
+<label class="root">
+  <input
+    class="native"
+    type="radio"
+    [name]="group.name()"
+    [checked]="checked()"
+    [disabled]="isDisabled()"
+    (change)="onSelect()"
+  />
+  <span class="circle" aria-hidden="true"></span>
+  <span class="text"><ng-content /></span>
+</label>

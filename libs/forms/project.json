@@ -43,6 +43,37 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/forms/.storybook",
+        "browserTarget": "forms:build-storybook",
+        "compodoc": false,
+        "styles": ["libs/forms/.storybook/styles.scss"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/forms",
+        "configDir": "libs/forms/.storybook",
+        "browserTarget": "forms:build-storybook",
+        "compodoc": false,
+        "styles": ["libs/forms/.storybook/styles.scss"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
     }
   }
 }
