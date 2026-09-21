@@ -1,0 +1,59 @@
+@if (showSectionNav() && visibleSections().length > 1) {
+<nav class="nav" [attr.aria-label]="labels.menuSectionNav">
+  <ul>
+    @for (section of visibleSections(); track section.id) {
+    <li>
+      <button type="button" class="chip" (click)="scrollTo(section)">
+        {{ section.title }}
+      </button>
+    </li>
+    }
+  </ul>
+</nav>
+} @if (filterable() && availableTags().length > 0) {
+<div class="filters" role="group" [attr.aria-labelledby]="uid + '-filter'">
+  <span class="filters-label" [id]="uid + '-filter'"
+    >{{ labels.menuFilter }}</span
+  >
+  @for (tag of availableTags(); track tag) {
+  <button
+    type="button"
+    class="chip"
+    [attr.aria-pressed]="isActive(tag)"
+    (click)="toggleTag(tag)"
+  >
+    {{ labels.dietary[tag] }}
+  </button>
+  } @if (activeTags().length > 0) {
+  <button type="button" class="clear" (click)="clearTags()">
+    {{ labels.menuClearFilters }}
+  </button>
+  }
+</div>
+}
+
+<div class="visually-hidden" role="status">
+  {{ labels.menuResults(resultCount()) }}
+</div>
+
+@for (section of visibleSections(); track section.id) {
+<section
+  class="section"
+  [id]="sectionId(section)"
+  [attr.aria-labelledby]="sectionId(section) + '-title'"
+>
+  <h2 class="title" [id]="sectionId(section) + '-title'">
+    {{ section.title }}
+  </h2>
+  @if (section.description) {
+  <p class="description">{{ section.description }}</p>
+  }
+  <lc-grid [minItemWidth]="minItemWidth()" gap="4">
+    @for (dish of section.dishes; track dish.id) {
+    <lc-dish-card [dish]="dish" [currency]="currency()" [locale]="locale()" />
+    }
+  </lc-grid>
+</section>
+} @empty {
+<p class="empty">{{ labels.menuNoResults }}</p>
+}

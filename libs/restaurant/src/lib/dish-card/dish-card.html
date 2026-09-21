@@ -1,0 +1,39 @@
+<lc-card>
+  @if (dish().image; as image) {
+  <img
+    lcCardMedia
+    class="image"
+    [src]="image.src"
+    [alt]="image.alt"
+    loading="lazy"
+  />
+  }
+  <div lcCardHeader class="header">
+    <span
+      class="name"
+      role="heading"
+      [id]="nameId"
+      [attr.aria-level]="headingLevel()"
+    >
+      {{ dish().name }}
+    </span>
+    <span class="price">{{ price() }}</span>
+  </div>
+
+  @if (dish().description) {
+  <p class="description">{{ dish().description }}</p>
+  } @if (unavailable() || dish().dietary?.length) {
+  <div class="tags">
+    @if (unavailable()) {
+    <lc-badge variant="danger" size="sm">{{ labels.soldOut }}</lc-badge>
+    } @for (tag of dish().dietary; track tag) {
+    <lc-badge variant="success" size="sm">{{ labels.dietary[tag] }}</lc-badge>
+    }
+  </div>
+  } @if (allergenText()) {
+  <p class="allergens">
+    <span class="allergens-label">{{ labels.allergensLabel }}:</span> {{
+    allergenText() }}
+  </p>
+  }
+</lc-card>

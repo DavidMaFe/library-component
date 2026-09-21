@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+lc-card {
+  height: 100%;
+}
+
+.image {
+  aspect-ratio: var(--lc-dish-image-ratio, 3 / 2);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--lc-space-3);
+}
+
+.name {
+  font-size: var(--lc-font-size-lg);
+}
+
+.price {
+  flex-shrink: 0;
+  color: var(--lc-dish-price-color, var(--lc-color-action));
+  font-weight: var(--lc-font-weight-semibold);
+}
+
+.description {
+  margin: 0 0 var(--lc-space-3);
+  color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-sm);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lc-space-1);
+  margin-bottom: var(--lc-space-2);
+}
+
+.allergens {
+  margin: 0;
+  color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-xs);
+}
+
+.allergens-label {
+  font-weight: var(--lc-font-weight-medium);
+}
+
+:host([data-unavailable]) .header,
+:host([data-unavailable]) .description,
+:host([data-unavailable]) .image {
+  opacity: 0.55;
+}

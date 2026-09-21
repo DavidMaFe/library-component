@@ -60,9 +60,26 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
       Acceptance: celdas y cabeceras personalizables vía templates.
       Status: ✅ Completed
 
-## Phase 7+: Dominios
+## Phase 7A: Dominio restaurant
 
-- [ ] `restaurant` → `ecommerce` → `admin` (una librería cada una)
+- [x] Librería `@lc/restaurant` (dependencias permitidas: ui, forms, layout, core, tokens)
+- [x] Dominio puro y testeado: carta/platos (filtros por dieta y alérgenos, formato de precio), horarios (abierto ahora, próximo cambio, cierres, turnos nocturnos), reservas (política, franjas disponibles, validación)
+- [x] `lc-dish-card` y `lc-menu-board` (carta con secciones, filtros y navegación)
+- [x] `lc-opening-hours` (semana, hoy destacado, estado abierto/cerrado, cierres)
+- [x] `lc-reservation-form` (usa `@lc/forms`; emite la reserva, sin backend)
+- [x] `lc-photo-gallery` (visor con teclado) y `lc-contact-info`
+- [x] Textos traducibles vía `LC_RESTAURANT_LABELS`
+      Acceptance: cada componente con tests, jest-axe y stories verificadas en navegador.
+      Status: ✅ Completed
+
+## Phase 7B: Dominio ecommerce
+
+- [ ] Por definir al terminar 7A (tarjeta de producto, carrito, checkout, filtros)
+      Status: 🚧 In Progress
+
+## Phase 7C: Dominio admin
+
+- [ ] Por definir al terminar 7B (tabla avanzada, widgets de dashboard, cabecera de página)
       Status: ⏳ Pending
 
 ## Phase final: Publicación

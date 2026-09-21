@@ -1,0 +1,76 @@
+:host {
+  display: block;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lc-space-2);
+  margin: 0 0 var(--lc-space-3);
+  color: var(--lc-hours-closed-color, var(--lc-color-text-muted));
+  font-weight: var(--lc-font-weight-medium);
+}
+
+.status[data-open] {
+  color: var(--lc-hours-open-color, var(--lc-color-success));
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--lc-radius-full);
+  background: currentColor;
+}
+
+.week {
+  display: grid;
+  gap: var(--lc-hours-row-gap, var(--lc-space-1));
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--lc-space-4);
+  padding: var(--lc-space-1) var(--lc-space-2);
+  border-radius: var(--lc-radius-sm);
+
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  dd {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// Today is marked by weight and background, not by color alone.
+.row[aria-current='date'] {
+  background: var(--lc-color-action-subtle);
+  font-weight: var(--lc-font-weight-semibold);
+}
+
+.closed {
+  color: var(--lc-color-text-muted);
+}
+
+.closures {
+  margin-top: var(--lc-space-4);
+  font-size: var(--lc-font-size-sm);
+}
+
+.closures-title {
+  margin: 0 0 var(--lc-space-1);
+  font-weight: var(--lc-font-weight-medium);
+}
+
+.closures ul {
+  margin: 0;
+  padding-inline-start: var(--lc-space-4);
+}
+
+.reason {
+  color: var(--lc-color-text-muted);
+}

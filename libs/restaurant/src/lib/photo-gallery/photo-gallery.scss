@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.thumb {
+  display: block;
+  aspect-ratio: var(--lc-gallery-ratio, 4 / 3);
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--lc-gallery-radius, var(--lc-radius-md));
+  background: var(--lc-color-bg-subtle);
+  cursor: zoom-in;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--lc-duration-slow) var(--lc-easing-standard);
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: var(--lc-focus-ring-offset);
+  }
+}

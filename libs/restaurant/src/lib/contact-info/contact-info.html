@@ -1,0 +1,58 @@
+<address class="contact">
+  @if (contact().name) {
+  <p class="name">{{ contact().name }}</p>
+  } @if (contact().address; as address) {
+  <div class="item">
+    <span class="label">{{ labels.contactAddress }}</span>
+    <span class="value">
+      {{ address.street }}<br />
+      @if (address.postalCode) { {{ address.postalCode }} } {{ address.city }}
+      @if (address.country) {
+      <br />{{ address.country }} }
+    </span>
+    @if (contact().mapUrl; as mapUrl) {
+    <a class="link" [href]="mapUrl" target="_blank" rel="noopener noreferrer">
+      {{ labels.contactMap }}<span class="visually-hidden">
+        (opens in a new tab)</span
+      >
+    </a>
+    }
+  </div>
+  } @if (contact().phone; as phone) {
+  <div class="item">
+    <span class="label">{{ labels.contactPhone }}</span>
+    <a class="link" [href]="tel(phone)">{{ phone }}</a>
+  </div>
+  } @if (contact().email; as email) {
+  <div class="item">
+    <span class="label">{{ labels.contactEmail }}</span>
+    <a class="link" [href]="'mailto:' + email">{{ email }}</a>
+  </div>
+  } @if (contact().website; as website) {
+  <div class="item">
+    <span class="label">{{ labels.contactWebsite }}</span>
+    <a class="link" [href]="website" target="_blank" rel="noopener noreferrer">
+      {{ displayUrl(website) }}<span class="visually-hidden">
+        (opens in a new tab)</span
+      >
+    </a>
+  </div>
+  } @if (contact().social?.length) {
+  <ul class="social" [attr.aria-label]="labels.contactSocial">
+    @for (link of contact().social; track link.url) {
+    <li>
+      <a
+        class="link"
+        [href]="link.url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ link.network }}<span class="visually-hidden">
+          (opens in a new tab)</span
+        >
+      </a>
+    </li>
+    }
+  </ul>
+  }
+</address>

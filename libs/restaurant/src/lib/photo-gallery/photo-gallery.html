@@ -1,0 +1,12 @@
+<lc-grid [minItemWidth]="minItemWidth()" gap="3">
+  @for (photo of photos(); track photo.src; let i = $index) {
+  <button
+    type="button"
+    class="thumb"
+    [attr.aria-label]="labels.galleryOpen(i + 1, photos().length, photo.alt)"
+    (click)="open(i)"
+  >
+    <img [src]="photo.src" alt="" loading="lazy" />
+  </button>
+  }
+</lc-grid>

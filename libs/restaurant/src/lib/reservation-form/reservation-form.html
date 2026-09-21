@@ -1,0 +1,71 @@
+<form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div class="row">
+    <lc-form-field [label]="labels.reservationDate">
+      <input
+        lc-input
+        type="date"
+        formControlName="date"
+        [min]="minDate()"
+        [max]="maxDate()"
+      />
+    </lc-form-field>
+
+    <lc-form-field
+      [label]="labels.reservationTime"
+      [hint]="noSlots() ? labels.reservationNoSlots : ''"
+    >
+      <select lc-input formControlName="time">
+        <option value="">{{ labels.reservationTimePlaceholder }}</option>
+        @for (slot of slots(); track slot) {
+        <option [value]="slot">{{ slot }}</option>
+        }
+      </select>
+    </lc-form-field>
+
+    <lc-form-field [label]="labels.reservationPartySize">
+      <input
+        lc-input
+        type="number"
+        inputmode="numeric"
+        formControlName="partySize"
+        [min]="policy().minPartySize"
+        [max]="policy().maxPartySize"
+      />
+    </lc-form-field>
+  </div>
+
+  <div class="row">
+    <lc-form-field [label]="labels.reservationName">
+      <input lc-input type="text" autocomplete="name" formControlName="name" />
+    </lc-form-field>
+    <lc-form-field [label]="labels.reservationEmail">
+      <input
+        lc-input
+        type="email"
+        autocomplete="email"
+        formControlName="email"
+      />
+    </lc-form-field>
+    <lc-form-field [label]="labels.reservationPhone">
+      <input lc-input type="tel" autocomplete="tel" formControlName="phone" />
+    </lc-form-field>
+  </div>
+
+  <lc-form-field [label]="labels.reservationNotes">
+    <textarea lc-input rows="3" formControlName="notes"></textarea>
+  </lc-form-field>
+
+  @if (issueMessages().length > 0) {
+  <ul class="issues" role="alert">
+    @for (message of issueMessages(); track message) {
+    <li>{{ message }}</li>
+    }
+  </ul>
+  }
+
+  <div class="actions">
+    <button lc-button type="submit" [loading]="submitting()">
+      {{ labels.reservationSubmit }}
+    </button>
+  </div>
+</form>

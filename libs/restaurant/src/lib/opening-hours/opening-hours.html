@@ -1,0 +1,33 @@
+@if (showStatus()) {
+<p class="status" [attr.data-open]="status().open || null" role="status">
+  <span class="dot" aria-hidden="true"></span>{{ statusText() }}
+</p>
+}
+
+<dl class="week">
+  @for (entry of week(); track entry.day) {
+  <div class="row" [attr.aria-current]="entry.day === today() ? 'date' : null">
+    <dt>{{ dayName(entry.day) }}</dt>
+    <dd>
+      @if (entry.ranges.length > 0) { {{ rangeText(entry.ranges) }} } @else {
+      <span class="closed">{{ labels.hoursClosed }}</span>
+      }
+    </dd>
+  </div>
+  }
+</dl>
+
+@if (closures().length > 0) {
+<div class="closures">
+  <p class="closures-title">{{ labels.hoursClosures }}</p>
+  <ul>
+    @for (closure of closures(); track closure.key) {
+    <li>
+      {{ closure.label }} @if (closure.reason) {
+      <span class="reason">· {{ closure.reason }}</span>
+      }
+    </li>
+    }
+  </ul>
+</div>
+}
