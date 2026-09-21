@@ -31,7 +31,8 @@ import { LcFormSize } from '../shared/forms.types';
   // Attribute selectors on native elements keep native form semantics.
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'input[lc-input], textarea[lc-input], select[lc-input]',
-  template: '',
+  // Projects the options of a <select> (and any other children) instead of dropping them.
+  template: '<ng-content />',
   styleUrl: './input.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

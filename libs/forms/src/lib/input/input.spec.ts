@@ -73,6 +73,14 @@ describe('LcInput', () => {
       }
     });
 
+    it('should keep the options of a select', async () => {
+      const { select } = await setup();
+
+      expect(
+        Array.from(select.options).map((option) => option.textContent),
+      ).toEqual(['Pizza']);
+    });
+
     it('should keep native behavior such as ngModel', async () => {
       const { fixture, input } = await setup();
       expect(input.value).toBe('hello');
