@@ -1,0 +1,96 @@
+:host {
+  --_width: var(--lc-dialog-width, 32rem);
+  --_padding: var(--lc-dialog-padding, var(--lc-space-6));
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: min(var(--_width), 90vw);
+  max-height: var(--lc-dialog-max-height, 85vh);
+  border: 1px solid var(--lc-color-border);
+  border-radius: var(--lc-dialog-radius, var(--lc-radius-lg));
+  background: var(--lc-dialog-bg, var(--lc-color-surface-raised));
+  color: var(--lc-color-text);
+  box-shadow: var(--lc-dialog-shadow, var(--lc-shadow-lg));
+}
+
+:host([data-size='sm']) {
+  --_width: var(--lc-dialog-width, 24rem);
+}
+
+:host([data-size='lg']) {
+  --_width: var(--lc-dialog-width, 48rem);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--lc-space-4);
+  padding: var(--_padding) var(--_padding) 0;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--lc-font-family-heading);
+  font-size: var(--lc-font-size-xl);
+  font-weight: var(--lc-font-weight-semibold);
+  line-height: var(--lc-line-height-tight);
+}
+
+.close {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin: calc(var(--lc-space-1) * -1);
+  padding: 0;
+  border: 0;
+  border-radius: var(--lc-radius-md);
+  background: transparent;
+  color: var(--lc-color-text-muted);
+  cursor: pointer;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+  }
+
+  &:hover {
+    background: var(--lc-color-bg-subtle);
+    color: var(--lc-color-text);
+  }
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: 0;
+  }
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--lc-space-4) var(--_padding);
+}
+
+.footer {
+  padding: 0 var(--_padding) var(--_padding);
+
+  &:empty {
+    display: none;
+  }
+}
+
+// The actions element is written by the consumer, so it lives outside this
+// component's encapsulated styles.
+:host ::ng-deep [lcDialogActions] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--lc-dialog-actions-gap, var(--lc-space-3));
+}

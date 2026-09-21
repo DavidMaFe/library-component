@@ -1,0 +1,17 @@
+<header class="header">
+  <h2 class="heading" [id]="headingId">{{ heading() }}</h2>
+  @if (canDismiss) {
+  <button
+    class="close"
+    type="button"
+    [attr.aria-label]="closeLabel()"
+    (click)="close()"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M3.5 3.5l9 9m0-9l-9 9" />
+    </svg>
+  </button>
+  }
+</header>
+<div class="body"><ng-content /></div>
+<footer class="footer"><ng-content select="[lcDialogActions]" /></footer>

@@ -1,5 +1,5 @@
 @use '../../tokens/src/styles';
-
+@use '../src/styles/overlay';
 body {
   background: var(--lc-color-bg);
   color: var(--lc-color-text);

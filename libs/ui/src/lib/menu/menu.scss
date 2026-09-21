@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: var(--lc-menu-min-width, 12rem);
+  padding: var(--lc-menu-padding, var(--lc-space-1));
+  border: 1px solid var(--lc-menu-border-color, var(--lc-color-border));
+  border-radius: var(--lc-menu-radius, var(--lc-radius-md));
+  background: var(--lc-menu-bg, var(--lc-color-surface-raised));
+  box-shadow: var(--lc-menu-shadow, var(--lc-shadow-md));
+}

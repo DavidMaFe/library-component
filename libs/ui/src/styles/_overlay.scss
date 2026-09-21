@@ -1,0 +1,12 @@
+// Structural styles required by every overlay component (dialog, tooltip,
+// menu, toast), themed with design tokens. Include it once in global styles:
+//
+//   @use '@lc/ui/styles/overlay';
+@use '@angular/cdk' as cdk with (
+  $overlay-container-z-index: var(--lc-z-overlay),
+  $overlay-z-index: var(--lc-z-overlay),
+  $overlay-backdrop-z-index: var(--lc-z-overlay),
+  $overlay-backdrop-color: var(--lc-color-backdrop)
+);
+
+@include cdk.overlay();

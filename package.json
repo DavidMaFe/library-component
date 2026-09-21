@@ -52,6 +52,7 @@
     "verdaccio": "^6.3.2"
   },
   "dependencies": {
+    "@angular/cdk": "^22.1.4",
     "@angular/common": "~22.1.0",
     "@angular/compiler": "~22.1.0",
     "@angular/core": "~22.1.0",

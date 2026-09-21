@@ -1,0 +1,23 @@
+<span class="icon" aria-hidden="true"></span>
+<div class="content">
+  @if (entry().title) {
+  <p class="title">{{ entry().title }}</p>
+  }
+  <p class="message">{{ entry().message }}</p>
+</div>
+@if (entry().action; as action) {
+<button class="action" type="button" (click)="runAction(action)">
+  {{ action.label }}
+</button>
+} @if (entry().dismissible) {
+<button
+  class="close"
+  type="button"
+  [attr.aria-label]="config.dismissLabel"
+  (click)="dismiss('dismiss')"
+>
+  <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    <path d="M3.5 3.5l9 9m0-9l-9 9" />
+  </svg>
+</button>
+}

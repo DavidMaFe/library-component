@@ -44,15 +44,15 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
 
 ## Phase 4: Overlays y feedback
 
-- [ ] modal/dialog, tooltip, dropdown/menu, toast (CDK Overlay)
+- [x] modal/dialog, tooltip, dropdown/menu, toast (CDK Overlay)
       Acceptance: focus trap, ESC, navegación por teclado.
-      Status: 🚧 In Progress
+      Status: ✅ Completed
 
 ## Phase 5: Layout y navegación
 
 - [ ] container/grid/stack, navbar, sidebar, tabs, breadcrumb, accordion, pagination
       Acceptance: responsive y navegable por teclado.
-      Status: ⏳ Pending
+      Status: 🚧 In Progress
 
 ## Phase 6: Tabla
 
