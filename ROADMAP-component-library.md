@@ -74,8 +74,16 @@ Reglas de dependencia: `restaurant|ecommerce|admin → ui|forms|layout → core|
 
 ## Phase 7B: Dominio ecommerce
 
-- [ ] Por definir al terminar 7A (tarjeta de producto, carrito, checkout, filtros)
-      Status: 🚧 In Progress
+- [x] Librería `@lc/ecommerce` (dependencias permitidas: ui, forms, layout, core, tokens)
+- [x] Dominio puro y testeado, dinero en enteros de céntimos: `Money` (suma, resta, porcentajes con redondeo, formato por moneda), catálogo (variantes, stock, oferta, rango de precios, filtros y orden), carrito inmutable (líneas, cantidades con tope de stock, cupones, totales con envío gratis e impuestos), checkout (validación de contacto y dirección)
+- [x] `lc-product-card` y `lc-product-list` (filtros: búsqueda, categorías, precio, stock, ofertas; orden)
+- [x] `lc-product-detail` (galería, selector de variantes con disponibilidad, cantidad, añadir al carrito)
+- [x] `lc-quantity-stepper` y `lc-order-summary` (piezas reutilizables)
+- [x] `lc-cart` (líneas, cantidades, cupón, resumen)
+- [x] `lc-checkout-form` (contacto, dirección, método de envío, resumen; slot `lcCheckoutPayment` para el pago; emite el pedido)
+- [x] Textos traducibles vía `LC_ECOMMERCE_LABELS`
+      Acceptance: cada componente con tests, jest-axe y stories verificadas en navegador. Sin datos de tarjeta en la librería.
+      Status: ✅ Completed
 
 ## Phase 7C: Dominio admin
 

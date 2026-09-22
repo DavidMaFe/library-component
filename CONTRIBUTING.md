@@ -7,7 +7,7 @@
 ## Commands
 
 - `npx nx run-many -t lint test build` — validate everything
-- `npx nx storybook ui` / `forms` / `layout` / `restaurant` — component playgrounds (build them with `--parallel=1`: they share a cache)
+- `npx nx storybook ui` / `forms` / `layout` / `restaurant` / `ecommerce` — component playgrounds (build them with `--parallel=1`: they share a cache)
 - `npx nx serve showcase` — demo app
 
 ## Architecture

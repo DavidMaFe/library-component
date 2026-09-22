@@ -1,0 +1,127 @@
+:host {
+  display: block;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: var(--lc-product-detail-gap, var(--lc-space-8));
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lc-space-3);
+}
+
+.main {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--lc-product-image-ratio, 1 / 1);
+  border-radius: var(--lc-radius-lg);
+  background: var(--lc-color-bg-subtle);
+  object-fit: cover;
+}
+
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thumb {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: var(--lc-radius-md);
+  background: var(--lc-color-bg-subtle);
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &[aria-current='true'] {
+    border-color: var(--lc-color-action);
+  }
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: var(--lc-focus-ring-offset);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lc-space-3);
+}
+
+.name {
+  margin: 0;
+  font-family: var(--lc-font-family-heading);
+  font-size: var(--lc-font-size-3xl);
+  line-height: var(--lc-line-height-tight);
+}
+
+.rating,
+.description {
+  margin: 0;
+  color: var(--lc-color-text-muted);
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--lc-space-3);
+  margin: 0;
+}
+
+.current {
+  font-size: var(--lc-font-size-2xl);
+  font-weight: var(--lc-font-weight-semibold);
+
+  &.sale {
+    color: var(--lc-color-danger);
+  }
+}
+
+.original {
+  color: var(--lc-color-text-muted);
+}
+
+.stock {
+  min-height: 1.5rem;
+  margin: 0;
+}
+
+.muted {
+  color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-sm);
+}
+
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--lc-space-3);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -1,0 +1,111 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lc-product-list-gap, var(--lc-space-4));
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr minmax(10rem, 14rem);
+  gap: var(--lc-space-4);
+}
+
+.filters,
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--lc-space-3);
+}
+
+.group {
+  align-items: center;
+}
+
+.group:has(.price) {
+  align-items: flex-end;
+}
+
+.group-label {
+  color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-sm);
+}
+
+.price {
+  width: 7rem;
+}
+
+.chip {
+  min-height: var(--lc-control-height-sm);
+  padding: 0 var(--lc-space-3);
+  border: 1px solid var(--lc-color-border-strong);
+  border-radius: var(--lc-radius-full);
+  background: var(--lc-color-surface);
+  color: var(--lc-color-text);
+  font-family: inherit;
+  font-size: var(--lc-font-size-sm);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--lc-color-bg-subtle);
+  }
+
+  &[aria-pressed='true'] {
+    border-color: var(--lc-color-action);
+    background: var(--lc-color-action);
+    color: var(--lc-color-on-action);
+  }
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: var(--lc-focus-ring-offset);
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lc-space-2);
+  min-height: var(--lc-control-height-sm);
+  font-size: var(--lc-font-size-sm);
+  cursor: pointer;
+
+  input {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0;
+    accent-color: var(--lc-color-action);
+  }
+}
+
+.clear {
+  border: 0;
+  background: transparent;
+  color: var(--lc-color-action);
+  font-family: inherit;
+  font-size: var(--lc-font-size-sm);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.results {
+  margin: 0;
+  color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-sm);
+}
+
+.empty {
+  margin: var(--lc-space-8) 0;
+  color: var(--lc-color-text-muted);
+  text-align: center;
+}
+
+.pagination {
+  align-self: center;
+}
+
+@media (max-width: 40rem) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+}

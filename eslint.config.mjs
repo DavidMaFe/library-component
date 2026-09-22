@@ -53,6 +53,17 @@ export default [
               ],
             },
             {
+              sourceTag: 'scope:ecommerce',
+              onlyDependOnLibsWithTags: [
+                'scope:ecommerce',
+                'scope:ui',
+                'scope:forms',
+                'scope:layout',
+                'scope:core',
+                'scope:tokens',
+              ],
+            },
+            {
               sourceTag: 'scope:layout',
               onlyDependOnLibsWithTags: [
                 'scope:layout',

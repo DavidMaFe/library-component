@@ -1,0 +1,47 @@
+<section class="summary" [attr.aria-labelledby]="titleId">
+  <h2
+    class="title"
+    role="heading"
+    [id]="titleId"
+    [attr.aria-level]="headingLevel()"
+  >
+    {{ labels.summaryTitle }}
+  </h2>
+  <dl class="rows">
+    <div class="row">
+      <dt>{{ labels.summarySubtotal }}</dt>
+      <dd>{{ format(totals().subtotal) }}</dd>
+    </div>
+
+    @if (showDiscount()) {
+    <div class="row discount">
+      <dt>{{ labels.summaryDiscount(couponCode()) }}</dt>
+      <dd>−{{ format(totals().discount) }}</dd>
+    </div>
+    }
+
+    <div class="row">
+      <dt>{{ labels.summaryShipping }}</dt>
+      <dd>
+        @if (shippingPending()) {
+        <span class="muted">{{ labels.summaryShippingPending }}</span>
+        } @else if (totals().shippingFree) { {{ labels.summaryShippingFree }} }
+        @else { {{ format(totals().shipping) }} }
+      </dd>
+    </div>
+
+    @if (showTax()) {
+    <div class="row muted">
+      <dt>
+        {{ pricesIncludeTax() ? labels.summaryTaxIncluded : labels.summaryTax }}
+      </dt>
+      <dd>{{ format(totals().tax) }}</dd>
+    </div>
+    }
+
+    <div class="row total">
+      <dt>{{ labels.summaryTotal }}</dt>
+      <dd>{{ format(totals().total) }}</dd>
+    </div>
+  </dl>
+</section>

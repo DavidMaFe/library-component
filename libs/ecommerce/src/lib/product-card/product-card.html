@@ -1,0 +1,85 @@
+<lc-card>
+  @if (product().images[0]; as image) {
+  <img
+    lcCardMedia
+    class="image"
+    [src]="image.src"
+    [alt]="image.alt"
+    loading="lazy"
+  />
+  }
+
+  <div lcCardHeader class="header">
+    <span
+      class="name"
+      role="heading"
+      [id]="nameId"
+      [attr.aria-level]="headingLevel()"
+    >
+      @if (href(); as link) {
+      <a class="link" [href]="link">{{ product().name }}</a>
+      } @else { {{ product().name }} }
+    </span>
+  </div>
+
+  <div class="badges">
+    @if (percent() > 0) {
+    <lc-badge variant="danger" appearance="solid" size="sm"
+      >{{ labels.onSale(percent()) }}</lc-badge
+    >
+    } @if (status() === 'out-of-stock') {
+    <lc-badge variant="neutral" size="sm">{{ labels.outOfStock }}</lc-badge>
+    } @else if (status() === 'low-stock') {
+    <lc-badge variant="warning" size="sm"
+      >{{ labels.lowStock(stock()) }}</lc-badge
+    >
+    }
+  </div>
+
+  @if (ratingLabel(); as label) {
+  <div class="rating" role="img" [attr.aria-label]="label">
+    @for (filled of stars(); track $index) {
+    <svg
+      class="star"
+      [class.filled]="filled"
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M8 1.5l2 4.3 4.7.6-3.4 3.2.9 4.6L8 11.9 3.8 14.2l.9-4.6L1.3 6.4 6 5.8z"
+      />
+    </svg>
+    }
+    <span class="count" aria-hidden="true"
+      >({{ product().rating?.count }})</span
+    >
+  </div>
+  }
+
+  <p class="price">
+    @if (compareAt(); as original) {
+    <s class="original"
+      ><span class="visually-hidden">{{ labels.originalPrice }}: </span>{{
+      original }}</s
+    >
+    }
+    <span class="current" [class.sale]="percent() > 0">
+      {{ hasPriceRange() ? labels.priceFrom(price()) : price() }}
+    </span>
+  </p>
+
+  <div lcCardFooter class="footer">
+    <button
+      lc-button
+      size="sm"
+      block
+      [variant]="withVariants() ? 'secondary' : 'primary'"
+      [disabled]="status() === 'out-of-stock'"
+      (click)="onAction()"
+    >
+      {{ status() === 'out-of-stock' ? labels.outOfStock : withVariants() ?
+      labels.chooseOptions : labels.addToCart }}
+    </button>
+  </div>
+</lc-card>

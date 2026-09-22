@@ -1,0 +1,35 @@
+<div class="group" role="group" [attr.aria-label]="label()">
+  <button
+    type="button"
+    class="button"
+    [attr.aria-label]="labels.quantityDecrease"
+    [disabled]="disabled() || atMin()"
+    (click)="step(-1)"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M3.5 8h9" />
+    </svg>
+  </button>
+  <input
+    class="value"
+    type="number"
+    inputmode="numeric"
+    [attr.aria-label]="label()"
+    [min]="min()"
+    [max]="max() ?? null"
+    [value]="value()"
+    [disabled]="disabled()"
+    (change)="onChange($event)"
+  />
+  <button
+    type="button"
+    class="button"
+    [attr.aria-label]="labels.quantityIncrease"
+    [disabled]="disabled() || atMax()"
+    (click)="step(1)"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M3.5 8h9M8 3.5v9" />
+    </svg>
+  </button>
+</div>

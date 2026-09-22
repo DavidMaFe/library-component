@@ -1,0 +1,119 @@
+<div class="toolbar">
+  <lc-form-field class="search" [label]="labels.listSearch">
+    <input
+      lc-input
+      type="search"
+      [ngModel]="search()"
+      (ngModelChange)="change(() => search.set($event))"
+    />
+  </lc-form-field>
+
+  <lc-form-field class="sort" [label]="labels.listSort">
+    <select
+      lc-input
+      [ngModel]="activeSort()"
+      (ngModelChange)="change(() => chosenSort.set($event))"
+    >
+      @for (key of sorts; track key) {
+      <option [value]="key">{{ labels.listSortOptions[key] }}</option>
+      }
+    </select>
+  </lc-form-field>
+</div>
+
+<div class="filters">
+  @if (categories().length > 0) {
+  <div class="group" role="group" [attr.aria-labelledby]="uid + '-categories'">
+    <span class="group-label" [id]="uid + '-categories'"
+      >{{ labels.listCategories }}</span
+    >
+    @for (category of categories(); track category) {
+    <button
+      type="button"
+      class="chip"
+      [attr.aria-pressed]="selectedCategories().includes(category)"
+      (click)="toggleCategory(category)"
+    >
+      {{ category }}
+    </button>
+    }
+  </div>
+  }
+
+  <div class="group">
+    <lc-form-field class="price" [label]="labels.listMinPrice">
+      <input
+        lc-input
+        size="sm"
+        type="number"
+        min="0"
+        step="any"
+        inputmode="decimal"
+        [ngModel]="minPrice()"
+        (ngModelChange)="change(() => minPrice.set($event))"
+      />
+    </lc-form-field>
+    <lc-form-field class="price" [label]="labels.listMaxPrice">
+      <input
+        lc-input
+        size="sm"
+        type="number"
+        min="0"
+        step="any"
+        inputmode="decimal"
+        [ngModel]="maxPrice()"
+        (ngModelChange)="change(() => maxPrice.set($event))"
+      />
+    </lc-form-field>
+  </div>
+
+  <label class="toggle">
+    <input
+      type="checkbox"
+      [checked]="inStockOnly()"
+      (change)="change(() => inStockOnly.set($any($event.target).checked))"
+    />
+    {{ labels.listInStockOnly }}
+  </label>
+  <label class="toggle">
+    <input
+      type="checkbox"
+      [checked]="onSaleOnly()"
+      (change)="change(() => onSaleOnly.set($any($event.target).checked))"
+    />
+    {{ labels.listOnSaleOnly }}
+  </label>
+
+  @if (hasFilters()) {
+  <button type="button" class="clear" (click)="clearFilters()">
+    {{ labels.listClearFilters }}
+  </button>
+  }
+</div>
+
+<p class="results" role="status">{{ labels.listResults(results().length) }}</p>
+
+@if (visible().length > 0) {
+<lc-grid [minItemWidth]="minItemWidth()" gap="4">
+  @for (product of visible(); track product.id) {
+  <lc-product-card
+    [product]="product"
+    [locale]="locale()"
+    [lowStockThreshold]="lowStockThreshold()"
+    (add)="add.emit($event)"
+    (viewOptions)="viewOptions.emit($event)"
+  />
+  }
+</lc-grid>
+} @else {
+<p class="empty">{{ labels.listNoResults }}</p>
+} @if (paged() && pageCount() > 1) {
+<lc-pagination
+  class="pagination"
+  [label]="labels.listPagination"
+  [total]="results().length"
+  [pageSize]="pageSize()"
+  [page]="currentPage()"
+  (pageChange)="page.set($event)"
+/>
+}

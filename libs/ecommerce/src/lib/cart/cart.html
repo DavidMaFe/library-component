@@ -1,0 +1,107 @@
+<section [attr.aria-labelledby]="titleId">
+  <h2
+    class="title"
+    role="heading"
+    [id]="titleId"
+    [attr.aria-level]="headingLevel()"
+  >
+    {{ labels.cartTitle(totals().itemCount) }}
+  </h2>
+
+  @if (isEmpty()) {
+  <div class="empty">
+    <p>{{ labels.cartEmpty }}</p>
+    <ng-content select="[lcCartEmpty]" />
+  </div>
+  } @else {
+  <div class="content">
+    <ul class="lines">
+      @for (line of cart().lines; track key(line)) {
+      <li class="line">
+        @if (line.image; as image) {
+        <img class="image" [src]="image.src" [alt]="image.alt" loading="lazy" />
+        }
+        <div class="details">
+          <p class="name">{{ line.name }}</p>
+          @if (line.variantLabel) {
+          <p class="variant">{{ line.variantLabel }}</p>
+          }
+          <p class="unit">
+            <span class="visually-hidden">{{ labels.cartUnitPrice }}: </span>{{
+            format(line, 'unit') }}
+          </p>
+        </div>
+        <lc-quantity-stepper
+          [label]="labels.quantityOf(line.name)"
+          [value]="line.quantity"
+          [max]="line.maxQuantity"
+          (valueChange)="quantityChange.emit({ key: key(line), quantity: $event })"
+        />
+        <p class="total">
+          <span class="visually-hidden">{{ labels.cartLineTotal }}: </span>{{
+          format(line, 'total') }}
+        </p>
+        <button
+          type="button"
+          class="remove"
+          [attr.aria-label]="labels.cartRemove(line.name)"
+          (click)="remove.emit(key(line))"
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M3.5 3.5l9 9m0-9l-9 9" />
+          </svg>
+        </button>
+      </li>
+      }
+    </ul>
+
+    <aside class="side">
+      @if (cart().coupon; as coupon) {
+      <p class="applied">
+        <span>{{ labels.cartCouponApplied(coupon.code) }}</span>
+        <button type="button" class="link" (click)="removeCoupon.emit()">
+          {{ labels.cartCouponRemove }}
+        </button>
+      </p>
+      } @else {
+      <form class="coupon" (submit)="submitCoupon($event)">
+        <lc-form-field
+          class="code-field"
+          [label]="labels.cartCouponLabel"
+          [hint]="couponMessageKind() === 'success' ? (couponMessage() ?? '') : ''"
+          [errors]="{}"
+        >
+          <input
+            #code
+            lc-input
+            type="text"
+            autocomplete="off"
+            [invalid]="!!couponMessage() && couponMessageKind() === 'error'"
+          />
+        </lc-form-field>
+        <button lc-button variant="secondary" type="submit">
+          {{ labels.cartCouponApply }}
+        </button>
+      </form>
+      @if (couponMessage() && couponMessageKind() === 'error') {
+      <p class="coupon-error" role="alert">{{ couponMessage() }}</p>
+      } }
+
+      <lc-order-summary
+        [totals]="totals()"
+        [locale]="locale()"
+        [couponCode]="cart().coupon?.code"
+        [shippingPending]="shippingPending()"
+        [pricesIncludeTax]="totalsOptions().pricesIncludeTax ?? true"
+        [headingLevel]="headingLevel() + 1"
+      />
+
+      @if (checkoutEnabled()) {
+      <button lc-button size="lg" block (click)="checkout.emit()">
+        {{ labels.cartCheckout }}
+      </button>
+      }
+    </aside>
+  </div>
+  }
+</section>

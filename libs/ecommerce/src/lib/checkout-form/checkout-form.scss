@@ -1,0 +1,91 @@
+:host {
+  display: block;
+}
+
+.checkout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--lc-checkout-gap, var(--lc-space-6));
+  align-items: start;
+}
+
+@media (min-width: 56rem) {
+  .checkout {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lc-checkout-gap, var(--lc-space-6));
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lc-space-3);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: var(--lc-space-3);
+    padding: 0;
+    font-family: var(--lc-font-family-heading);
+    font-size: var(--lc-font-size-lg);
+    font-weight: var(--lc-font-weight-semibold);
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  gap: var(--lc-space-3);
+}
+
+// The fieldset legend already names the group; the field label would repeat it.
+.method-field ::ng-deep .label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.method {
+  display: inline-flex;
+  gap: var(--lc-space-4);
+  justify-content: space-between;
+  min-width: 14rem;
+}
+
+.method-price {
+  font-weight: var(--lc-font-weight-medium);
+}
+
+.method-description {
+  display: block;
+  color: var(--lc-color-text-muted);
+}
+
+.payment:empty {
+  display: none;
+}
+
+.issues {
+  margin: 0;
+  padding: var(--lc-space-3) var(--lc-space-4) var(--lc-space-3)
+    var(--lc-space-6);
+  border-radius: var(--lc-radius-md);
+  background: var(--lc-color-danger-subtle);
+  color: var(--lc-color-danger);
+  font-size: var(--lc-font-size-sm);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lc-space-4);
+}

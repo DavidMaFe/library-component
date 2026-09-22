@@ -19,7 +19,8 @@
       "@lc/ui": ["./libs/ui/src/index.ts"],
       "@lc/forms": ["./libs/forms/src/index.ts"],
       "@lc/layout": ["./libs/layout/src/index.ts"],
-      "@lc/restaurant": ["./libs/restaurant/src/index.ts"]
+      "@lc/restaurant": ["./libs/restaurant/src/index.ts"],
+      "@lc/ecommerce": ["./libs/ecommerce/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

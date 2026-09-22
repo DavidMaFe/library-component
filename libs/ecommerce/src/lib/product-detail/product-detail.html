@@ -1,0 +1,92 @@
+<div class="layout">
+  <div class="gallery">
+    @if (image(); as current) {
+    <img class="main" [src]="current.src" [alt]="current.alt" />
+    } @if (product().images.length > 1) {
+    <ul class="thumbs">
+      @for (thumb of product().images; track thumb.src; let i = $index) {
+      <li>
+        <button
+          type="button"
+          class="thumb"
+          [attr.aria-label]="labels.imageOf(i + 1, product().images.length, thumb.alt)"
+          [attr.aria-current]="i === activeImage() ? 'true' : null"
+          (click)="activeImage.set(i)"
+        >
+          <img [src]="thumb.src" alt="" />
+        </button>
+      </li>
+      }
+    </ul>
+    }
+  </div>
+
+  <div class="info">
+    <h1 class="name" role="heading" [attr.aria-level]="headingLevel()">
+      {{ product().name }}
+    </h1>
+
+    @if (ratingLabel(); as label) {
+    <p class="rating">{{ label }}</p>
+    }
+
+    <p class="price">
+      @if (compareAt(); as original) {
+      <s class="original"
+        ><span class="visually-hidden">{{ labels.originalPrice }}: </span>{{
+        original }}</s
+      >
+      }
+      <span class="current" [class.sale]="percent() > 0">{{ price() }}</span>
+      @if (percent() > 0) {
+      <lc-badge variant="danger" appearance="solid" size="sm"
+        >{{ labels.onSale(percent()) }}</lc-badge
+      >
+      }
+    </p>
+
+    @if (product().description) {
+    <p class="description">{{ product().description }}</p>
+    } @for (option of options(); track option.key) {
+    <lc-form-field [label]="option.key">
+      <lc-radio-group
+        orientation="horizontal"
+        [ngModel]="selection()[option.key] ?? null"
+        (ngModelChange)="choose(option.key, $event)"
+      >
+        @for (value of option.values; track value) {
+        <lc-radio [value]="value" [disabled]="!available(option.key, value)">
+          {{ available(option.key, value) ? value : labels.optionSoldOut(value)
+          }}
+        </lc-radio>
+        }
+      </lc-radio-group>
+    </lc-form-field>
+    }
+
+    <p class="stock" role="status">
+      @if (needsVariant() && !variant()) {
+      <span class="muted"
+        >{{ labels.selectOptionsFirst(missingOptions()) }}</span
+      >
+      } @else if (status() === 'out-of-stock') {
+      <lc-badge variant="neutral">{{ labels.outOfStock }}</lc-badge>
+      } @else if (status() === 'low-stock') {
+      <lc-badge variant="warning">{{ labels.lowStock(stock()) }}</lc-badge>
+      }
+    </p>
+
+    <div class="buy">
+      <lc-quantity-stepper
+        [label]="labels.quantity"
+        [value]="effectiveQuantity()"
+        [max]="maxQuantity()"
+        [disabled]="!purchasable()"
+        (valueChange)="quantity.set($event)"
+      />
+      <button lc-button size="lg" [disabled]="!purchasable()" (click)="add()">
+        {{ status() === 'out-of-stock' ? labels.outOfStock : labels.addToCart }}
+      </button>
+    </div>
+  </div>
+</div>

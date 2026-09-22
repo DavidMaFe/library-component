@@ -1,0 +1,12 @@
+{
+  "name": "@lc/ecommerce",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^22.1.0",
+    "@lc/ui": "0.0.1",
+    "@angular/forms": "~22.1.0",
+    "@lc/forms": "0.0.1",
+    "@lc/layout": "0.0.1"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,140 @@
+<form class="checkout" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div class="fields">
+    <fieldset class="section">
+      <legend>{{ labels.checkoutContact }}</legend>
+      <div class="row">
+        <lc-form-field [label]="labels.checkoutEmail">
+          <input
+            lc-input
+            type="email"
+            autocomplete="email"
+            formControlName="email"
+          />
+        </lc-form-field>
+        <lc-form-field [label]="labels.checkoutPhone">
+          <input
+            lc-input
+            type="tel"
+            autocomplete="tel"
+            formControlName="phone"
+          />
+        </lc-form-field>
+      </div>
+    </fieldset>
+
+    <fieldset class="section">
+      <legend>{{ labels.checkoutAddress }}</legend>
+      <lc-form-field [label]="labels.checkoutName">
+        <input
+          lc-input
+          type="text"
+          autocomplete="name"
+          formControlName="name"
+        />
+      </lc-form-field>
+      <lc-form-field [label]="labels.checkoutLine1">
+        <input
+          lc-input
+          type="text"
+          autocomplete="address-line1"
+          formControlName="line1"
+        />
+      </lc-form-field>
+      <lc-form-field [label]="labels.checkoutLine2">
+        <input
+          lc-input
+          type="text"
+          autocomplete="address-line2"
+          formControlName="line2"
+        />
+      </lc-form-field>
+      <div class="row">
+        <lc-form-field [label]="labels.checkoutCountry">
+          <select lc-input autocomplete="country" formControlName="country">
+            @for (country of countries(); track country.code) {
+            <option [value]="country.code">{{ country.label }}</option>
+            }
+          </select>
+        </lc-form-field>
+        <lc-form-field
+          [label]="labels.checkoutPostalCode"
+          [errors]="postalCodeErrors()"
+        >
+          <input
+            lc-input
+            type="text"
+            autocomplete="postal-code"
+            formControlName="postalCode"
+          />
+        </lc-form-field>
+      </div>
+      <div class="row">
+        <lc-form-field [label]="labels.checkoutCity">
+          <input
+            lc-input
+            type="text"
+            autocomplete="address-level2"
+            formControlName="city"
+          />
+        </lc-form-field>
+        <lc-form-field [label]="labels.checkoutRegion">
+          <input
+            lc-input
+            type="text"
+            autocomplete="address-level1"
+            formControlName="region"
+          />
+        </lc-form-field>
+      </div>
+    </fieldset>
+
+    <fieldset class="section">
+      <legend>{{ labels.checkoutShippingMethod }}</legend>
+      <lc-form-field
+        [label]="labels.checkoutShippingMethod"
+        class="method-field"
+      >
+        <lc-radio-group formControlName="shippingMethodId">
+          @for (method of shippingMethods(); track method.id) {
+          <lc-radio [value]="method.id">
+            <span class="method">
+              <span class="method-label">{{ method.label }}</span>
+              <span class="method-price">{{ methodPrice(method) }}</span>
+            </span>
+            @if (method.description) {
+            <small class="method-description">{{ method.description }}</small>
+            }
+          </lc-radio>
+          }
+        </lc-radio-group>
+      </lc-form-field>
+    </fieldset>
+
+    <lc-form-field [label]="labels.checkoutNotes">
+      <textarea lc-input rows="3" formControlName="notes"></textarea>
+    </lc-form-field>
+
+    <div class="payment"><ng-content select="[lcCheckoutPayment]" /></div>
+
+    @if (issueMessages().length > 0) {
+    <ul class="issues" role="alert">
+      @for (message of issueMessages(); track message) {
+      <li>{{ message }}</li>
+      }
+    </ul>
+    }
+  </div>
+
+  <aside class="side">
+    <lc-order-summary
+      [totals]="totals()"
+      [locale]="locale()"
+      [couponCode]="cart().coupon?.code"
+      [shippingPending]="!selectedMethod()"
+      [pricesIncludeTax]="totalsOptions().pricesIncludeTax ?? true"
+    />
+    <button lc-button type="submit" size="lg" block [loading]="submitting()">
+      {{ labels.checkoutPlaceOrder }}
+    </button>
+  </aside>
+</form>
