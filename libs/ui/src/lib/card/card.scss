@@ -1,5 +1,5 @@
 :host {
-  --_padding: var(--lc-card-padding, var(--lc-space-4));
+  --_padding: var(--lc-card-padding, var(--lc-space-5));
 
   display: flex;
   flex-direction: column;
@@ -10,11 +10,16 @@
   background: var(--lc-card-bg, var(--lc-color-surface));
   color: var(--lc-color-text);
   box-shadow: var(--lc-card-shadow, none);
+  transition:
+    border-color var(--lc-duration-fast) var(--lc-easing-standard),
+    box-shadow var(--lc-duration-base) var(--lc-easing-standard),
+    transform var(--lc-duration-base) var(--lc-easing-standard);
 }
 
+// Lines before shadows: an elevated card keeps its hairline and only gets
+// the resting shadow.
 :host([data-variant='elevated']) {
-  --lc-card-shadow: var(--lc-shadow-md);
-  border-color: var(--lc-card-border-color, transparent);
+  --lc-card-shadow: var(--lc-shadow-sm);
 }
 
 :host([data-padding='none']) {
@@ -22,11 +27,11 @@
 }
 
 :host([data-padding='sm']) {
-  --_padding: var(--lc-card-padding, var(--lc-space-2));
+  --_padding: var(--lc-card-padding, var(--lc-space-3));
 }
 
 :host([data-padding='lg']) {
-  --_padding: var(--lc-card-padding, var(--lc-space-6));
+  --_padding: var(--lc-card-padding, var(--lc-space-8));
 }
 
 .header,
@@ -37,12 +42,16 @@
 
 .header {
   padding-bottom: 0;
-  font-family: var(--lc-font-family-heading);
+  font-size: 1.0625rem;
   font-weight: var(--lc-font-weight-semibold);
+  line-height: 1.5rem;
 }
 
 .body {
   flex: 1;
+  color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-sm);
+  line-height: 1.375rem;
 }
 
 .footer {
@@ -60,5 +69,6 @@
 .media ::ng-deep > video {
   display: block;
   width: 100%;
+  aspect-ratio: var(--lc-card-media-ratio, 16 / 10);
   object-fit: cover;
 }

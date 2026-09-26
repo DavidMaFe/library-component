@@ -11,7 +11,7 @@
 }
 
 :host([data-size='lg']) {
-  --_size: var(--lc-spinner-size, 2.5rem);
+  --_size: var(--lc-spinner-size, 2.25rem);
 }
 
 svg {
@@ -22,18 +22,17 @@ svg {
 
 circle {
   fill: none;
-  stroke-width: var(--lc-spinner-thickness, 3);
+  stroke-width: var(--lc-spinner-thickness, 2.5);
 }
 
 .track {
-  stroke: var(--lc-spinner-track-color, currentColor);
-  opacity: 0.2;
+  stroke: var(--lc-spinner-track-color, var(--lc-color-border));
 }
 
 .arc {
   stroke: currentColor;
   stroke-linecap: round;
-  stroke-dasharray: 34 100;
+  stroke-dasharray: 18 60;
 }
 
 .visually-hidden {

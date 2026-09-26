@@ -372,6 +372,25 @@ describe('LcTable', () => {
       expect(checkboxes()[1].getAttribute('aria-label')).toBe('Select row');
     });
 
+    it('should draw each checkbox as a decorative box next to the native input', async () => {
+      const { root, checkboxes, update } = await setup(selectable);
+      const boxes = () => Array.from(root.querySelectorAll('.box'));
+
+      expect(boxes()).toHaveLength(checkboxes().length);
+      expect(
+        boxes().every((box) => box.getAttribute('aria-hidden') === 'true'),
+      ).toBe(true);
+      expect(checkboxes()[0].nextElementSibling).toBe(boxes()[0]);
+      const headerMark = () =>
+        boxes()[0].querySelector('path')?.getAttribute('d');
+      expect(headerMark()).toBe('M3.5 8.5l3 3 6-7');
+
+      checkboxes()[1].click();
+      await update();
+
+      expect(headerMark()).toBe('M3.5 8h9');
+    });
+
     it('should select and deselect a row', async () => {
       const { host, checkboxes, rows, update } = await setup(selectable);
 

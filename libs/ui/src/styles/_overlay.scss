@@ -10,3 +10,8 @@
 );
 
 @include cdk.overlay();
+
+// Soft blur behind modal dialogs; the veil color comes from the theme.
+.cdk-overlay-dark-backdrop {
+  backdrop-filter: blur(2px);
+}

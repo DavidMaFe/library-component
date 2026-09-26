@@ -3,17 +3,18 @@
 
   display: flex;
   align-items: center;
-  gap: var(--lc-space-2);
+  gap: 0.625rem;
   box-sizing: border-box;
   width: 100%;
-  min-height: var(--lc-control-height-sm);
-  padding: 0 var(--lc-space-3);
+  min-height: 2.25rem;
+  padding: 0 0.625rem;
   border: 0;
   border-radius: var(--lc-menu-item-radius, var(--lc-radius-sm));
   background: transparent;
   color: var(--_color);
   font-family: inherit;
-  font-size: var(--lc-font-size-md);
+  font-size: var(--lc-font-size-sm);
+  font-weight: var(--lc-font-weight-medium);
   text-align: start;
   text-decoration: none;
   white-space: nowrap;
@@ -28,6 +29,23 @@
 :host(:focus) {
   background: var(--lc-menu-item-bg-hover, var(--lc-color-bg-subtle));
   outline: none;
+}
+
+:host([data-variant='danger']:hover),
+:host([data-variant='danger']:focus) {
+  background: var(--lc-menu-item-bg-hover, var(--lc-color-danger-subtle));
+}
+
+// Leading icons are secondary; danger items keep their tone.
+:host ::ng-deep > svg {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--lc-color-text-muted);
+}
+
+:host([data-variant='danger']) ::ng-deep > svg {
+  color: inherit;
 }
 
 :host(:focus-visible) {
