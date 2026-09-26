@@ -79,7 +79,7 @@ describe('LcOrderSummary', () => {
   });
 
   it('should say when shipping is free', async () => {
-    const { host, rows, update } = await setup();
+    const { fixture, host, rows, update } = await setup();
 
     host.totals.set(
       cartTotals(
@@ -90,6 +90,10 @@ describe('LcOrderSummary', () => {
     await update();
 
     expect(rows()['Shipping']).toBe('Free');
+    expect(
+      (fixture.nativeElement as HTMLElement).querySelector('.free')
+        ?.textContent,
+    ).toBe('Free');
   });
 
   it('should hint that shipping is not calculated yet', async () => {

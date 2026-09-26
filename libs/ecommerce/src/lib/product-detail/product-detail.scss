@@ -4,21 +4,23 @@
 
 .layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-  gap: var(--lc-product-detail-gap, var(--lc-space-8));
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--lc-product-detail-gap, var(--lc-space-10));
+  align-items: start;
 }
 
-.gallery {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lc-space-3);
+// 48rem is the `md` breakpoint (CSS variables cannot be used in media queries).
+@media (min-width: 48rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
 }
 
 .main {
   display: block;
   width: 100%;
-  aspect-ratio: var(--lc-product-image-ratio, 1 / 1);
-  border-radius: var(--lc-radius-lg);
+  aspect-ratio: var(--lc-product-image-ratio, 4 / 5);
+  border-radius: var(--lc-radius-xl);
   background: var(--lc-color-bg-subtle);
   object-fit: cover;
 }
@@ -27,18 +29,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--lc-space-2);
-  margin: 0;
+  margin: var(--lc-space-3) 0 0;
   padding: 0;
   list-style: none;
 }
 
 .thumb {
   display: block;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  aspect-ratio: 1;
   padding: 0;
   overflow: hidden;
-  border: 2px solid transparent;
+  border: 1px solid var(--lc-color-border);
   border-radius: var(--lc-radius-md);
   background: var(--lc-color-bg-subtle);
   cursor: pointer;
@@ -50,8 +52,10 @@
     object-fit: cover;
   }
 
+  // Active thumbnail: double action border.
   &[aria-current='true'] {
     border-color: var(--lc-color-action);
+    box-shadow: 0 0 0 1px var(--lc-color-action);
   }
 
   &:focus-visible {
@@ -61,43 +65,53 @@
 }
 
 .info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lc-space-3);
+  display: grid;
+  gap: var(--lc-space-5);
 }
 
 .name {
-  margin: 0;
+  margin: 0.25rem 0 0;
   font-family: var(--lc-font-family-heading);
-  font-size: var(--lc-font-size-3xl);
-  line-height: var(--lc-line-height-tight);
+  font-size: 2.25rem;
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 
-.rating,
-.description {
+.rating {
   margin: 0;
   color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-sm);
 }
 
 .price {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--lc-space-3);
+  gap: 0.5rem;
   margin: 0;
 }
 
+// A sale price is not red: the accent badge already tells the offer.
 .current {
-  font-size: var(--lc-font-size-2xl);
+  font-family: var(--lc-font-family-heading);
+  font-size: 1.75rem;
   font-weight: var(--lc-font-weight-semibold);
-
-  &.sale {
-    color: var(--lc-color-danger);
-  }
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
 .original {
   color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.description {
+  margin: 0;
+  color: var(--lc-color-text-muted);
+  font-size: var(--lc-font-size-md);
+  line-height: 1.625rem;
 }
 
 .stock {
@@ -110,11 +124,17 @@
   font-size: var(--lc-font-size-sm);
 }
 
+// Purchase zone under a hairline: large stepper and a button that fills the rest.
 .buy {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: var(--lc-space-3);
+  padding-top: var(--lc-space-5);
+  border-top: 1px solid var(--lc-color-border);
+}
+
+.add {
+  flex: 1;
 }
 
 .visually-hidden {

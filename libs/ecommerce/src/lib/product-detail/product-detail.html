@@ -39,7 +39,7 @@
       }
       <span class="current" [class.sale]="percent() > 0">{{ price() }}</span>
       @if (percent() > 0) {
-      <lc-badge variant="danger" appearance="solid" size="sm"
+      <lc-badge variant="accent" appearance="solid"
         >{{ labels.onSale(percent()) }}</lc-badge
       >
       }
@@ -50,7 +50,7 @@
     } @for (option of options(); track option.key) {
     <lc-form-field [label]="option.key">
       <lc-radio-group
-        orientation="horizontal"
+        appearance="chip"
         [ngModel]="selection()[option.key] ?? null"
         (ngModelChange)="choose(option.key, $event)"
       >
@@ -82,9 +82,16 @@
         [value]="effectiveQuantity()"
         [max]="maxQuantity()"
         [disabled]="!purchasable()"
+        size="lg"
         (valueChange)="quantity.set($event)"
       />
-      <button lc-button size="lg" [disabled]="!purchasable()" (click)="add()">
+      <button
+        lc-button
+        size="lg"
+        class="add"
+        [disabled]="!purchasable()"
+        (click)="add()"
+      >
         {{ status() === 'out-of-stock' ? labels.outOfStock : labels.addToCart }}
       </button>
     </div>

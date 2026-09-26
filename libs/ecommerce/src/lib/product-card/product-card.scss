@@ -3,37 +3,53 @@
 }
 
 lc-card {
+  --lc-card-media-ratio: var(--lc-product-image-ratio, 4 / 5);
+
+  position: relative;
   height: 100%;
 }
 
 .image {
-  aspect-ratio: var(--lc-product-image-ratio, 1 / 1);
+  background: var(--lc-color-bg-subtle);
 }
 
 .name {
-  font-size: var(--lc-font-size-md);
+  font-size: 0.9375rem;
+  font-weight: var(--lc-font-weight-medium);
+  line-height: 1.375rem;
 }
 
 .link {
+  border-radius: var(--lc-radius-sm);
   color: inherit;
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   &:focus-visible {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
-    outline-offset: 2px;
-    border-radius: var(--lc-radius-sm);
+    outline-offset: var(--lc-focus-ring-offset);
   }
 }
 
 .badges {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--lc-space-1);
+  gap: 0.375rem;
   margin-bottom: var(--lc-space-2);
+}
+
+// With a photo, the badges sit on top of it (they stay after the name in
+// the DOM, so the reading order does not change).
+.badges.overlay {
+  position: absolute;
+  top: var(--lc-space-3);
+  left: var(--lc-space-3);
+  z-index: 1;
+  margin: 0;
 }
 
 .badges:empty {
@@ -43,25 +59,23 @@ lc-card {
 .rating {
   display: flex;
   align-items: center;
-  gap: 0.125rem;
+  gap: 1px;
   margin-bottom: var(--lc-space-2);
 }
 
+// Stars use the accent: they highlight, they are not actions.
 .star {
   width: 0.875rem;
   height: 0.875rem;
-  fill: none;
-  stroke: var(--lc-color-text-disabled);
-  stroke-width: 1;
+  fill: var(--lc-color-border-strong);
 
   &.filled {
-    fill: var(--lc-color-warning);
-    stroke: var(--lc-color-warning);
+    fill: var(--lc-product-star-color, var(--lc-color-accent));
   }
 }
 
 .count {
-  margin-inline-start: var(--lc-space-1);
+  margin-inline-start: 0.375rem;
   color: var(--lc-color-text-muted);
   font-size: var(--lc-font-size-xs);
 }
@@ -74,19 +88,24 @@ lc-card {
   margin: 0;
 }
 
+// A sale price is not red: the accent badge already tells the offer.
 .current {
   color: var(--lc-product-price-color, var(--lc-color-text));
+  font-family: var(--lc-font-family-heading);
   font-size: var(--lc-font-size-lg);
   font-weight: var(--lc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 
   &.sale {
-    color: var(--lc-product-sale-color, var(--lc-color-danger));
+    color: var(--lc-product-sale-color, var(--lc-color-text));
   }
 }
 
 .original {
   color: var(--lc-color-text-muted);
   font-size: var(--lc-font-size-sm);
+  font-variant-numeric: tabular-nums;
 }
 
 .visually-hidden {

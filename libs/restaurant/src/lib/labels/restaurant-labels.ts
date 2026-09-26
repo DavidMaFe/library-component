@@ -19,6 +19,8 @@ export interface LcRestaurantLabels {
   readonly menuClearFilters: string;
   readonly menuNoResults: string;
   readonly menuResults: (count: number) => string;
+  /** Counter next to each section title, e.g. "02 dishes". */
+  readonly menuSectionCount: (count: number) => string;
 
   // Opening hours
   readonly hoursClosed: string;
@@ -100,6 +102,8 @@ export const DEFAULT_LC_RESTAURANT_LABELS: LcRestaurantLabels = {
   menuNoResults: 'No dishes match your filters.',
   menuResults: (count) =>
     count === 1 ? '1 dish shown' : `${count} dishes shown`,
+  menuSectionCount: (count) =>
+    `${String(count).padStart(2, '0')} ${count === 1 ? 'dish' : 'dishes'}`,
 
   hoursClosed: 'Closed',
   hoursOpenNow: 'Open now',

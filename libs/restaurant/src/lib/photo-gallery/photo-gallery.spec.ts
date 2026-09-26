@@ -116,6 +116,17 @@ describe('LcPhotoGallery', () => {
       );
     });
 
+    it('should always show the viewer on a dark surface', async () => {
+      const { thumbs } = await setup();
+
+      thumbs()[0].click();
+      await settle();
+
+      expect(query('lc-dialog-panel')?.getAttribute('data-lc-theme')).toBe(
+        'dark',
+      );
+    });
+
     it('should show the caption when there is one', async () => {
       const { thumbs } = await setup();
 

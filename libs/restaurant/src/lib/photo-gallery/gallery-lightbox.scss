@@ -2,6 +2,22 @@
   display: block;
 }
 
+// The viewer is always dark (scoped dark theme), on a near-black warm canvas.
+lc-dialog-panel {
+  --lc-dialog-bg: var(--lc-color-bg);
+  --lc-dialog-footer-bg: transparent;
+}
+
+// The heading is the photo counter ("2 / 6"), set as mono data.
+:host ::ng-deep lc-dialog-panel .heading {
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-xs);
+  font-weight: var(--lc-font-weight-medium);
+  letter-spacing: 0.08em;
+  line-height: 2rem;
+  opacity: 0.8;
+}
+
 .figure {
   margin: 0;
 }
@@ -16,15 +32,30 @@
 }
 
 .caption {
-  margin-top: var(--lc-space-2);
+  margin-top: var(--lc-space-3);
   color: var(--lc-color-text-muted);
   font-size: var(--lc-font-size-sm);
-  text-align: center;
+}
+
+// Round buttons with a translucent border.
+:host .nav {
+  justify-content: space-between;
+
+  button {
+    --lc-button-bg: transparent;
+    --lc-button-bg-hover: var(--lc-color-bg-subtle);
+    --lc-button-border-color: color-mix(
+      in srgb,
+      var(--lc-color-text) 28%,
+      transparent
+    );
+    --lc-button-edge: none;
+  }
 }
 
 .nav svg {
-  width: 1rem;
-  height: 1rem;
+  width: 1.125rem;
+  height: 1.125rem;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.75;

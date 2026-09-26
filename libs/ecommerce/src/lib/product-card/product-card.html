@@ -22,15 +22,17 @@
     </span>
   </div>
 
-  <div class="badges">
+  <div class="badges" [class.overlay]="!!product().images[0]">
     @if (percent() > 0) {
-    <lc-badge variant="danger" appearance="solid" size="sm"
+    <lc-badge variant="accent" appearance="solid" size="sm"
       >{{ labels.onSale(percent()) }}</lc-badge
     >
     } @if (status() === 'out-of-stock') {
-    <lc-badge variant="neutral" size="sm">{{ labels.outOfStock }}</lc-badge>
+    <lc-badge variant="neutral" appearance="solid" size="sm"
+      >{{ labels.outOfStock }}</lc-badge
+    >
     } @else if (status() === 'low-stock') {
-    <lc-badge variant="warning" size="sm"
+    <lc-badge variant="warning" appearance="solid" size="sm"
       >{{ labels.lowStock(stock()) }}</lc-badge
     >
     }

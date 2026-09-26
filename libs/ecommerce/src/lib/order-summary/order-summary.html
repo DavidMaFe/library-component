@@ -25,8 +25,9 @@
       <dd>
         @if (shippingPending()) {
         <span class="muted">{{ labels.summaryShippingPending }}</span>
-        } @else if (totals().shippingFree) { {{ labels.summaryShippingFree }} }
-        @else { {{ format(totals().shipping) }} }
+        } @else if (totals().shippingFree) {
+        <span class="free">{{ labels.summaryShippingFree }}</span>
+        } @else { {{ format(totals().shipping) }} }
       </dd>
     </div>
 

@@ -3,55 +3,86 @@
 }
 
 lc-card {
+  --lc-card-media-ratio: var(--lc-dish-image-ratio, 4 / 3);
+
   height: 100%;
 }
 
-.image {
-  aspect-ratio: var(--lc-dish-image-ratio, 3 / 2);
-}
-
+// Menu signature: name and price joined by a dotted leader, like a printed menu.
 .header {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: var(--lc-space-3);
+  gap: var(--lc-space-2);
 }
 
 .name {
+  font-family: var(--lc-font-family-heading);
   font-size: var(--lc-font-size-lg);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.015em;
+  line-height: 1.5rem;
+}
+
+.leader {
+  flex: 1;
+  min-width: 1rem;
+  border-bottom: 1.5px dotted var(--lc-color-border-strong);
+  transform: translateY(-0.3rem);
 }
 
 .price {
   flex-shrink: 0;
-  color: var(--lc-dish-price-color, var(--lc-color-action));
+  color: var(--lc-dish-price-color, var(--lc-color-text));
+  font-family: var(--lc-font-family-heading);
+  font-size: var(--lc-font-size-lg);
   font-weight: var(--lc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .description {
-  margin: 0 0 var(--lc-space-3);
+  margin: 0;
   color: var(--lc-color-text-muted);
   font-size: var(--lc-font-size-sm);
+  line-height: 1.375rem;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--lc-space-1);
-  margin-bottom: var(--lc-space-2);
+  gap: 0.375rem;
+  margin-top: var(--lc-space-3);
 }
 
 .allergens {
-  margin: 0;
+  margin: var(--lc-space-3) 0 0;
+  padding-top: var(--lc-space-3);
+  border-top: 1px solid var(--lc-color-border);
   color: var(--lc-color-text-muted);
   font-size: var(--lc-font-size-xs);
 }
 
 .allergens-label {
+  margin-inline-end: 0.25rem;
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
   font-weight: var(--lc-font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-:host([data-unavailable]) .header,
-:host([data-unavailable]) .description,
-:host([data-unavailable]) .image {
-  opacity: 0.55;
+// Sold out: muted name, struck price and a dimmed photo (plus the badge).
+:host([data-unavailable]) {
+  .name,
+  .price {
+    color: var(--lc-color-text-muted);
+  }
+
+  .price {
+    text-decoration: line-through;
+  }
+
+  .image {
+    opacity: 0.55;
+  }
 }

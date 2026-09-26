@@ -1,4 +1,5 @@
 <lc-dialog-panel
+  data-lc-theme="dark"
   size="lg"
   [heading]="labels.galleryCounter(index() + 1, total)"
   [closeLabel]="labels.galleryClose"
@@ -15,6 +16,7 @@
     <button
       lc-icon-button
       variant="secondary"
+      shape="round"
       [label]="labels.galleryPrevious"
       (click)="previous()"
     >
@@ -25,6 +27,7 @@
     <button
       lc-icon-button
       variant="secondary"
+      shape="round"
       [label]="labels.galleryNext"
       (click)="next()"
     >

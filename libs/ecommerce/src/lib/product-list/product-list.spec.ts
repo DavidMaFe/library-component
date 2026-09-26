@@ -160,6 +160,15 @@ describe('LcProductList', () => {
       expect(names()).toEqual(['Dotted notebook', 'Soy candle']);
     });
 
+    it('should draw the toggles like lc-checkbox around the native input', async () => {
+      const { toggle } = await setup();
+
+      const label = toggle('In stock only').closest('label') as HTMLElement;
+      const box = label.querySelector('.box');
+      expect(box?.getAttribute('aria-hidden')).toBe('true');
+      expect(label.querySelector('input[type="checkbox"]')).not.toBeNull();
+    });
+
     it('should keep only products in stock', async () => {
       const { toggle, names, update } = await setup();
 

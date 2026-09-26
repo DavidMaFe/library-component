@@ -11,24 +11,26 @@
 .group {
   display: inline-flex;
   align-items: stretch;
+  box-sizing: border-box;
   height: var(--_height);
-  border: 1px solid var(--lc-color-border-strong);
+  border: 1px solid var(--lc-color-border-control);
   border-radius: var(--lc-stepper-radius, var(--lc-radius-md));
   background: var(--lc-color-surface);
   overflow: hidden;
 
   &:focus-within {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
-    outline-offset: 0;
+    outline-offset: var(--lc-focus-ring-offset);
   }
 }
 
 .button {
   display: inline-grid;
   place-items: center;
-  width: var(--_height);
+  width: 2.25rem;
   padding: 0;
   border: 0;
+  border-radius: var(--lc-stepper-radius, var(--lc-radius-md));
   background: transparent;
   color: var(--lc-color-text);
   cursor: pointer;
@@ -53,14 +55,14 @@
 }
 
 .value {
-  width: 3rem;
+  width: 2.5rem;
   padding: 0;
   border: 0;
-  border-inline: 1px solid var(--lc-color-border);
   background: transparent;
   color: var(--lc-color-text);
   font-family: inherit;
-  font-size: var(--lc-font-size-md);
+  font-size: 0.9375rem;
+  font-weight: var(--lc-font-weight-semibold);
   font-variant-numeric: tabular-nums;
   text-align: center;
   appearance: textfield;
