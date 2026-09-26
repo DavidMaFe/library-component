@@ -1,8 +1,9 @@
 :host {
   --_height: var(--lc-input-height, var(--lc-control-height-md));
-  --_padding-x: var(--lc-input-padding-x, var(--lc-space-3));
-  --_font-size: var(--lc-input-font-size, var(--lc-font-size-md));
-  --_border: var(--lc-input-border-color, var(--lc-color-border-strong));
+  --_padding-x: var(--lc-input-padding-x, 0.875rem);
+  --_font-size: var(--lc-input-font-size, 0.9375rem);
+  --_border: var(--lc-input-border-color, var(--lc-color-border-control));
+  --_halo: transparent;
 
   display: block;
   box-sizing: border-box;
@@ -12,67 +13,93 @@
   border: 1px solid var(--_border);
   border-radius: var(--lc-input-radius, var(--lc-radius-md));
   background: var(--lc-input-bg, var(--lc-color-surface));
+  box-shadow: 0 0 0 3px var(--_halo);
   color: var(--lc-input-color, var(--lc-color-text));
   font-family: inherit;
   font-size: var(--_font-size);
   line-height: var(--lc-line-height-normal);
-  transition: border-color var(--lc-duration-fast) var(--lc-easing-standard);
+  appearance: none;
+  transition:
+    border-color var(--lc-duration-fast) var(--lc-easing-standard),
+    box-shadow var(--lc-duration-fast) var(--lc-easing-standard);
 }
 
 :host(textarea) {
   min-height: calc(var(--_height) * 2);
-  padding-block: var(--lc-space-2);
+  padding-block: 0.625rem;
+  line-height: 1.5rem;
   resize: vertical;
 }
 
+// Own chevron, drawn with two diagonal strokes so it follows the theme.
 :host(select) {
-  padding-inline-end: var(--lc-space-8);
-  appearance: none;
+  --_chevron: var(--lc-input-chevron-color, var(--lc-color-text-muted));
+
+  padding-inline-end: 2.25rem;
   cursor: pointer;
   background-image:
-    linear-gradient(45deg, transparent 50%, currentColor 50%),
-    linear-gradient(135deg, currentColor 50%, transparent 50%);
+    linear-gradient(
+      45deg,
+      transparent calc(50% - 0.9px),
+      var(--_chevron) calc(50% - 0.9px),
+      var(--_chevron) calc(50% + 0.9px),
+      transparent calc(50% + 0.9px)
+    ),
+    linear-gradient(
+      135deg,
+      transparent calc(50% - 0.9px),
+      var(--_chevron) calc(50% - 0.9px),
+      var(--_chevron) calc(50% + 0.9px),
+      transparent calc(50% + 0.9px)
+    );
   background-position:
-    calc(100% - 1.1rem) 50%,
+    calc(100% - 0.75rem - 0.3125rem) 50%,
     calc(100% - 0.75rem) 50%;
   background-size:
-    0.35rem 0.35rem,
-    0.35rem 0.35rem;
+    0.3125rem 0.3125rem,
+    0.3125rem 0.3125rem;
   background-repeat: no-repeat;
 }
 
 :host([data-size='sm']) {
   --_height: var(--lc-input-height, var(--lc-control-height-sm));
-  --_padding-x: var(--lc-input-padding-x, var(--lc-space-2));
+  --_padding-x: var(--lc-input-padding-x, 0.625rem);
   --_font-size: var(--lc-input-font-size, var(--lc-font-size-sm));
 }
 
 :host([data-size='lg']) {
   --_height: var(--lc-input-height, var(--lc-control-height-lg));
-  --_padding-x: var(--lc-input-padding-x, var(--lc-space-4));
-  --_font-size: var(--lc-input-font-size, var(--lc-font-size-lg));
+  --_font-size: var(--lc-input-font-size, var(--lc-font-size-md));
 }
 
 :host::placeholder {
-  color: var(--lc-color-text-disabled);
+  color: var(--lc-color-text-muted);
+  opacity: 0.8;
 }
 
 :host(:hover:not(:disabled)) {
   --_border: var(--lc-input-border-color-hover, var(--lc-color-text-muted));
 }
 
-:host(:focus-visible) {
-  --_border: var(--lc-input-border-color-focus, var(--lc-color-focus-ring));
-  outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
-  outline-offset: 0;
+// Focus: the border turns to the action color with a 3px halo. The
+// transparent outline keeps a visible ring in forced-colors mode.
+:host(:focus) {
+  --_border: var(--lc-input-border-color-focus, var(--lc-color-action));
+  --_halo: color-mix(in srgb, var(--lc-color-action) 22%, transparent);
+  outline: 2px solid transparent;
 }
 
 :host([data-invalid]) {
   --_border: var(--lc-color-danger);
 }
 
+:host([data-invalid]:focus) {
+  --_halo: color-mix(in srgb, var(--lc-color-danger) 22%, transparent);
+}
+
 :host(:disabled) {
-  background: var(--lc-color-bg-subtle);
+  --_border: var(--lc-color-border);
+  background-color: var(--lc-color-bg-subtle);
   color: var(--lc-color-text-disabled);
   cursor: not-allowed;
 }

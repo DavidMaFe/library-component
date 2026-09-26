@@ -10,6 +10,9 @@ import {
 } from '@angular/core';
 import { LC_ECOMMERCE_LABELS } from '../labels/ecommerce-labels';
 
+/** `lg` matches a large call-to-action button next to it. */
+export type LcQuantityStepperSize = 'md' | 'lg';
+
 /**
  * Number input with plus and minus buttons. Typed values are kept between
  * `min` and `max`; the buttons disable at the limits.
@@ -25,6 +28,7 @@ import { LC_ECOMMERCE_LABELS } from '../labels/ecommerce-labels';
   templateUrl: './quantity-stepper.html',
   styleUrl: './quantity-stepper.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[attr.data-size]': 'size()' },
 })
 export class LcQuantityStepper {
   /** Accessible name of the group and of the number field. */
@@ -36,6 +40,7 @@ export class LcQuantityStepper {
     transform: (value) => (value == null ? undefined : numberAttribute(value)),
   });
   readonly disabled = input(false, { transform: booleanAttribute });
+  readonly size = input<LcQuantityStepperSize>('md');
 
   protected readonly labels = inject(LC_ECOMMERCE_LABELS);
   protected readonly atMin = computed(() => this.value() <= this.min());

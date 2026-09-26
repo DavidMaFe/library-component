@@ -6,7 +6,11 @@ import { LcCard, LcCardPadding, LcCardVariant } from './card';
 @Component({
   imports: [LcCard],
   template: `
-    <lc-card [variant]="variant()" [padding]="padding()">
+    <lc-card
+      [variant]="variant()"
+      [padding]="padding()"
+      [interactive]="interactive()"
+    >
       @if (withMedia()) {
         <img lcCardMedia src="dish.jpg" alt="Pasta" />
       }
@@ -23,6 +27,7 @@ import { LcCard, LcCardPadding, LcCardVariant } from './card';
 class HostComponent {
   variant = signal<LcCardVariant>('outlined');
   padding = signal<LcCardPadding>('md');
+  interactive = signal(false);
   withMedia = signal(true);
   withHeader = signal(true);
   withFooter = signal(true);
@@ -54,6 +59,19 @@ describe('LcCard', () => {
 
     expect(card.getAttribute('data-variant')).toBe('elevated');
     expect(card.getAttribute('data-padding')).toBe('none');
+  });
+
+  it('should only mark the card as interactive when asked', async () => {
+    const { fixture, host, card } = await setup();
+
+    expect(card.hasAttribute('data-interactive')).toBe(false);
+
+    host.interactive.set(true);
+    await fixture.whenStable();
+
+    expect(card.hasAttribute('data-interactive')).toBe(true);
+    expect(card.getAttribute('role')).toBeNull();
+    expect(card.getAttribute('tabindex')).toBeNull();
   });
 
   it('should project content into the matching slots', async () => {

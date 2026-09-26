@@ -2,22 +2,25 @@
   display: block;
 }
 
+// Sunken block, no border.
 .summary {
-  padding: var(--lc-summary-padding, var(--lc-space-4));
-  border: 1px solid var(--lc-summary-border-color, var(--lc-color-border));
+  padding: var(--lc-summary-padding, var(--lc-space-5));
+  border: 1px solid var(--lc-summary-border-color, transparent);
   border-radius: var(--lc-radius-lg);
-  background: var(--lc-summary-bg, var(--lc-color-surface));
+  background: var(--lc-summary-bg, var(--lc-color-bg-subtle));
 }
 
 .title {
-  margin: 0 0 var(--lc-space-3);
+  margin: 0 0 var(--lc-space-4);
   font-family: var(--lc-font-family-heading);
-  font-size: var(--lc-font-size-lg);
+  font-size: var(--lc-font-size-xl);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.015em;
 }
 
 .rows {
   display: grid;
-  gap: var(--lc-space-2);
+  gap: 0.625rem;
   margin: 0;
 }
 
@@ -25,31 +28,57 @@
   display: flex;
   justify-content: space-between;
   gap: var(--lc-space-4);
+  font-size: var(--lc-font-size-sm);
 
   dt,
   dd {
     margin: 0;
   }
 
+  dt {
+    color: var(--lc-color-text-muted);
+  }
+
   dd {
     font-variant-numeric: tabular-nums;
+    font-weight: var(--lc-font-weight-medium);
     text-align: end;
   }
 }
 
-.muted {
+.muted,
+.row.muted dd {
   color: var(--lc-color-text-muted);
-  font-size: var(--lc-font-size-sm);
+  font-weight: var(--lc-font-weight-regular);
 }
 
+.free {
+  color: var(--lc-color-success);
+  font-weight: var(--lc-font-weight-semibold);
+}
+
+.discount dt,
 .discount dd {
   color: var(--lc-color-success);
 }
 
+// Total after a strong hairline, amount in the display face.
 .total {
-  margin-top: var(--lc-space-2);
-  padding-top: var(--lc-space-3);
-  border-top: 1px solid var(--lc-color-border);
-  font-size: var(--lc-font-size-lg);
-  font-weight: var(--lc-font-weight-semibold);
+  align-items: baseline;
+  margin-top: 0.375rem;
+  padding-top: var(--lc-space-4);
+  border-top: 1px solid var(--lc-color-border-strong);
+
+  dt {
+    color: var(--lc-color-text);
+    font-size: var(--lc-font-size-md);
+    font-weight: var(--lc-font-weight-semibold);
+  }
+
+  dd {
+    font-family: var(--lc-font-family-heading);
+    font-size: var(--lc-font-size-2xl);
+    font-weight: var(--lc-font-weight-semibold);
+    letter-spacing: -0.02em;
+  }
 }

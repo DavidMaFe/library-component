@@ -3,21 +3,24 @@
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lc-reservation-gap, var(--lc-space-4));
+  display: grid;
+  gap: var(--lc-reservation-gap, var(--lc-space-5));
+  padding: var(--lc-space-6);
+  border: 1px solid var(--lc-color-border);
+  border-radius: var(--lc-radius-lg);
+  background: var(--lc-color-surface);
 }
 
 .row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
-  gap: var(--lc-reservation-gap, var(--lc-space-4));
+  grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
+  gap: var(--lc-space-4);
 }
 
 .issues {
   margin: 0;
   padding: var(--lc-space-3) var(--lc-space-4) var(--lc-space-3)
-    var(--lc-space-6);
+    var(--lc-space-8);
   border-radius: var(--lc-radius-md);
   background: var(--lc-color-danger-subtle);
   color: var(--lc-color-danger);
@@ -26,5 +29,9 @@
 
 .actions {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: var(--lc-space-4);
+  padding-top: var(--lc-space-4);
+  border-top: 1px solid var(--lc-color-border);
 }

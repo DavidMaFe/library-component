@@ -3,13 +3,15 @@
 @mixin button-styles {
   :host {
     --_height: var(--lc-button-height, var(--lc-control-height-md));
-    --_padding-x: var(--lc-button-padding-x, var(--lc-space-4));
-    --_font-size: var(--lc-button-font-size, var(--lc-font-size-md));
+    --_padding-x: var(--lc-button-padding-x, 1.125rem);
+    --_font-size: var(--lc-button-font-size, 0.9375rem);
     --_bg: var(--lc-button-bg, var(--lc-color-action));
     --_bg-hover: var(--lc-button-bg-hover, var(--lc-color-action-hover));
     --_bg-active: var(--lc-button-bg-active, var(--lc-color-action-active));
     --_color: var(--lc-button-color, var(--lc-color-on-action));
     --_border: var(--lc-button-border-color, transparent);
+    // Subtle bottom edge that gives filled buttons some depth.
+    --_edge: var(--lc-button-edge, inset 0 -1px 0 rgb(0 0 0 / 14%));
 
     display: inline-flex;
     align-items: center;
@@ -22,9 +24,11 @@
     border-radius: var(--lc-button-radius, var(--lc-radius-md));
     background: var(--_bg);
     color: var(--_color);
-    font-family: inherit;
+    box-shadow: var(--_edge);
+    font-family: var(--lc-font-family-base);
     font-size: var(--_font-size);
-    font-weight: var(--lc-button-font-weight, var(--lc-font-weight-medium));
+    font-weight: var(--lc-button-font-weight, var(--lc-font-weight-semibold));
+    letter-spacing: -0.005em;
     line-height: 1;
     text-decoration: none;
     white-space: nowrap;
@@ -32,22 +36,25 @@
     user-select: none;
     transition:
       background var(--lc-duration-fast) var(--lc-easing-standard),
-      border-color var(--lc-duration-fast) var(--lc-easing-standard);
+      border-color var(--lc-duration-fast) var(--lc-easing-standard),
+      transform var(--lc-duration-fast) var(--lc-easing-standard);
   }
 
   :host([data-variant='secondary']) {
     --_bg: var(--lc-button-bg, var(--lc-color-surface));
     --_bg-hover: var(--lc-button-bg-hover, var(--lc-color-bg-subtle));
-    --_bg-active: var(--lc-button-bg-active, var(--lc-color-border));
+    --_bg-active: var(--lc-button-bg-active, var(--lc-color-bg-subtle));
     --_color: var(--lc-button-color, var(--lc-color-text));
     --_border: var(--lc-button-border-color, var(--lc-color-border-strong));
+    --_edge: var(--lc-button-edge, 0 1px 0 var(--lc-shadow-color));
   }
 
   :host([data-variant='ghost']) {
     --_bg: var(--lc-button-bg, transparent);
-    --_bg-hover: var(--lc-button-bg-hover, var(--lc-color-action-subtle));
+    --_bg-hover: var(--lc-button-bg-hover, var(--lc-color-bg-subtle));
     --_bg-active: var(--lc-button-bg-active, var(--lc-color-action-subtle));
-    --_color: var(--lc-button-color, var(--lc-color-action));
+    --_color: var(--lc-button-color, var(--lc-color-text));
+    --_edge: var(--lc-button-edge, none);
   }
 
   :host([data-variant='danger']) {
@@ -65,14 +72,14 @@
 
   :host([data-size='sm']) {
     --_height: var(--lc-button-height, var(--lc-control-height-sm));
-    --_padding-x: var(--lc-button-padding-x, var(--lc-space-3));
-    --_font-size: var(--lc-button-font-size, var(--lc-font-size-sm));
+    --_padding-x: var(--lc-button-padding-x, 0.75rem);
+    --_font-size: var(--lc-button-font-size, 0.8125rem);
   }
 
   :host([data-size='lg']) {
     --_height: var(--lc-button-height, var(--lc-control-height-lg));
-    --_padding-x: var(--lc-button-padding-x, var(--lc-space-6));
-    --_font-size: var(--lc-button-font-size, var(--lc-font-size-lg));
+    --_padding-x: var(--lc-button-padding-x, 1.5rem);
+    --_font-size: var(--lc-button-font-size, var(--lc-font-size-md));
   }
 
   :host(:hover:not([aria-disabled='true'])) {
@@ -81,6 +88,7 @@
 
   :host(:active:not([aria-disabled='true'])) {
     background: var(--_bg-active);
+    transform: translateY(1px);
   }
 
   :host(:focus-visible) {
@@ -89,11 +97,17 @@
   }
 
   :host([aria-disabled='true']) {
-    opacity: 0.55;
+    box-shadow: none;
+    opacity: 0.45;
     cursor: not-allowed;
   }
 
   :host([data-loading]) {
     cursor: progress;
+  }
+
+  lc-spinner {
+    --lc-spinner-color: currentColor;
+    --lc-spinner-track-color: transparent;
   }
 }

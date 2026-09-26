@@ -313,11 +313,17 @@ describe('LcCheckoutForm', () => {
   it('should group fields in fieldsets with legends', async () => {
     const { root } = await setup();
 
+    const legends = Array.from(root.querySelectorAll('fieldset legend'));
     expect(
-      Array.from(root.querySelectorAll('fieldset legend')).map((l) =>
-        l.textContent?.trim(),
-      ),
+      legends.map((l) => l.querySelector('.t')?.textContent?.trim()),
     ).toEqual(['Contact', 'Shipping address', 'Shipping method']);
+    // The step numbers are decorative: they stay out of each group's name.
+    expect(
+      legends.map((l) => {
+        const number = l.querySelector('.n');
+        return `${number?.getAttribute('aria-hidden')}:${number?.textContent}`;
+      }),
+    ).toEqual(['true:01', 'true:02', 'true:03']);
   });
 
   it('should use translated labels', async () => {

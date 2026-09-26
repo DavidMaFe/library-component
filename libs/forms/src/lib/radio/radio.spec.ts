@@ -3,7 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { axe } from 'jest-axe';
 import { LcRadio } from './radio';
-import { LcRadioGroup, LcRadioOrientation } from './radio-group';
+import {
+  LcRadioAppearance,
+  LcRadioGroup,
+  LcRadioOrientation,
+} from './radio-group';
 
 @Component({
   imports: [LcRadioGroup, LcRadio, ReactiveFormsModule],
@@ -11,6 +15,7 @@ import { LcRadioGroup, LcRadioOrientation } from './radio-group';
     <lc-radio-group
       [formControl]="control"
       [orientation]="orientation()"
+      [appearance]="appearance()"
       aria-label="Size"
     >
       <lc-radio [value]="small">Small</lc-radio>
@@ -23,6 +28,7 @@ class HostComponent {
   small = { id: 1 };
   large = { id: 2 };
   orientation = signal<LcRadioOrientation>('vertical');
+  appearance = signal<LcRadioAppearance>('default');
   control = new FormControl<unknown>(null);
 }
 
@@ -121,6 +127,61 @@ describe('LcRadioGroup', () => {
     await fixture.whenStable();
 
     expect(group.getAttribute('data-orientation')).toBe('horizontal');
+  });
+
+  describe('chip appearance', () => {
+    const chips = async () => {
+      const api = await setup();
+      api.host.appearance.set('chip');
+      await api.fixture.whenStable();
+      const options = Array.from(
+        (api.fixture.nativeElement as HTMLElement).querySelectorAll('lc-radio'),
+      );
+      return { ...api, options };
+    };
+
+    it('should default to the classic appearance', async () => {
+      const { group } = await setup();
+
+      expect(group.getAttribute('data-appearance')).toBe('default');
+    });
+
+    it('should mark the group and every option as chips', async () => {
+      const { group, options } = await chips();
+
+      expect(group.getAttribute('data-appearance')).toBe('chip');
+      expect(
+        options.map((option) => option.getAttribute('data-appearance')),
+      ).toEqual(['chip', 'chip', 'chip']);
+    });
+
+    it('should flag the selected chip and keep native radios', async () => {
+      const { fixture, host, options, radios } = await chips();
+
+      host.control.setValue(host.large);
+      await fixture.whenStable();
+
+      expect(
+        options.map((option) => option.hasAttribute('data-checked')),
+      ).toEqual([false, true, false]);
+      expect(radios.every((radio) => radio.type === 'radio')).toBe(true);
+      expect(radios[1].checked).toBe(true);
+    });
+
+    it('should select a chip by clicking its label', async () => {
+      const { fixture, host, options } = await chips();
+
+      (options[0].querySelector('label') as HTMLElement).click();
+      await fixture.whenStable();
+
+      expect(host.control.value).toBe(host.small);
+    });
+
+    it('should have no accessibility violations', async () => {
+      const { fixture } = await chips();
+
+      expect(await axe(fixture.nativeElement)).toHaveNoViolations();
+    });
   });
 
   it('should have no accessibility violations', async () => {

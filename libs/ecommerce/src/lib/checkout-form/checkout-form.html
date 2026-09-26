@@ -1,7 +1,10 @@
 <form class="checkout" [formGroup]="form" (ngSubmit)="submit()" novalidate>
   <div class="fields">
     <fieldset class="section">
-      <legend>{{ labels.checkoutContact }}</legend>
+      <legend class="step">
+        <span class="n" aria-hidden="true">01</span
+        ><span class="t">{{ labels.checkoutContact }}</span>
+      </legend>
       <div class="row">
         <lc-form-field [label]="labels.checkoutEmail">
           <input
@@ -23,7 +26,10 @@
     </fieldset>
 
     <fieldset class="section">
-      <legend>{{ labels.checkoutAddress }}</legend>
+      <legend class="step">
+        <span class="n" aria-hidden="true">02</span
+        ><span class="t">{{ labels.checkoutAddress }}</span>
+      </legend>
       <lc-form-field [label]="labels.checkoutName">
         <input
           lc-input
@@ -89,7 +95,10 @@
     </fieldset>
 
     <fieldset class="section">
-      <legend>{{ labels.checkoutShippingMethod }}</legend>
+      <legend class="step">
+        <span class="n" aria-hidden="true">03</span
+        ><span class="t">{{ labels.checkoutShippingMethod }}</span>
+      </legend>
       <lc-form-field
         [label]="labels.checkoutShippingMethod"
         class="method-field"

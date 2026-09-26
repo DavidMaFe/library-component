@@ -28,6 +28,8 @@ import { uniqueId } from '../shared/unique-id';
 export class LcTab {
   readonly label = input.required<string>();
   readonly disabled = input(false, { transform: booleanAttribute });
+  /** Optional counter shown next to the label, e.g. pending orders. */
+  readonly count = input<number | string>();
 
   readonly tabId = uniqueId('lc-tab');
   readonly panelId = uniqueId('lc-tabpanel');

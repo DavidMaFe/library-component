@@ -35,7 +35,7 @@ describe('App', () => {
     const { element } = await setup();
 
     expect(element.querySelector('h1')?.textContent).toContain('design tokens');
-    expect(element.querySelectorAll('section')).toHaveLength(6);
+    expect(element.querySelectorAll('section')).toHaveLength(7);
   });
 
   it('should switch the theme at runtime', async () => {
@@ -55,11 +55,28 @@ describe('App', () => {
 
     button(element, SHOWCASE_BRANDS[1].label).click();
     await fixture.whenStable();
-    expect(root.style.getPropertyValue('--lc-primary-600')).toBe('#b45309');
+    expect(root.style.getPropertyValue('--lc-primary-600')).toBe('#9f3320');
+    expect(root.style.getPropertyValue('--lc-accent-950')).toBe('#262a10');
     expect(service.brand()).toEqual(SHOWCASE_BRANDS[1].overrides);
 
     button(element, SHOWCASE_BRANDS[0].label).click();
     await fixture.whenStable();
     expect(root.style.getPropertyValue('--lc-primary-600')).toBe('');
+  });
+
+  it('should offer the four Lienzo brands, each within the brand contract', () => {
+    expect(SHOWCASE_BRANDS.map((brand) => brand.label)).toEqual([
+      'Lienzo',
+      'Trattoria',
+      'Nómada',
+      'Atlas',
+    ]);
+    const allowed =
+      /^--lc-(primary|accent)-(50|[1-9]00|950)$|^--lc-font-(family|weight)-heading$|^--lc-heading-tracking$|^--lc-radius-(sm|md|lg|xl)$/;
+    for (const brand of SHOWCASE_BRANDS) {
+      for (const name of Object.keys(brand.overrides)) {
+        expect(name).toMatch(allowed);
+      }
+    }
   });
 });

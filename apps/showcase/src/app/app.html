@@ -43,6 +43,17 @@
   </section>
 
   <section>
+    <h2>Accent scale</h2>
+    <div class="row">
+      @for (step of primaryScale; track step) {
+      <div class="chip" [style.background]="'var(--lc-accent-' + step + ')'">
+        <span [style.color]="+step >= 600 ? 'white' : 'black'">{{ step }}</span>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section>
     <h2>Semantic colors</h2>
     <div class="row">
       @for (token of colorTokens; track token) {

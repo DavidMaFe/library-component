@@ -3,7 +3,9 @@
 }
 
 .panel {
-  padding-block: var(--lc-tabs-panel-padding, var(--lc-space-4));
+  padding-top: var(--lc-tabs-panel-padding, var(--lc-space-4));
+  color: var(--lc-tabs-panel-color, var(--lc-color-text-muted));
+  font-size: var(--lc-font-size-sm);
 
   &:focus-visible {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);

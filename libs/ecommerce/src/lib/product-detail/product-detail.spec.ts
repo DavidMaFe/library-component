@@ -74,6 +74,24 @@ describe('LcProductDetail', () => {
       expect(text('.price lc-badge')).toBe('-25%');
     });
 
+    it('should offer the options as chips and a large purchase zone', async () => {
+      const { root } = await setup();
+
+      const groups = Array.from(root.querySelectorAll('lc-radio-group'));
+      expect(groups.length).toBeGreaterThan(0);
+      expect(
+        groups.every((g) => g.getAttribute('data-appearance') === 'chip'),
+      ).toBe(true);
+      expect(
+        root
+          .querySelector('.buy lc-quantity-stepper')
+          ?.getAttribute('data-size'),
+      ).toBe('lg');
+      expect(root.querySelector('.buy .add')?.getAttribute('data-size')).toBe(
+        'lg',
+      );
+    });
+
     it('should show a simple product price', async () => {
       const { text } = await setup(ceramicMug);
 

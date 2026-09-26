@@ -9,13 +9,16 @@
   --lc-color-bg-subtle: var(--lc-neutral-100);
   --lc-color-surface: var(--lc-neutral-0);
   --lc-color-surface-raised: var(--lc-neutral-0);
+  --lc-color-surface-inverse: var(--lc-neutral-900);
   --lc-color-border: var(--lc-neutral-200);
   --lc-color-border-strong: var(--lc-neutral-300);
+  --lc-color-border-control: #8a8479;
 
   --lc-color-text: var(--lc-neutral-900);
   --lc-color-text-muted: var(--lc-neutral-600);
   --lc-color-text-disabled: var(--lc-neutral-400);
   --lc-color-text-inverse: var(--lc-neutral-0);
+  --lc-color-text-on-inverse: var(--lc-neutral-50);
 
   --lc-color-action: var(--lc-primary-600);
   --lc-color-action-hover: var(--lc-primary-700);
@@ -24,32 +27,28 @@
   --lc-color-on-action: var(--lc-neutral-0);
   --lc-color-focus-ring: var(--lc-primary-500);
 
-  --lc-color-success: var(--lc-green-700);
-  --lc-color-success-subtle: color-mix(
-    in srgb,
-    var(--lc-green-500) 14%,
-    transparent
-  );
-  --lc-color-warning: var(--lc-amber-700);
-  --lc-color-warning-subtle: color-mix(
-    in srgb,
-    var(--lc-amber-500) 16%,
-    transparent
-  );
-  --lc-color-danger: var(--lc-red-700);
-  --lc-color-danger-subtle: color-mix(
-    in srgb,
-    var(--lc-red-500) 12%,
-    transparent
-  );
-  --lc-color-info: var(--lc-sky-700);
-  --lc-color-info-subtle: color-mix(
-    in srgb,
-    var(--lc-sky-500) 14%,
-    transparent
-  );
+  --lc-color-accent: var(--lc-accent-400);
+  --lc-color-accent-subtle: var(--lc-accent-50);
+  --lc-color-accent-text: var(--lc-accent-700);
+  --lc-color-on-accent: var(--lc-neutral-950);
+
+  // Fixed values (not color-mix) so every text/background pair is verified
+  // at 4.5:1.
+  --lc-color-success: #1d7340;
+  --lc-color-success-subtle: #e5f3ea;
+  --lc-color-warning: #a8500c;
+  --lc-color-warning-subtle: #fcefe3;
+  --lc-color-danger: #c0302b;
+  --lc-color-danger-subtle: #fbe9e7;
+  --lc-color-info: #2455c3;
+  --lc-color-info-subtle: #e8eefb;
   --lc-color-on-status: var(--lc-neutral-0);
 
-  --lc-color-backdrop: rgb(15 23 42 / 50%);
-  --lc-shadow-color: rgb(15 23 42 / 12%);
+  --lc-color-backdrop: rgb(28 26 24 / 45%);
+  --lc-shadow-color: rgb(28 26 24 / 8%);
+  --lc-shadow-sm: 0 1px 2px 0 rgb(28 26 24 / 6%);
+  --lc-shadow-md:
+    0 6px 16px -4px rgb(28 26 24 / 10%), 0 2px 4px -2px rgb(28 26 24 / 6%);
+  --lc-shadow-lg:
+    0 20px 40px -12px rgb(28 26 24 / 18%), 0 4px 10px -4px rgb(28 26 24 / 8%);
 }

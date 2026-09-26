@@ -122,6 +122,22 @@ describe('LcProductCard', () => {
       );
     });
 
+    it('should highlight the offer with the accent, not with danger', async () => {
+      const { root } = await setup(notebook);
+
+      const badge = root.querySelector('.badges lc-badge');
+      expect(badge?.getAttribute('data-variant')).toBe('accent');
+      expect(badge?.getAttribute('data-appearance')).toBe('solid');
+    });
+
+    it('should overlay the badges on the photo only when there is one', async () => {
+      const { root } = await setup(notebook);
+
+      expect(root.querySelector('.badges')?.classList.contains('overlay')).toBe(
+        notebook.images.length > 0,
+      );
+    });
+
     it('should not show sale information for a full-price product', async () => {
       const { root } = await setup();
 

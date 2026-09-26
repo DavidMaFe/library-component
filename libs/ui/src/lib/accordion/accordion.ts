@@ -12,7 +12,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
  * </lc-accordion>
  * ```
  *
- * Customize with `--lc-accordion-border-color` and `--lc-accordion-radius`.
+ * Items are separated by hairlines, without an outer box. Customize with
+ * `--lc-accordion-border-color`.
  */
 @Component({
   selector: 'lc-accordion',

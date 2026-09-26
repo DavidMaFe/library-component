@@ -80,6 +80,29 @@ describe('LcMenuBoard', () => {
       expect(dishes()).toEqual(['Green salad', 'Burrata', 'Steak', 'Risotto']);
     });
 
+    it('should count the dishes shown in each section', async () => {
+      const { root, chip, update } = await setup();
+      const counts = () =>
+        Array.from(root.querySelectorAll('.section-head .count')).map((c) =>
+          c.textContent?.trim(),
+        );
+
+      expect(counts()).toEqual(['02 dishes', '02 dishes']);
+
+      chip('Vegan')?.click();
+      await update();
+
+      expect(counts()).toEqual(['01 dish']);
+    });
+
+    it('should keep the heading rule decorative', async () => {
+      const { root } = await setup();
+
+      expect(
+        root.querySelector('.section-head .rule')?.getAttribute('aria-hidden'),
+      ).toBe('true');
+    });
+
     it('should show the section description', async () => {
       const { root } = await setup();
 
@@ -115,6 +138,10 @@ describe('LcMenuBoard', () => {
       await update();
 
       expect(chip('Vegan')?.getAttribute('aria-pressed')).toBe('true');
+      expect(
+        chip('Vegan')?.querySelector('svg')?.getAttribute('aria-hidden'),
+      ).toBe('true');
+      expect(chip('Vegetarian')?.querySelector('svg')).toBeNull();
       expect(dishes()).toEqual(['Green salad']);
     });
 

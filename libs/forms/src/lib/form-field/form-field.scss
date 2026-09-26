@@ -1,26 +1,29 @@
 :host {
-  --_gap: var(--lc-field-gap, var(--lc-space-1));
+  --_gap: var(--lc-field-gap, 0.375rem);
 
   display: flex;
   flex-direction: column;
   gap: var(--_gap);
+  min-width: 0;
 }
 
 .label {
   color: var(--lc-field-label-color, var(--lc-color-text));
   font-size: var(--lc-font-size-sm);
   font-weight: var(--lc-font-weight-medium);
+  line-height: 1.25rem;
 }
 
 .required {
-  margin-inline-start: var(--lc-space-1);
+  margin-inline-start: 0.125rem;
   color: var(--lc-field-error-color, var(--lc-color-danger));
 }
 
 .hint,
 .error p {
   margin: 0;
-  font-size: var(--lc-font-size-sm);
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
 }
 
 .hint {
@@ -34,5 +37,24 @@
   // but without taking space while empty.
   &:empty {
     margin-top: calc(var(--_gap) * -1);
+  }
+
+  // The icon makes the error readable without relying on color alone.
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-weight: var(--lc-font-weight-medium);
+  }
+
+  svg {
+    flex-shrink: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 }

@@ -18,6 +18,10 @@ import {
  *
  * When collapsed, item labels stay available to screen readers.
  *
+ * A `<p>` or heading placed between items titles the group that follows it
+ * (shown as an eyebrow, hidden visually while collapsed):
+ * `<h3>Reports</h3>`.
+ *
  * Customize with `--lc-sidebar-width`, `-collapsed-width`, `-bg` and
  * `-border-color`.
  */

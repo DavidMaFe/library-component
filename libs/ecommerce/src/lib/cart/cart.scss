@@ -3,37 +3,45 @@
 }
 
 .title {
-  margin: 0 0 var(--lc-space-4);
+  margin: 0 0 var(--lc-space-5);
   font-family: var(--lc-font-family-heading);
   font-size: var(--lc-font-size-2xl);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.02em;
 }
 
 .empty {
-  padding: var(--lc-space-8) 0;
+  display: grid;
+  justify-items: center;
+  gap: var(--lc-space-4);
+  padding: var(--lc-space-12) var(--lc-space-6);
+  border: 1px dashed var(--lc-color-border-strong);
+  border-radius: var(--lc-radius-lg);
   color: var(--lc-color-text-muted);
   text-align: center;
 
   p {
-    margin: 0 0 var(--lc-space-3);
+    margin: 0;
   }
 }
 
 .content {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--lc-cart-gap, var(--lc-space-6));
+  gap: var(--lc-cart-gap, var(--lc-space-8));
   align-items: start;
 }
 
 @media (min-width: 56rem) {
   .content {
-    grid-template-columns: minmax(0, 1fr) 22rem;
+    grid-template-columns: minmax(0, 1fr) 20rem;
   }
 }
 
 .lines {
   margin: 0;
   padding: 0;
+  border-top: 1px solid var(--lc-color-border);
   list-style: none;
 }
 
@@ -61,13 +69,20 @@
 }
 
 .name {
-  font-weight: var(--lc-font-weight-medium);
+  font-size: 0.9375rem;
+  font-weight: var(--lc-font-weight-semibold);
 }
 
-.variant,
-.unit {
+.variant {
   color: var(--lc-color-text-muted);
-  font-size: var(--lc-font-size-sm);
+  font-size: 0.8125rem;
+}
+
+.details .unit {
+  margin-top: 0.25rem;
+  color: var(--lc-color-text-muted);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-xs);
 }
 
 .total {
@@ -87,12 +102,12 @@
   border: 0;
   border-radius: var(--lc-radius-md);
   background: transparent;
-  color: var(--lc-color-text-muted);
+  color: var(--lc-color-text);
   cursor: pointer;
 
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.125rem;
+    height: 1.125rem;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.75;
@@ -101,12 +116,11 @@
 
   &:hover {
     background: var(--lc-color-bg-subtle);
-    color: var(--lc-color-danger);
   }
 
   &:focus-visible {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
-    outline-offset: 0;
+    outline-offset: var(--lc-focus-ring-offset);
   }
 }
 
@@ -136,26 +150,38 @@
   flex: 1;
 }
 
+// Applied coupon as a ticket.
 .applied {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--lc-space-3);
   margin: 0;
-  padding: var(--lc-space-3);
+  padding: 0.625rem 0.875rem;
+  border: 1px dashed var(--lc-color-accent-text);
   border-radius: var(--lc-radius-md);
-  background: var(--lc-color-success-subtle);
-  color: var(--lc-color-success);
+  background: var(--lc-color-accent-subtle);
+  color: var(--lc-color-accent-text);
   font-size: var(--lc-font-size-sm);
+  font-weight: var(--lc-font-weight-semibold);
 }
 
 .link {
+  padding: 0;
   border: 0;
+  border-radius: var(--lc-radius-sm);
   background: transparent;
   color: inherit;
   font: inherit;
+  font-weight: var(--lc-font-weight-medium);
   text-decoration: underline;
+  text-underline-offset: 3px;
   cursor: pointer;
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: var(--lc-focus-ring-offset);
+  }
 }
 
 .coupon-error {

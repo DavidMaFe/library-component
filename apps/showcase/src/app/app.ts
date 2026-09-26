@@ -28,6 +28,11 @@ export class App {
     'action',
     'action-hover',
     'action-subtle',
+    'accent',
+    'accent-subtle',
+    'accent-text',
+    'border-control',
+    'surface-inverse',
     'success',
     'warning',
     'danger',
@@ -45,7 +50,9 @@ export class App {
     '2xl',
     '3xl',
     '4xl',
+    '5xl',
   ];
+  /** Steps shared by the primary and accent scales. */
   protected readonly primaryScale = [
     '50',
     '100',
@@ -57,6 +64,7 @@ export class App {
     '700',
     '800',
     '900',
+    '950',
   ];
 
   protected readonly themeLabel = computed(

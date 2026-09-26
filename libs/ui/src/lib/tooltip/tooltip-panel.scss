@@ -1,15 +1,16 @@
-// Inverted colors keep the tooltip readable in both themes.
+// Inverted surface keeps the tooltip readable in both themes.
 :host {
   display: block;
   box-sizing: border-box;
-  max-width: var(--lc-tooltip-max-width, 20rem);
-  padding: var(--lc-tooltip-padding-y, var(--lc-space-1))
+  max-width: var(--lc-tooltip-max-width, 15rem);
+  padding: var(--lc-tooltip-padding-y, 0.375rem)
     var(--lc-tooltip-padding-x, var(--lc-space-2));
   border-radius: var(--lc-tooltip-radius, var(--lc-radius-sm));
-  background: var(--lc-tooltip-bg, var(--lc-color-text));
-  color: var(--lc-tooltip-color, var(--lc-color-bg));
+  background: var(--lc-tooltip-bg, var(--lc-color-surface-inverse));
+  color: var(--lc-tooltip-color, var(--lc-color-text-on-inverse));
   box-shadow: var(--lc-shadow-md);
-  font-size: var(--lc-font-size-sm);
-  line-height: var(--lc-line-height-normal);
+  font-size: var(--lc-font-size-xs);
+  font-weight: var(--lc-font-weight-medium);
+  line-height: 1rem;
   overflow-wrap: anywhere;
 }

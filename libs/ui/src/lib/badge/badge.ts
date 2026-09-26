@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 export type LcBadgeVariant =
-  'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  'neutral' | 'primary' | 'accent' | 'success' | 'warning' | 'danger' | 'info';
 export type LcBadgeAppearance = 'subtle' | 'solid' | 'outline';
 export type LcBadgeSize = 'sm' | 'md';
 
 /**
- * Small label for statuses, counters or categories.
+ * Small label for statuses, counters or categories. Use `accent` to
+ * highlight (offers, new items); `danger` is reserved for errors.
  *
  * Customize with `--lc-badge-bg`, `-color`, `-border-color`, `-radius`,
  * `-padding-x` and `-font-size`.

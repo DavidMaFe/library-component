@@ -22,7 +22,11 @@
     [attr.aria-pressed]="isActive(tag)"
     (click)="toggleTag(tag)"
   >
-    {{ labels.dietary[tag] }}
+    @if (isActive(tag)) {
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M5 12.5l4.5 4.5L19 7" />
+    </svg>
+    } {{ labels.dietary[tag] }}
   </button>
   } @if (activeTags().length > 0) {
   <button type="button" class="clear" (click)="clearTags()">
@@ -42,9 +46,15 @@
   [id]="sectionId(section)"
   [attr.aria-labelledby]="sectionId(section) + '-title'"
 >
-  <h2 class="title" [id]="sectionId(section) + '-title'">
-    {{ section.title }}
-  </h2>
+  <div class="section-head">
+    <h2 class="title" [id]="sectionId(section) + '-title'">
+      {{ section.title }}
+    </h2>
+    <span class="rule" aria-hidden="true"></span>
+    <span class="count"
+      >{{ labels.menuSectionCount(section.dishes.length) }}</span
+    >
+  </div>
   @if (section.description) {
   <p class="description">{{ section.description }}</p>
   }

@@ -1,18 +1,18 @@
 :host {
   --_cell-x: var(--lc-table-cell-padding-x, var(--lc-space-4));
-  --_cell-y: var(--lc-table-cell-padding-y, var(--lc-space-3));
+  --_cell-y: var(--lc-table-cell-padding-y, 0.875rem);
 
   display: block;
   overflow: hidden;
   border: 1px solid var(--lc-table-border-color, var(--lc-color-border));
-  border-radius: var(--lc-table-radius, var(--lc-radius-md));
+  border-radius: var(--lc-table-radius, var(--lc-radius-lg));
   background: var(--lc-table-bg, var(--lc-color-surface));
   color: var(--lc-color-text);
 }
 
 :host([data-density='compact']) {
   --_cell-x: var(--lc-table-cell-padding-x, var(--lc-space-3));
-  --_cell-y: var(--lc-table-cell-padding-y, var(--lc-space-1));
+  --_cell-y: var(--lc-table-cell-padding-y, var(--lc-space-2));
 }
 
 .wrapper {
@@ -36,7 +36,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--lc-font-size-md);
+  font-size: var(--lc-font-size-sm);
 }
 
 .cell {
@@ -51,6 +51,7 @@ table {
 
   &[data-align='end'] {
     text-align: end;
+    font-variant-numeric: tabular-nums;
   }
 
   &.select {
@@ -59,11 +60,16 @@ table {
   }
 }
 
+// Headers are eyebrows: mono, uppercase, tracked.
 th.cell {
+  padding-block: 0.625rem;
   background: var(--lc-table-header-bg, var(--lc-color-bg-subtle));
   color: var(--lc-color-text-muted);
-  font-size: var(--lc-font-size-sm);
-  font-weight: var(--lc-font-weight-semibold);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
+  font-weight: var(--lc-font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -87,19 +93,80 @@ tr[cdk-row]:hover {
 
 tr[data-selected] {
   background: var(--lc-color-action-subtle) !important;
+
+  td:first-child {
+    box-shadow: inset 2px 0 0 var(--lc-color-action);
+  }
 }
 
-input[type='checkbox'] {
-  width: 1.125rem;
-  height: 1.125rem;
+// Selection checkboxes share the look of `lc-checkbox`: the native input
+// stays on top (transparent) so it keeps its semantics and hit area.
+.checkbox {
+  position: relative;
+  display: inline-grid;
+  vertical-align: middle;
+}
+
+.native {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
-  accent-color: var(--lc-color-action);
+  opacity: 0;
   cursor: pointer;
 
-  &:focus-visible {
-    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
-    outline-offset: var(--lc-focus-ring-offset);
+  &:disabled {
+    cursor: not-allowed;
   }
+}
+
+.box {
+  display: grid;
+  pointer-events: none;
+  place-items: center;
+  box-sizing: border-box;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1.5px solid var(--lc-color-border-control);
+  border-radius: 5px;
+  background: var(--lc-color-surface);
+  color: var(--lc-color-on-action);
+  transition:
+    background var(--lc-duration-fast) var(--lc-easing-standard),
+    border-color var(--lc-duration-fast) var(--lc-easing-standard);
+
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+  }
+}
+
+.native:checked + .box,
+.native:indeterminate + .box {
+  border-color: var(--lc-color-action);
+  background: var(--lc-color-action);
+
+  svg {
+    opacity: 1;
+  }
+}
+
+.native:focus-visible + .box {
+  outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+  outline-offset: var(--lc-focus-ring-offset);
+}
+
+.native:disabled + .box {
+  border-color: var(--lc-color-border);
+  background: var(--lc-color-bg-subtle);
 }
 
 .sort {
@@ -113,6 +180,8 @@ input[type='checkbox'] {
   background: transparent;
   color: inherit;
   font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
   cursor: pointer;
 
   &:hover {
@@ -126,11 +195,11 @@ input[type='checkbox'] {
 }
 
 .sort-icon {
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 0.75rem;
+  height: 0.75rem;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 1.75;
   stroke-linecap: round;
   stroke-linejoin: round;
 
@@ -147,11 +216,11 @@ th[aria-sort='descending'] .sort-icon .down {
 
 th[aria-sort='ascending'] .sort,
 th[aria-sort='descending'] .sort {
-  color: var(--lc-color-action);
+  color: var(--lc-color-text);
 }
 
 .empty {
-  padding: var(--lc-space-8) var(--lc-space-4);
+  padding: var(--lc-space-10) var(--lc-space-4);
   color: var(--lc-color-text-muted);
   text-align: center;
 }
@@ -176,7 +245,8 @@ th[aria-sort='descending'] .sort {
 
 .summary {
   color: var(--lc-color-text-muted);
-  font-size: var(--lc-font-size-sm);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-xs);
 }
 
 .visually-hidden {

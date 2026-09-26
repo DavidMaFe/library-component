@@ -129,6 +129,15 @@ describe('LcAccordion', () => {
     expect(levels).toEqual(['3', '2', '3']);
   });
 
+  it('should keep the chevron disc out of the accessible name', async () => {
+    const { triggers } = await setup();
+
+    const wrap = triggers()[0].querySelector('.chevron-wrap');
+    expect(wrap?.getAttribute('aria-hidden')).toBe('true');
+    expect(wrap?.querySelector('svg.chevron')).not.toBeNull();
+    expect(triggers()[0].textContent?.trim()).toBe('Allergens');
+  });
+
   it('should have no accessibility violations', async () => {
     const { fixture, triggers } = await setup();
     triggers()[0].click();

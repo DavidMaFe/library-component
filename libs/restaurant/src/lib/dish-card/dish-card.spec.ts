@@ -53,6 +53,15 @@ describe('LcDishCard', () => {
     expect(root.querySelector('.price')?.textContent).toBe('€14.50');
   });
 
+  it('should join name and price with a decorative leader', async () => {
+    const { root } = await setup();
+
+    const leader = root.querySelector('.name + .leader');
+    expect(leader?.getAttribute('aria-hidden')).toBe('true');
+    expect(leader?.nextElementSibling?.classList.contains('price')).toBe(true);
+    expect(leader?.textContent).toBe('');
+  });
+
   it('should use the requested currency', async () => {
     const { fixture, host, root } = await setup();
 

@@ -1,4 +1,5 @@
 @use '../../tokens/src/styles';
+@use '../../tokens/src/styles/utilities';
 @use '../src/styles/overlay';
 body {
   background: var(--lc-color-bg);

@@ -3,47 +3,81 @@
 }
 
 .contact {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lc-contact-gap, var(--lc-space-3));
+  display: grid;
+  gap: var(--lc-contact-gap, var(--lc-space-4));
   font-style: normal;
 }
 
 .name {
   margin: 0;
   font-family: var(--lc-font-family-heading);
-  font-size: var(--lc-font-size-lg);
-  font-weight: var(--lc-font-weight-semibold);
+  font-size: var(--lc-font-size-xl);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.015em;
 }
 
+// Each datum is a row: eyebrow label on the left, value on the right.
 .item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lc-space-1);
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.25rem var(--lc-space-4);
+  padding-top: var(--lc-space-3);
+  border-top: 1px solid var(--lc-color-border);
+  font-size: 0.9375rem;
 }
 
 .label {
+  padding-top: 0.25rem;
   color: var(--lc-color-text-muted);
-  font-size: var(--lc-font-size-sm);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
+  font-weight: var(--lc-font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.item .link {
+  grid-column: 2;
 }
 
 .link {
+  border-radius: var(--lc-radius-sm);
   color: var(--lc-contact-link-color, var(--lc-color-action));
+  font-weight: var(--lc-font-weight-medium);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 
   &:focus-visible {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
-    outline-offset: 2px;
-    border-radius: var(--lc-radius-sm);
+    outline-offset: var(--lc-focus-ring-offset);
   }
 }
 
 .social {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--lc-space-4);
+  gap: var(--lc-space-2);
   margin: 0;
   padding: 0;
   list-style: none;
+
+  // Social networks as bordered pills.
+  .link {
+    display: inline-flex;
+    align-items: center;
+    height: var(--lc-control-height-sm);
+    padding: 0 0.875rem;
+    border: 1px solid var(--lc-color-border-strong);
+    border-radius: var(--lc-radius-full);
+    color: var(--lc-color-text);
+    font-size: 0.8125rem;
+    text-decoration: none;
+
+    &:hover {
+      border-color: var(--lc-color-text-muted);
+    }
+  }
 }
 
 .visually-hidden {

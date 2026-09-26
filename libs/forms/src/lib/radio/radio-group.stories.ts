@@ -40,3 +40,30 @@ type Story = StoryObj<LcRadioGroup>;
 export const Vertical: Story = {};
 export const Horizontal: Story = { args: { orientation: 'horizontal' } };
 export const Disabled: Story = { args: { disabled: true } };
+
+/** Tiles for sizes, time slots or shipping methods; sold-out options are struck through. */
+export const Chips: Story = {
+  render: () => ({
+    props: { size: new FormControl('m'), time: new FormControl('14:00') },
+    template: `
+      <div style="display:grid;gap:1.25rem">
+        <lc-form-field label="Size">
+          <lc-radio-group [formControl]="size" appearance="chip">
+            <lc-radio value="xs">XS</lc-radio>
+            <lc-radio value="s">S</lc-radio>
+            <lc-radio value="m">M</lc-radio>
+            <lc-radio value="l">L</lc-radio>
+            <lc-radio value="xl" disabled>XL</lc-radio>
+          </lc-radio-group>
+        </lc-form-field>
+        <lc-form-field label="Time">
+          <lc-radio-group [formControl]="time" appearance="chip">
+            <lc-radio value="13:30">13:30</lc-radio>
+            <lc-radio value="14:00">14:00</lc-radio>
+            <lc-radio value="14:30">14:30</lc-radio>
+            <lc-radio value="15:00" disabled>15:00</lc-radio>
+          </lc-radio-group>
+        </lc-form-field>
+      </div>`,
+  }),
+};

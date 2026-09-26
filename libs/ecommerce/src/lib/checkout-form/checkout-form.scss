@@ -5,44 +5,75 @@
 .checkout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--lc-checkout-gap, var(--lc-space-6));
+  gap: var(--lc-checkout-gap, var(--lc-space-8));
   align-items: start;
 }
 
 @media (min-width: 56rem) {
   .checkout {
-    grid-template-columns: minmax(0, 1fr) 22rem;
+    grid-template-columns: minmax(0, 1fr) 20rem;
   }
 }
 
 .fields {
   display: flex;
   flex-direction: column;
-  gap: var(--lc-checkout-gap, var(--lc-space-6));
+  gap: var(--lc-space-4);
 }
 
+// Each fieldset is a surface block.
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--lc-space-3);
+  gap: var(--lc-space-4);
   min-width: 0;
   margin: 0;
-  padding: 0;
-  border: 0;
+  padding: var(--lc-space-6);
+  border: 1px solid var(--lc-color-border);
+  border-radius: var(--lc-radius-lg);
+  background: var(--lc-color-surface);
+}
 
-  legend {
-    margin-bottom: var(--lc-space-3);
-    padding: 0;
+// Numbered step: inverted square with a mono number, then the display title.
+.step {
+  display: flex;
+  float: left;
+  align-items: center;
+  gap: var(--lc-space-3);
+  width: 100%;
+  margin-bottom: var(--lc-space-4);
+  padding: 0;
+
+  + * {
+    clear: both;
+  }
+
+  .n {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--lc-radius-sm);
+    background: var(--lc-color-surface-inverse);
+    color: var(--lc-color-text-on-inverse);
+    font-family: var(--lc-font-family-mono);
+    font-size: var(--lc-font-size-xs);
+    font-weight: var(--lc-font-weight-medium);
+  }
+
+  .t {
     font-family: var(--lc-font-family-heading);
     font-size: var(--lc-font-size-lg);
-    font-weight: var(--lc-font-weight-semibold);
+    font-weight: var(--lc-font-weight-heading);
+    letter-spacing: -0.015em;
   }
 }
 
 .row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
-  gap: var(--lc-space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
+  gap: var(--lc-space-4);
 }
 
 // The fieldset legend already names the group; the field label would repeat it.
@@ -54,20 +85,55 @@
   clip-path: inset(50%);
 }
 
+// Shipping methods as selectable tiles (radio + label + price).
+.method-field {
+  --lc-radio-group-gap: var(--lc-space-2);
+
+  ::ng-deep lc-radio {
+    display: flex;
+
+    .root {
+      flex: 1;
+      align-items: center;
+      gap: var(--lc-space-3);
+      padding: var(--lc-space-4);
+      border: 1px solid var(--lc-color-border-control);
+      border-radius: var(--lc-radius-md);
+      transition:
+        border-color var(--lc-duration-fast) var(--lc-easing-standard),
+        background var(--lc-duration-fast) var(--lc-easing-standard);
+    }
+
+    .text {
+      flex: 1;
+    }
+  }
+
+  ::ng-deep lc-radio[data-checked] .root {
+    border-color: var(--lc-color-action);
+    background: var(--lc-color-action-subtle);
+    box-shadow: inset 0 0 0 1px var(--lc-color-action);
+  }
+}
+
 .method {
-  display: inline-flex;
-  gap: var(--lc-space-4);
+  display: flex;
+  flex: 1;
   justify-content: space-between;
-  min-width: 14rem;
+  gap: var(--lc-space-3);
+  font-size: 0.9375rem;
+  font-weight: var(--lc-font-weight-medium);
 }
 
 .method-price {
-  font-weight: var(--lc-font-weight-medium);
+  font-variant-numeric: tabular-nums;
 }
 
 .method-description {
   display: block;
   color: var(--lc-color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: var(--lc-font-weight-regular);
 }
 
 .payment:empty {
@@ -77,7 +143,7 @@
 .issues {
   margin: 0;
   padding: var(--lc-space-3) var(--lc-space-4) var(--lc-space-3)
-    var(--lc-space-6);
+    var(--lc-space-8);
   border-radius: var(--lc-radius-md);
   background: var(--lc-color-danger-subtle);
   color: var(--lc-color-danger);
@@ -88,4 +154,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--lc-space-4);
+}
+
+@media (min-width: 56rem) {
+  .side {
+    position: sticky;
+    top: var(--lc-space-4);
+  }
 }

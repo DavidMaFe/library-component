@@ -1,11 +1,13 @@
 :host {
-  --_size: var(--lc-pagination-size, var(--lc-control-height-md));
+  --_size: var(--lc-pagination-size, 2.25rem);
+  --_font-size: var(--lc-font-size-sm);
 
   display: block;
 }
 
 :host([data-size='sm']) {
   --_size: var(--lc-pagination-size, var(--lc-control-height-sm));
+  --_font-size: 0.8125rem;
 }
 
 ul {
@@ -28,6 +30,7 @@ ul {
 }
 
 .ellipsis {
+  min-width: 1.5rem;
   color: var(--lc-color-text-muted);
 }
 
@@ -38,7 +41,9 @@ ul {
   background: transparent;
   color: var(--lc-color-text);
   font-family: inherit;
-  font-size: var(--lc-font-size-sm);
+  font-size: var(--_font-size);
+  font-weight: var(--lc-font-weight-medium);
+  font-variant-numeric: tabular-nums;
   cursor: pointer;
   transition: background var(--lc-duration-fast) var(--lc-easing-standard);
 
@@ -65,6 +70,11 @@ ul {
   &:focus-visible {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
     outline-offset: var(--lc-focus-ring-offset);
+  }
+
+  // Previous / next.
+  &.edge {
+    border-color: var(--lc-color-border-strong);
   }
 
   &:disabled {

@@ -61,6 +61,22 @@ describe('LcToast', () => {
       );
     });
 
+    it('should draw a different decorative icon for each variant', () => {
+      const toast = TestBed.inject(LcToast);
+      toast.info('a');
+      toast.success('b');
+      toast.warning('c');
+      toast.danger('d');
+      flush();
+
+      const icons = toasts().map((item) => item.querySelector('.icon'));
+      expect(
+        icons.every((icon) => icon?.getAttribute('aria-hidden') === 'true'),
+      ).toBe(true);
+      const shapes = icons.map((icon) => icon?.querySelector('svg')?.innerHTML);
+      expect(new Set(shapes).size).toBe(4);
+    });
+
     it('should stack several toasts', () => {
       const toast = TestBed.inject(LcToast);
       toast.info('first');

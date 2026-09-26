@@ -1,6 +1,6 @@
 :host {
   display: block;
   height: 1px;
-  margin: var(--lc-space-1) 0;
+  margin: var(--lc-space-1) calc(var(--lc-space-1) * -1);
   background: var(--lc-color-border);
 }

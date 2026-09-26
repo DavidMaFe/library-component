@@ -9,14 +9,11 @@
     (click)="item.toggle()"
   >
     <span class="title">{{ heading() }}</span>
-    <svg
-      class="chevron"
-      viewBox="0 0 16 16"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d="M4 6l4 4 4-4" />
-    </svg>
+    <span class="chevron-wrap" aria-hidden="true">
+      <svg class="chevron" viewBox="0 0 24 24" focusable="false">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </span>
   </button>
 </div>
 <div

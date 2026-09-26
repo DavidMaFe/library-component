@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, linkedSignal, signal } from '@angular/core';
 import { moduleMetadata } from '@storybook/angular';
 import type { Meta, StoryObj } from '@storybook/angular';
 import {
@@ -39,7 +39,9 @@ import { CartQuantityChange, LcCart } from './cart';
   `,
 })
 class CartDemo {
-  protected readonly cart = signal<Cart>(sampleCart);
+  /** Cart the demo starts from. */
+  readonly start = input<Cart>(sampleCart);
+  protected readonly cart = linkedSignal<Cart>(() => this.start());
   protected readonly message = signal<string | undefined>(undefined);
   protected readonly checkedOut = signal(false);
   protected readonly shipping = money(495);
@@ -88,8 +90,9 @@ export const Interactive: Story = {};
 
 export const Empty: Story = {
   render: () => ({
-    props: { cart: emptyCart() },
-    template: `<lc-cart-demo />`,
+    // Not named `cart`: Storybook copies props onto the component instance.
+    props: { initialCart: emptyCart() },
+    template: `<lc-cart-demo [start]="initialCart" />`,
   }),
   play: undefined,
 };

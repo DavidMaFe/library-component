@@ -15,24 +15,54 @@
   list-style: none;
 }
 
-.filters-label {
-  color: var(--lc-color-text-muted);
-  font-size: var(--lc-font-size-sm);
+// Section navigation sits above a hairline.
+.nav ul {
+  padding-bottom: var(--lc-space-4);
+  border-bottom: 1px solid var(--lc-color-border);
 }
 
+.filters-label {
+  margin-inline-end: var(--lc-space-2);
+  color: var(--lc-color-text-muted);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
+  font-weight: var(--lc-font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+// Pills: what is pressed to filter is round (a badge that informs is not).
 .chip {
-  min-height: var(--lc-control-height-sm);
-  padding: 0 var(--lc-space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  height: var(--lc-control-height-sm);
+  padding: 0 0.875rem;
   border: 1px solid var(--lc-color-border-strong);
   border-radius: var(--lc-radius-full);
   background: var(--lc-color-surface);
   color: var(--lc-color-text);
   font-family: inherit;
-  font-size: var(--lc-font-size-sm);
+  font-size: 0.8125rem;
+  font-weight: var(--lc-font-weight-medium);
+  white-space: nowrap;
   cursor: pointer;
+  transition:
+    background var(--lc-duration-fast) var(--lc-easing-standard),
+    border-color var(--lc-duration-fast) var(--lc-easing-standard);
+
+  svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 
   &:hover {
-    background: var(--lc-color-bg-subtle);
+    border-color: var(--lc-color-text-muted);
   }
 
   &[aria-pressed='true'] {
@@ -41,40 +71,77 @@
     color: var(--lc-color-on-action);
   }
 
-  &:focus-visible,
-  &.clear:focus-visible {
+  &:focus-visible {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
     outline-offset: var(--lc-focus-ring-offset);
   }
 }
 
 .clear {
+  padding: 0;
   border: 0;
+  border-radius: var(--lc-radius-sm);
   background: transparent;
   color: var(--lc-color-action);
   font-family: inherit;
-  font-size: var(--lc-font-size-sm);
+  font-size: 0.8125rem;
+  font-weight: var(--lc-font-weight-semibold);
   text-decoration: underline;
+  text-underline-offset: 3px;
   cursor: pointer;
+
+  &:focus-visible {
+    outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+    outline-offset: var(--lc-focus-ring-offset);
+  }
 }
 
 .section {
   scroll-margin-top: var(--lc-space-4);
 }
 
+// Display title, a hairline running to an eyebrow counter.
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--lc-space-4);
+  margin-bottom: var(--lc-space-2);
+}
+
 .title {
-  margin: 0 0 var(--lc-space-1);
+  margin: 0;
   font-family: var(--lc-font-family-heading);
-  font-size: var(--lc-font-size-2xl);
+  font-size: var(--lc-font-size-3xl);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--lc-color-border-strong);
+}
+
+.count {
+  flex-shrink: 0;
+  color: var(--lc-color-text-muted);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
+  font-weight: var(--lc-font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .description {
-  margin: 0 0 var(--lc-space-4);
+  max-width: 40rem;
+  margin: 0 0 var(--lc-space-5);
   color: var(--lc-color-text-muted);
+  font-size: 0.9375rem;
 }
 
-.title + lc-grid {
-  margin-top: var(--lc-space-4);
+.section-head + lc-grid {
+  margin-top: var(--lc-space-5);
 }
 
 .empty {

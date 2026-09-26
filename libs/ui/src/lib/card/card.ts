@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  input,
+} from '@angular/core';
 
 export type LcCardVariant = 'outlined' | 'elevated';
 export type LcCardPadding = 'none' | 'sm' | 'md' | 'lg';
@@ -29,9 +34,15 @@ export type LcCardPadding = 'none' | 'sm' | 'md' | 'lg';
   host: {
     '[attr.data-variant]': 'variant()',
     '[attr.data-padding]': 'padding()',
+    '[attr.data-interactive]': 'interactive() || null',
   },
 })
 export class LcCard {
   readonly variant = input<LcCardVariant>('outlined');
   readonly padding = input<LcCardPadding>('md');
+  /**
+   * Lifts the card on hover. Use it when the whole card is a link or button;
+   * it only changes the look, the interactive element stays yours.
+   */
+  readonly interactive = input(false, { transform: booleanAttribute });
 }

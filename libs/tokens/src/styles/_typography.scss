@@ -1,0 +1,15 @@
+// Typography mixins. They emit no CSS by themselves.
+
+// Eyebrow: the technical label of the system (section kickers, table
+// headers, contact labels, checkout steps, counters). Mono, 11px, uppercase,
+// tracked, muted. Use it for labels, never for sentences.
+@mixin lc-eyebrow {
+  margin: 0;
+  color: var(--lc-color-text-muted);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
+  font-weight: var(--lc-font-weight-medium);
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

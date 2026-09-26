@@ -7,51 +7,44 @@
   --lc-color-bg-subtle: var(--lc-neutral-900);
   --lc-color-surface: var(--lc-neutral-900);
   --lc-color-surface-raised: var(--lc-neutral-800);
-  --lc-color-border: var(--lc-neutral-800);
-  --lc-color-border-strong: var(--lc-neutral-700);
+  --lc-color-surface-inverse: var(--lc-neutral-50);
+  --lc-color-border: #34302c;
+  --lc-color-border-strong: #4a4540;
+  --lc-color-border-control: #7d776f;
 
   --lc-color-text: var(--lc-neutral-50);
   --lc-color-text-muted: var(--lc-neutral-400);
   --lc-color-text-disabled: var(--lc-neutral-600);
   --lc-color-text-inverse: var(--lc-neutral-950);
+  --lc-color-text-on-inverse: var(--lc-neutral-900);
 
-  --lc-color-action: var(--lc-primary-400);
-  --lc-color-action-hover: var(--lc-primary-300);
-  --lc-color-action-active: var(--lc-primary-200);
-  --lc-color-action-subtle: color-mix(
-    in srgb,
-    var(--lc-primary-500) 16%,
-    transparent
-  );
+  --lc-color-action: var(--lc-primary-300);
+  --lc-color-action-hover: var(--lc-primary-200);
+  --lc-color-action-active: var(--lc-primary-100);
+  --lc-color-action-subtle: var(--lc-primary-950);
   --lc-color-on-action: var(--lc-neutral-950);
-  --lc-color-focus-ring: var(--lc-primary-400);
+  --lc-color-focus-ring: var(--lc-primary-300);
 
-  --lc-color-success: var(--lc-green-500);
-  --lc-color-success-subtle: color-mix(
-    in srgb,
-    var(--lc-green-500) 18%,
-    transparent
-  );
-  --lc-color-warning: var(--lc-amber-500);
-  --lc-color-warning-subtle: color-mix(
-    in srgb,
-    var(--lc-amber-500) 18%,
-    transparent
-  );
-  --lc-color-danger: var(--lc-red-500);
-  --lc-color-danger-subtle: color-mix(
-    in srgb,
-    var(--lc-red-500) 18%,
-    transparent
-  );
-  --lc-color-info: var(--lc-sky-500);
-  --lc-color-info-subtle: color-mix(
-    in srgb,
-    var(--lc-sky-500) 18%,
-    transparent
-  );
+  --lc-color-accent: var(--lc-accent-300);
+  --lc-color-accent-subtle: var(--lc-accent-950);
+  --lc-color-accent-text: var(--lc-accent-300);
+  --lc-color-on-accent: var(--lc-neutral-950);
+
+  --lc-color-success: #62c98b;
+  --lc-color-success-subtle: #16291d;
+  --lc-color-warning: #f39a52;
+  --lc-color-warning-subtle: #33200f;
+  --lc-color-danger: #ff7d72;
+  --lc-color-danger-subtle: #3a1714;
+  --lc-color-info: #86a9ff;
+  --lc-color-info-subtle: #18203a;
   --lc-color-on-status: var(--lc-neutral-950);
 
-  --lc-color-backdrop: rgb(0 0 0 / 65%);
-  --lc-shadow-color: rgb(0 0 0 / 50%);
+  --lc-color-backdrop: rgb(0 0 0 / 62%);
+  --lc-shadow-color: rgb(0 0 0 / 45%);
+  --lc-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 40%);
+  --lc-shadow-md:
+    0 6px 16px -4px rgb(0 0 0 / 50%), 0 2px 4px -2px rgb(0 0 0 / 40%);
+  --lc-shadow-lg:
+    0 20px 40px -12px rgb(0 0 0 / 60%), 0 4px 10px -4px rgb(0 0 0 / 50%);
 }

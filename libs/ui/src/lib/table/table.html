@@ -13,22 +13,42 @@
       @if (selectable()) {
       <ng-container [cdkColumnDef]="selectColumn">
         <th *cdkHeaderCellDef cdk-header-cell scope="col" class="cell select">
-          <input
-            type="checkbox"
-            [checked]="allSelected()"
-            [indeterminate]="someSelected()"
-            [disabled]="rows().length === 0"
-            [attr.aria-label]="selectAllLabel()"
-            (change)="toggleAll()"
-          />
+          <span class="checkbox">
+            <input
+              type="checkbox"
+              class="native"
+              [checked]="allSelected()"
+              [indeterminate]="someSelected()"
+              [disabled]="rows().length === 0"
+              [attr.aria-label]="selectAllLabel()"
+              (change)="toggleAll()"
+            />
+            <span class="box" aria-hidden="true">
+              <svg viewBox="0 0 16 16" focusable="false">
+                @if (someSelected()) {
+                <path d="M3.5 8h9" />
+                } @else {
+                <path d="M3.5 8.5l3 3 6-7" />
+                }
+              </svg>
+            </span>
+          </span>
         </th>
         <td *cdkCellDef="let row" cdk-cell class="cell select">
-          <input
-            type="checkbox"
-            [checked]="isSelected(row)"
-            [attr.aria-label]="selectRowLabel()"
-            (change)="toggleRow(row)"
-          />
+          <span class="checkbox">
+            <input
+              type="checkbox"
+              class="native"
+              [checked]="isSelected(row)"
+              [attr.aria-label]="selectRowLabel()"
+              (change)="toggleRow(row)"
+            />
+            <span class="box" aria-hidden="true">
+              <svg viewBox="0 0 16 16" focusable="false">
+                <path d="M3.5 8.5l3 3 6-7" />
+              </svg>
+            </span>
+          </span>
         </td>
       </ng-container>
       } @for (column of columns(); track column.key) {
