@@ -26,7 +26,8 @@
   --lc-primary-700: #0c535b;
   --lc-primary-800: #0d434a;
   --lc-primary-900: #0e373c;
-  --lc-primary-950: #072225;
+  // 950 is the tinted background of the dark theme (action-subtle).
+  --lc-primary-950: #12302f;
 
   // ---- Palette: accent (brand highlight, "saffron"). Override to rebrand ----
   --lc-accent-50: #fff8e6;
@@ -39,6 +40,8 @@
   --lc-accent-700: #985d09;
   --lc-accent-800: #7a4a0e;
   --lc-accent-900: #5e3a10;
+  // 950 is the tinted background of the dark theme (accent-subtle).
+  --lc-accent-950: #33260b;
 
   // ---- Spacing ----
   --lc-space-0: 0;

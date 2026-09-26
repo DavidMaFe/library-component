@@ -43,7 +43,7 @@ Then let `ThemeService` (from `@lc/core`) manage the theme. It sets `data-lc-the
 
 ## Rebranding
 
-A brand overrides at most the `--lc-primary-*` (action) and `--lc-accent-*` (highlight) scales, `--lc-font-family-heading`, `--lc-font-weight-heading` and `--lc-radius-sm|md|lg|xl`. That is enough to rebrand every component, in both themes. Keep `primary-600` at 4.5:1 with white and `primary-300` at 4.5:1 with `--lc-neutral-950` (dark theme); `accent-400` at 4.5:1 with `--lc-neutral-950` and `accent-700` at 4.5:1 on white.
+A brand overrides at most the `--lc-primary-50…950` (action) and `--lc-accent-50…950` (highlight) scales, `--lc-font-family-heading`, `--lc-font-weight-heading` and `--lc-radius-sm|md|lg|xl`. That is enough to rebrand every component, in both themes: the semantic tokens are recomputed from the scales, and the dark theme takes its tinted backgrounds (`--lc-color-action-subtle`, `--lc-color-accent-subtle`) from the `950` steps, so give them a very dark tint of each color. Keep `primary-600` at 4.5:1 with white and `primary-300` at 4.5:1 with `--lc-neutral-950` (dark theme); `accent-400` at 4.5:1 with `--lc-neutral-950` and `accent-700` at 4.5:1 on white.
 
 ### At build time (CSS)
 

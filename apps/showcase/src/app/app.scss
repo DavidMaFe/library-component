@@ -18,6 +18,8 @@
     margin: 0;
     font-family: var(--lc-font-family-heading);
     font-size: var(--lc-font-size-xl);
+    font-weight: var(--lc-font-weight-heading);
+    letter-spacing: var(--lc-heading-tracking);
   }
 }
 
@@ -72,6 +74,8 @@ h2 {
   margin: 0 0 var(--lc-space-3);
   font-family: var(--lc-font-family-heading);
   font-size: var(--lc-font-size-lg);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: var(--lc-heading-tracking);
 }
 
 .muted {
@@ -113,7 +117,10 @@ h2 {
 
 .heading-sample {
   font-family: var(--lc-font-family-heading);
-  font-size: var(--lc-font-size-2xl);
+  font-size: var(--lc-font-size-4xl);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: var(--lc-heading-tracking);
+  line-height: var(--lc-line-height-tight);
 }
 
 .space {

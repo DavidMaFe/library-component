@@ -25,6 +25,8 @@
           "@fontsource-variable/bricolage-grotesque/opsz.css",
           "@fontsource-variable/instrument-sans/index.css",
           "@fontsource-variable/geist-mono/index.css",
+          "@fontsource-variable/fraunces/index.css",
+          "@fontsource/instrument-serif/index.css",
           "apps/showcase/src/styles.scss"
         ]
       },

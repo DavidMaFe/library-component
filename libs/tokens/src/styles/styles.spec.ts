@@ -26,16 +26,16 @@ describe('tokens styles', () => {
     expect([...dark].sort()).toEqual([...light].sort());
   });
 
-  it('should expose the brand primary scale from 50 to 900', () => {
+  it('should expose the brand primary scale from 50 to 950', () => {
     const base = declaredTokens(css, /^\s*:root\s*$/);
-    for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]) {
+    for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
       expect(base).toContain(`--lc-primary-${step}`);
     }
   });
 
-  it('should expose the brand accent scale from 50 to 900', () => {
+  it('should expose the brand accent scale from 50 to 950', () => {
     const base = declaredTokens(css, /^\s*:root\s*$/);
-    for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]) {
+    for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
       expect(base).toContain(`--lc-accent-${step}`);
     }
   });
@@ -56,6 +56,15 @@ describe('tokens styles', () => {
       expect(light).toContain(name);
       expect(dark).toContain(name);
     }
+  });
+
+  it('should derive the dark tinted backgrounds from the brand scales', () => {
+    // So a brand that overrides its scales also recolors them in dark mode.
+    const dark =
+      css.match(/\[data-lc-theme=['"]?dark['"]?\]\s*\{([^}]*)\}/)?.[1] ?? '';
+
+    expect(dark).toMatch(/--lc-color-action-subtle:\s*var\(--lc-primary-950\)/);
+    expect(dark).toMatch(/--lc-color-accent-subtle:\s*var\(--lc-accent-950\)/);
   });
 
   it('should expose the heading and extended type scale tokens', () => {
