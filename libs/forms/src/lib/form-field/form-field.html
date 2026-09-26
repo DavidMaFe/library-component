@@ -1,12 +1,12 @@
 @if (label()) { @if (isGroup()) {
 <span class="label" [id]="labelId">
-  {{ label() }} @if (isRequired()) {
+  {{ label() }}@if (isRequired()) {
   <span class="required" aria-hidden="true">*</span>
   }
 </span>
 } @else {
 <label class="label" [id]="labelId" [attr.for]="controlId()">
-  {{ label() }} @if (isRequired()) {
+  {{ label() }}@if (isRequired()) {
   <span class="required" aria-hidden="true">*</span>
   }
 </label>
@@ -17,6 +17,12 @@
 }
 <div class="error" [id]="errorId" aria-live="polite">
   @if (messages()[0]; as message) {
-  <p>{{ message }}</p>
+  <p>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 4.5l8.5 15h-17z" />
+      <path d="M12 10v4M12 17h.01" />
+    </svg>
+    <span>{{ message }}</span>
+  </p>
   }
 </div>

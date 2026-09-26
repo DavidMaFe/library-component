@@ -1,7 +1,7 @@
 :host {
-  --_width: var(--lc-switch-width, 2.5rem);
-  --_height: var(--lc-switch-height, 1.5rem);
-  --_gap: 0.125rem;
+  --_width: var(--lc-switch-width, 2.25rem);
+  --_height: var(--lc-switch-height, 1.25rem);
+  --_gap: 2px;
 
   display: inline-flex;
 }
@@ -9,14 +9,15 @@
 .root {
   position: relative;
   display: inline-flex;
-  align-items: center;
-  gap: var(--lc-space-3);
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
   cursor: pointer;
 }
 
 :host([data-disabled]) .root {
   cursor: not-allowed;
-  opacity: 0.55;
 }
 
 .native {
@@ -36,7 +37,7 @@
   height: var(--_height);
   padding: var(--_gap);
   border-radius: var(--lc-radius-full);
-  background: var(--lc-switch-bg, var(--lc-color-border-strong));
+  background: var(--lc-switch-bg, var(--lc-color-border-control));
   transition: background var(--lc-duration-base) var(--lc-easing-standard);
 }
 
@@ -46,13 +47,17 @@
   border-radius: var(--lc-radius-full);
   background: var(--lc-switch-thumb-color, var(--lc-neutral-0));
   box-shadow: var(--lc-shadow-sm);
-  transition: transform var(--lc-duration-base) var(--lc-easing-standard);
+  transition:
+    transform var(--lc-duration-base) var(--lc-easing-emphasized),
+    background var(--lc-duration-base) var(--lc-easing-standard);
 }
 
+// On: the thumb takes the on-action color (white in light, ink in dark).
 .native:checked + .track {
   background: var(--lc-switch-bg-checked, var(--lc-color-action));
 
   .thumb {
+    background: var(--lc-switch-thumb-color, var(--lc-color-on-action));
     transform: translateX(calc(var(--_width) - var(--_height)));
   }
 }
@@ -62,6 +67,14 @@
   outline-offset: var(--lc-focus-ring-offset);
 }
 
+.native:disabled + .track {
+  opacity: 0.45;
+}
+
 .text {
   color: var(--lc-color-text);
+}
+
+:host([data-disabled]) .text {
+  color: var(--lc-color-text-disabled);
 }

@@ -6,13 +6,14 @@
   position: relative;
   display: inline-flex;
   align-items: flex-start;
-  gap: var(--lc-space-2);
+  gap: 0.625rem;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
   cursor: pointer;
 }
 
 :host([data-disabled]) .root {
   cursor: not-allowed;
-  opacity: 0.55;
 }
 
 .native {
@@ -23,34 +24,22 @@
   opacity: 0;
 }
 
+// Selected = thick action-colored ring around the surface.
 .circle {
-  display: inline-grid;
   flex-shrink: 0;
-  place-items: center;
   box-sizing: border-box;
-  width: var(--lc-radio-size, 1.25rem);
-  height: var(--lc-radio-size, 1.25rem);
-  border: 1px solid var(--lc-radio-border-color, var(--lc-color-border-strong));
+  width: var(--lc-radio-size, 1.125rem);
+  height: var(--lc-radio-size, 1.125rem);
+  margin-top: 0.0625rem;
+  border: 1.5px solid
+    var(--lc-radio-border-color, var(--lc-color-border-control));
   border-radius: var(--lc-radius-full);
   background: var(--lc-color-surface);
-
-  &::after {
-    width: 50%;
-    height: 50%;
-    border-radius: var(--lc-radius-full);
-    background: var(--lc-color-on-action);
-    content: '';
-    opacity: 0;
-  }
+  transition: border var(--lc-duration-fast) var(--lc-easing-emphasized);
 }
 
 .native:checked + .circle {
-  border-color: var(--lc-radio-bg-checked, var(--lc-color-action));
-  background: var(--lc-radio-bg-checked, var(--lc-color-action));
-
-  &::after {
-    opacity: 1;
-  }
+  border: 5.5px solid var(--lc-radio-bg-checked, var(--lc-color-action));
 }
 
 .native:focus-visible + .circle {
@@ -58,7 +47,15 @@
   outline-offset: var(--lc-focus-ring-offset);
 }
 
+.native:disabled + .circle {
+  border-color: var(--lc-color-border);
+  background: var(--lc-color-bg-subtle);
+}
+
 .text {
   color: var(--lc-color-text);
-  line-height: var(--lc-radio-size, 1.25rem);
+}
+
+:host([data-disabled]) .text {
+  color: var(--lc-color-text-disabled);
 }

@@ -134,6 +134,19 @@ describe('LcFormField', () => {
       expect(input.getAttribute('aria-describedby')).toBe(error().id);
     });
 
+    it('should put a decorative alert icon in front of the error', async () => {
+      const { fixture, host, error } = await setup();
+
+      host.control.markAsTouched();
+      await fixture.whenStable();
+
+      const message = error().querySelector('p') as HTMLElement;
+      const icon = message.firstElementChild;
+      expect(icon?.tagName.toLowerCase()).toBe('svg');
+      expect(icon?.getAttribute('aria-hidden')).toBe('true');
+      expect(message.textContent).toBe('This field is required.');
+    });
+
     it('should update the message as the value changes', async () => {
       const { fixture, host, error } = await setup();
       host.control.markAsTouched();
