@@ -33,6 +33,49 @@ describe('tokens styles', () => {
     }
   });
 
+  it('should expose the brand accent scale from 50 to 900', () => {
+    const base = declaredTokens(css, /^\s*:root\s*$/);
+    for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]) {
+      expect(base).toContain(`--lc-accent-${step}`);
+    }
+  });
+
+  it('should define the accent, control border and inverse semantic tokens in both themes', () => {
+    const light = declaredTokens(css, /data-lc-theme=['"]?light/);
+    const dark = declaredTokens(css, /data-lc-theme=['"]?dark/);
+    for (const name of [
+      '--lc-color-accent',
+      '--lc-color-accent-subtle',
+      '--lc-color-accent-text',
+      '--lc-color-on-accent',
+      '--lc-color-border-control',
+      '--lc-color-surface-inverse',
+      '--lc-color-text-on-inverse',
+      '--lc-shadow-lg',
+    ]) {
+      expect(light).toContain(name);
+      expect(dark).toContain(name);
+    }
+  });
+
+  it('should expose the heading and extended type scale tokens', () => {
+    const base = declaredTokens(css, /^\s*:root\s*$/);
+    for (const name of [
+      '--lc-font-family-heading',
+      '--lc-font-family-mono',
+      '--lc-font-weight-heading',
+      '--lc-heading-tracking',
+      '--lc-font-size-2xs',
+      '--lc-font-size-5xl',
+    ]) {
+      expect(base).toContain(name);
+    }
+  });
+
+  it('should not mix colors at runtime for the subtle status tokens', () => {
+    expect(css).not.toContain('color-mix(');
+  });
+
   it('should expose spacing, radius, typography, shadow, motion and layer tokens', () => {
     const base = declaredTokens(css, /^\s*:root\s*$/);
     for (const name of [

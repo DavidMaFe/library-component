@@ -1,41 +1,44 @@
 // Theme-independent design tokens. Every value is exposed as a CSS custom
 // property so consumers can override any of them at runtime.
 :root {
-  // ---- Palette: neutral (grays) ----
+  // ---- Palette: neutral (warm "stone/paper") ----
   --lc-neutral-0: #ffffff;
-  --lc-neutral-50: #f8fafc;
-  --lc-neutral-100: #f1f5f9;
-  --lc-neutral-200: #e2e8f0;
-  --lc-neutral-300: #cbd5e1;
-  --lc-neutral-400: #94a3b8;
-  --lc-neutral-500: #64748b;
-  --lc-neutral-600: #475569;
-  --lc-neutral-700: #334155;
-  --lc-neutral-800: #1e293b;
-  --lc-neutral-900: #0f172a;
-  --lc-neutral-950: #020617;
+  --lc-neutral-50: #f7f5f0;
+  --lc-neutral-100: #efece5;
+  --lc-neutral-200: #e3dfd6;
+  --lc-neutral-300: #cfc9bd;
+  --lc-neutral-400: #a29c90;
+  --lc-neutral-500: #78726a;
+  --lc-neutral-600: #5b564f;
+  --lc-neutral-700: #403c37;
+  --lc-neutral-800: #2c2926;
+  --lc-neutral-900: #1c1a18;
+  --lc-neutral-950: #121110;
 
-  // ---- Palette: primary (brand). Override this scale to rebrand the library ----
-  --lc-primary-50: #eff6ff;
-  --lc-primary-100: #dbeafe;
-  --lc-primary-200: #bfdbfe;
-  --lc-primary-300: #93c5fd;
-  --lc-primary-400: #60a5fa;
-  --lc-primary-500: #3b82f6;
-  --lc-primary-600: #2563eb;
-  --lc-primary-700: #1d4ed8;
-  --lc-primary-800: #1e40af;
-  --lc-primary-900: #1e3a8a;
+  // ---- Palette: primary (brand, "petrol"). Override to rebrand the library ----
+  --lc-primary-50: #edf6f6;
+  --lc-primary-100: #d3ebeb;
+  --lc-primary-200: #a8d6d7;
+  --lc-primary-300: #72bbbf;
+  --lc-primary-400: #3f9ba2;
+  --lc-primary-500: #1f7f88;
+  --lc-primary-600: #0f6770;
+  --lc-primary-700: #0c535b;
+  --lc-primary-800: #0d434a;
+  --lc-primary-900: #0e373c;
+  --lc-primary-950: #072225;
 
-  // ---- Palette: status ----
-  --lc-green-500: #22c55e;
-  --lc-green-700: #15803d;
-  --lc-amber-500: #f59e0b;
-  --lc-amber-700: #b45309;
-  --lc-red-500: #ef4444;
-  --lc-red-700: #b91c1c;
-  --lc-sky-500: #0ea5e9;
-  --lc-sky-700: #0369a1;
+  // ---- Palette: accent (brand highlight, "saffron"). Override to rebrand ----
+  --lc-accent-50: #fff8e6;
+  --lc-accent-100: #ffedc2;
+  --lc-accent-200: #ffdb8c;
+  --lc-accent-300: #ffc752;
+  --lc-accent-400: #f9b22a;
+  --lc-accent-500: #eb9c0d;
+  --lc-accent-600: #c27a06;
+  --lc-accent-700: #985d09;
+  --lc-accent-800: #7a4a0e;
+  --lc-accent-900: #5e3a10;
 
   // ---- Spacing ----
   --lc-space-0: 0;
@@ -52,36 +55,46 @@
 
   // ---- Radius ----
   --lc-radius-none: 0;
-  --lc-radius-sm: 0.25rem;
-  --lc-radius-md: 0.5rem;
-  --lc-radius-lg: 0.75rem;
-  --lc-radius-xl: 1rem;
+  --lc-radius-sm: 6px;
+  --lc-radius-md: 10px;
+  --lc-radius-lg: 14px;
+  --lc-radius-xl: 20px;
   --lc-radius-full: 9999px;
 
   // ---- Typography ----
+  // Fonts are not bundled: the application loads them (see README).
   --lc-font-family-base:
-    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
-  --lc-font-family-heading: var(--lc-font-family-base);
-  --lc-font-family-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    'Instrument Sans Variable', 'Instrument Sans', system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  --lc-font-family-heading:
+    'Bricolage Grotesque Variable', 'Bricolage Grotesque',
+    'Instrument Sans Variable', system-ui, sans-serif;
+  --lc-font-family-mono:
+    'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', Menlo,
+    monospace;
 
+  --lc-font-size-2xs: 0.6875rem;
   --lc-font-size-xs: 0.75rem;
   --lc-font-size-sm: 0.875rem;
   --lc-font-size-md: 1rem;
   --lc-font-size-lg: 1.125rem;
   --lc-font-size-xl: 1.25rem;
   --lc-font-size-2xl: 1.5rem;
-  --lc-font-size-3xl: 1.875rem;
-  --lc-font-size-4xl: 2.25rem;
+  --lc-font-size-3xl: 2rem;
+  --lc-font-size-4xl: 2.75rem;
+  --lc-font-size-5xl: 3.5rem;
 
   --lc-font-weight-regular: 400;
   --lc-font-weight-medium: 500;
   --lc-font-weight-semibold: 600;
   --lc-font-weight-bold: 700;
+  --lc-font-weight-heading: 650;
+  --lc-heading-tracking: -0.025em;
 
-  --lc-line-height-tight: 1.25;
+  --lc-line-height-tight: 1.15;
+  --lc-line-height-snug: 1.3;
   --lc-line-height-normal: 1.5;
-  --lc-line-height-relaxed: 1.75;
+  --lc-line-height-relaxed: 1.7;
 
   // ---- Controls ----
   --lc-control-height-sm: 2rem;
@@ -90,13 +103,12 @@
   --lc-focus-ring-width: 2px;
   --lc-focus-ring-offset: 2px;
 
-  // ---- Shadows (color comes from the active theme) ----
-  --lc-shadow-sm: 0 1px 2px 0 var(--lc-shadow-color);
+  // ---- Shadows (warm-tinted; light values, the dark theme redefines them) ----
+  --lc-shadow-sm: 0 1px 2px 0 rgb(28 26 24 / 6%);
   --lc-shadow-md:
-    0 4px 6px -1px var(--lc-shadow-color), 0 2px 4px -2px var(--lc-shadow-color);
+    0 6px 16px -4px rgb(28 26 24 / 10%), 0 2px 4px -2px rgb(28 26 24 / 6%);
   --lc-shadow-lg:
-    0 10px 15px -3px var(--lc-shadow-color),
-    0 4px 6px -4px var(--lc-shadow-color);
+    0 20px 40px -12px rgb(28 26 24 / 18%), 0 4px 10px -4px rgb(28 26 24 / 8%);
 
   // ---- Motion ----
   --lc-duration-fast: 120ms;

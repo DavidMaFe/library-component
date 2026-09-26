@@ -51,7 +51,12 @@
         "configDir": "libs/ui/.storybook",
         "browserTarget": "ui:build-storybook",
         "compodoc": false,
-        "styles": ["libs/ui/.storybook/styles.scss"]
+        "styles": [
+          "@fontsource-variable/bricolage-grotesque/opsz.css",
+          "@fontsource-variable/instrument-sans/index.css",
+          "@fontsource-variable/geist-mono/index.css",
+          "libs/ui/.storybook/styles.scss"
+        ]
       },
       "configurations": {
         "ci": {
@@ -67,7 +72,12 @@
         "configDir": "libs/ui/.storybook",
         "browserTarget": "ui:build-storybook",
         "compodoc": false,
-        "styles": ["libs/ui/.storybook/styles.scss"]
+        "styles": [
+          "@fontsource-variable/bricolage-grotesque/opsz.css",
+          "@fontsource-variable/instrument-sans/index.css",
+          "@fontsource-variable/geist-mono/index.css",
+          "libs/ui/.storybook/styles.scss"
+        ]
       },
       "configurations": {
         "ci": {
