@@ -13,7 +13,7 @@ const meta: Meta<LcNavbar> = {
     template: `
       <lc-navbar [sticky]="sticky" label="Main">
         <a lcNavbarBrand href="#" style="color:inherit;text-decoration:none">Trattoria</a>
-        <a href="#menu">Menu</a>
+        <a href="#menu" aria-current="page">Menu</a>
         <a href="#book">Book a table</a>
         <a href="#about">About</a>
         <button lcNavbarActions type="button">Order</button>

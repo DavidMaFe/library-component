@@ -21,6 +21,7 @@ const meta: Meta<LcSidebar> = {
           <a lc-sidebar-item href="#dashboard" active>${icon('M3 10l7-7 7 7v7H3z')}Dashboard</a>
           <a lc-sidebar-item href="#orders">${icon('M4 5h12M4 10h12M4 15h12')}Orders</a>
           <a lc-sidebar-item href="#customers">${icon('M10 10a3 3 0 100-6 3 3 0 000 6zM4 17a6 6 0 0112 0')}Customers</a>
+          <h3>Settings</h3>
           <button lc-sidebar-item type="button">${icon('M10 3a7 7 0 100 14 7 7 0 000-14zM10 6v4l3 2')}Settings</button>
         </lc-sidebar>
         <main style="flex:1;padding:2rem"><h1 style="margin-top:0">Dashboard</h1><p>Collapse the sidebar with its button.</p></main>

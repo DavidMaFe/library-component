@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: var(--lc-sidebar-width, 16rem);
+  width: var(--lc-sidebar-width, 15.5rem);
   min-height: 100%;
+  padding: var(--lc-space-3);
   border-inline-end: 1px solid
     var(--lc-sidebar-border-color, var(--lc-color-border));
   background: var(--lc-sidebar-bg, var(--lc-color-surface));
   color: var(--lc-color-text);
-  transition: width var(--lc-duration-base) var(--lc-easing-standard);
+  transition: width var(--lc-duration-slow) var(--lc-easing-standard);
 }
 
 :host([data-collapsed]) {
@@ -16,13 +17,15 @@
 }
 
 .header {
-  display: block;
-  min-height: 4rem;
-  padding: 0 var(--lc-space-4);
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: var(--lc-space-2) var(--lc-space-2) var(--lc-space-4);
   overflow: hidden;
   font-family: var(--lc-font-family-heading);
-  line-height: 4rem;
-  text-overflow: ellipsis;
+  font-size: 1.0625rem;
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.015em;
   white-space: nowrap;
 }
 
@@ -34,33 +37,64 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: var(--lc-space-1);
-  padding: var(--lc-space-2);
+  gap: 2px;
+}
+
+// Group titles: any paragraph or heading placed between the items is shown
+// as an eyebrow. Collapsed, they stay available to screen readers only.
+.nav ::ng-deep > :is(p, h2, h3, h4, h5, h6) {
+  margin: 0;
+  padding: var(--lc-space-4) var(--lc-space-3) var(--lc-space-2);
+  overflow: hidden;
+  color: var(--lc-color-text-muted);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
+  font-weight: var(--lc-font-weight-medium);
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+:host([data-collapsed]) .nav ::ng-deep > :is(p, h2, h3, h4, h5, h6) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  clip-path: inset(50%);
 }
 
 .footer {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--lc-space-2);
-  padding: var(--lc-space-2);
+  padding-top: var(--lc-space-3);
+  border-top: 1px solid var(--lc-sidebar-border-color, var(--lc-color-border));
 }
 
+.footer:empty {
+  display: none;
+}
+
+// Same look as a ghost, small icon button.
 .toggle {
   display: inline-grid;
+  flex-shrink: 0;
   place-items: center;
-  align-self: flex-end;
+  margin-inline-start: auto;
   width: var(--lc-control-height-sm);
   height: var(--lc-control-height-sm);
   padding: 0;
   border: 0;
   border-radius: var(--lc-radius-md);
   background: transparent;
-  color: var(--lc-color-text-muted);
+  color: var(--lc-color-text);
   cursor: pointer;
 
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.125rem;
+    height: 1.125rem;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.75;
@@ -71,17 +105,20 @@
 
   &:hover {
     background: var(--lc-color-bg-subtle);
-    color: var(--lc-color-text);
   }
 
   &:focus-visible {
     outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
-    outline-offset: 0;
+    outline-offset: var(--lc-focus-ring-offset);
   }
 }
 
+:host([data-collapsed]) .footer {
+  flex-direction: column;
+}
+
 :host([data-collapsed]) .toggle {
-  align-self: center;
+  margin-inline: auto;
 
   svg {
     transform: rotate(180deg);

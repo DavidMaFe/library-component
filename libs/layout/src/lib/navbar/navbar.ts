@@ -23,9 +23,12 @@ import { uniqueId } from '../shared/unique-id';
  * ```
  *
  * `Escape` closes the open menu and returns focus to the menu button.
+ * Mark the current page's link with `aria-current="page"` (for example with
+ * `routerLinkActive` and `ariaCurrentWhenActive="page"`): it gets the accent
+ * dot. A sticky navbar gets a translucent, blurred background.
  *
- * Customize with `--lc-navbar-bg`, `-color`, `-border-color`, `-height`
- * and `-gap`.
+ * Customize with `--lc-navbar-bg`, `-color`, `-border-color`, `-height`,
+ * `-gap` and `-indicator-color`.
  */
 @Component({
   selector: 'lc-navbar',

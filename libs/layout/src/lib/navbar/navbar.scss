@@ -5,10 +5,16 @@
   color: var(--lc-navbar-color, var(--lc-color-text));
 }
 
+// Sticky bars let the page show through, blurred.
 :host([data-sticky]) {
   position: sticky;
   top: 0;
   z-index: var(--lc-z-sticky);
+  background: var(
+    --lc-navbar-bg,
+    color-mix(in srgb, var(--lc-color-surface) 88%, transparent)
+  );
+  backdrop-filter: saturate(1.4) blur(10px);
 }
 
 .bar {
@@ -26,9 +32,13 @@
 
 .brand {
   grid-area: brand;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
   font-family: var(--lc-font-family-heading);
-  font-size: var(--lc-font-size-lg);
-  font-weight: var(--lc-font-weight-semibold);
+  font-size: var(--lc-font-size-xl);
+  font-weight: var(--lc-font-weight-heading);
+  letter-spacing: -0.02em;
 }
 
 .actions {
@@ -78,13 +88,22 @@
   padding-bottom: var(--lc-space-3);
 
   ::ng-deep a {
+    position: relative;
     padding: var(--lc-space-2) var(--lc-space-3);
     border-radius: var(--lc-radius-md);
-    color: inherit;
+    color: var(--lc-color-text-muted);
+    font-size: var(--lc-font-size-sm);
+    font-weight: var(--lc-font-weight-medium);
     text-decoration: none;
 
     &:hover {
       background: var(--lc-color-bg-subtle);
+      color: var(--lc-color-text);
+    }
+
+    &[aria-current='page'] {
+      color: var(--lc-color-text);
+      font-weight: var(--lc-font-weight-semibold);
     }
 
     &:focus-visible {
@@ -103,6 +122,7 @@
   .bar {
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'brand menu actions';
+    gap: 0 var(--lc-navbar-gap, var(--lc-space-8));
     padding: 0 var(--lc-space-6);
   }
 
@@ -115,6 +135,33 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: var(--lc-space-6);
     padding-bottom: 0;
+  }
+
+  .menu ::ng-deep a {
+    padding: var(--lc-space-2) 0;
+    border-radius: var(--lc-radius-sm);
+
+    &:hover {
+      background: transparent;
+    }
+
+    // Accent signature: a small dot under the active link.
+    &[aria-current='page']::after {
+      position: absolute;
+      bottom: -0.25rem;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      margin-left: -2.5px;
+      border-radius: var(--lc-radius-full);
+      background: var(--lc-navbar-indicator-color, var(--lc-color-accent));
+      content: '';
+    }
+
+    &:focus-visible {
+      outline-offset: var(--lc-focus-ring-offset);
+    }
   }
 }
