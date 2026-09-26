@@ -38,6 +38,20 @@ type Story = StoryObj<LcCard>;
 export const Outlined: Story = {};
 export const Elevated: Story = { args: { variant: 'elevated' } };
 
+/** Hover it: the whole card is a link, so it lifts with a stronger border. */
+export const Interactive: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <lc-card interactive [padding]="padding" style="max-width:20rem">
+        <h3 lcCardHeader style="margin:0">
+          <a href="#dish" style="color:inherit;text-decoration:none">Tasting menu</a>
+        </h3>
+        Seven seasonal courses with optional wine pairing.
+      </lc-card>`,
+  }),
+};
+
 export const ContentOnly: Story = {
   render: (args) => ({
     props: args,

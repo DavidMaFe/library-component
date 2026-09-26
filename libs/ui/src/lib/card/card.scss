@@ -22,6 +22,12 @@
   --lc-card-shadow: var(--lc-shadow-sm);
 }
 
+:host([data-interactive]:hover) {
+  border-color: var(--lc-card-border-color, var(--lc-color-border-strong));
+  box-shadow: var(--lc-shadow-md);
+  transform: translateY(-2px);
+}
+
 :host([data-padding='none']) {
   --_padding: 0;
 }

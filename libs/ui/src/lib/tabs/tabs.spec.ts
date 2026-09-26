@@ -9,7 +9,9 @@ import { LcTabs } from './tabs';
   template: `
     <lc-tabs label="Menu sections" [(selectedIndex)]="index">
       <lc-tab label="Starters">Bruschetta</lc-tab>
-      <lc-tab label="Mains" [disabled]="mainsDisabled()">Lasagna</lc-tab>
+      <lc-tab label="Mains" [disabled]="mainsDisabled()" [count]="mainsCount()"
+        >Lasagna</lc-tab
+      >
       <lc-tab label="Desserts">Tiramisu</lc-tab>
     </lc-tabs>
   `,
@@ -17,6 +19,7 @@ import { LcTabs } from './tabs';
 class HostComponent {
   index = signal(0);
   mainsDisabled = signal(false);
+  mainsCount = signal<number | undefined>(undefined);
 }
 
 const key = (target: Element, name: string) =>
@@ -83,6 +86,26 @@ describe('LcTabs', () => {
       const { tabs } = await setup();
 
       expect(tabs().map((t) => t.tabIndex)).toEqual([0, -1, -1]);
+    });
+  });
+
+  describe('count', () => {
+    it('should not render a counter by default', async () => {
+      const { root } = await setup();
+
+      expect(root.querySelector('.count')).toBeNull();
+    });
+
+    it('should show the counter inside the tab, even when it is 0', async () => {
+      const { fixture, host, tabs } = await setup();
+
+      host.mainsCount.set(0);
+      await fixture.whenStable();
+
+      expect(tabs()[1].querySelector('.count')?.textContent).toBe('0');
+      expect(tabs()[1].textContent?.replace(/\s+/g, ' ').trim()).toBe(
+        'Mains 0',
+      );
     });
   });
 

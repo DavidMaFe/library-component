@@ -4,6 +4,10 @@
   display: inline-block;
 }
 
+:host([data-size='lg']) {
+  --_height: var(--lc-stepper-height, var(--lc-control-height-lg));
+}
+
 .group {
   display: inline-flex;
   align-items: stretch;

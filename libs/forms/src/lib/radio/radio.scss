@@ -59,3 +59,64 @@
 :host([data-disabled]) .text {
   color: var(--lc-color-text-disabled);
 }
+
+// ---- Chip appearance: the whole option is a tile ----
+:host([data-appearance='chip']) {
+  .circle {
+    display: none;
+  }
+
+  .root {
+    display: inline-grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-width: 2.75rem;
+    height: var(--lc-control-height-md);
+    padding: 0 0.875rem;
+    border: 1px solid var(--lc-color-border-control);
+    border-radius: var(--lc-radius-md);
+    background: var(--lc-color-surface);
+    font-size: var(--lc-font-size-sm);
+    font-weight: var(--lc-font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    transition:
+      border-color var(--lc-duration-fast) var(--lc-easing-standard),
+      background var(--lc-duration-fast) var(--lc-easing-standard);
+
+    &:hover {
+      border-color: var(--lc-color-text);
+    }
+
+    &:has(.native:focus-visible) {
+      outline: var(--lc-focus-ring-width) solid var(--lc-color-focus-ring);
+      outline-offset: var(--lc-focus-ring-offset);
+    }
+  }
+}
+
+// Selected: double action border on the tinted background.
+:host([data-appearance='chip'][data-checked]) {
+  .root {
+    border-color: var(--lc-color-action);
+    background: var(--lc-color-action-subtle);
+    box-shadow: inset 0 0 0 1px var(--lc-color-action);
+    font-weight: var(--lc-font-weight-semibold);
+  }
+
+  .text {
+    color: var(--lc-color-action);
+  }
+}
+
+// Unavailable options are struck through.
+:host([data-appearance='chip'][data-disabled]) {
+  .root,
+  .root:hover {
+    border-color: var(--lc-color-border);
+    background: var(--lc-color-surface);
+  }
+
+  .text {
+    text-decoration: line-through;
+  }
+}

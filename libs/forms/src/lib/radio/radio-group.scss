@@ -8,3 +8,8 @@
   flex-flow: row wrap;
   gap: var(--lc-radio-group-gap, 1.25rem);
 }
+
+:host([data-appearance='chip']) {
+  flex-flow: row wrap;
+  gap: var(--lc-radio-group-gap, var(--lc-space-2));
+}

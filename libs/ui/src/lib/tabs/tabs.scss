@@ -58,3 +58,13 @@
     cursor: not-allowed;
   }
 }
+
+.count {
+  margin-inline-start: 0.375rem;
+  padding: 0.0625rem 0.375rem;
+  border-radius: var(--lc-radius-sm);
+  background: var(--lc-color-bg-subtle);
+  font-family: var(--lc-font-family-mono);
+  font-size: var(--lc-font-size-2xs);
+  font-weight: var(--lc-font-weight-medium);
+}

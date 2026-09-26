@@ -13,7 +13,9 @@
     (click)="select(i)"
     (keydown)="onKeydown($event, i)"
   >
-    {{ tab.label() }}
+    {{ tab.label() }} @if (tab.count() !== undefined) {
+    <span class="count">{{ tab.count() }}</span>
+    }
   </button>
   }
 </div>

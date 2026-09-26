@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { axe } from 'jest-axe';
 import { provideLcEcommerceLabels } from '../labels/ecommerce-labels';
-import { LcQuantityStepper } from './quantity-stepper';
+import { LcQuantityStepper, LcQuantityStepperSize } from './quantity-stepper';
 
 @Component({
   imports: [LcQuantityStepper],
@@ -13,6 +13,7 @@ import { LcQuantityStepper } from './quantity-stepper';
       [min]="min()"
       [max]="max()"
       [disabled]="disabled()"
+      [size]="size()"
     />
   `,
 })
@@ -21,6 +22,7 @@ class HostComponent {
   min = signal(1);
   max = signal<number | undefined>(5);
   disabled = signal(false);
+  size = signal<LcQuantityStepperSize>('md');
 }
 
 describe('LcQuantityStepper', () => {
@@ -144,6 +146,18 @@ describe('LcQuantityStepper', () => {
 
     expect(plus().getAttribute('aria-label')).toBe('Más');
     expect(minus().getAttribute('aria-label')).toBe('Menos');
+  });
+
+  it('should default to the medium size and reflect the large one', async () => {
+    const { host, root, update } = await setup();
+    const stepper = root.querySelector('lc-quantity-stepper') as HTMLElement;
+
+    expect(stepper.getAttribute('data-size')).toBe('md');
+
+    host.size.set('lg');
+    await update();
+
+    expect(stepper.getAttribute('data-size')).toBe('lg');
   });
 
   it('should have no accessibility violations', async () => {

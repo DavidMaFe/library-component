@@ -37,6 +37,13 @@
   --_on-tone: var(--lc-color-on-action);
 }
 
+// Highlight, never action: text tone in subtle/outline, ink on the solid fill.
+:host([data-variant='accent']) {
+  --_tone: var(--lc-color-accent-text);
+  --_tone-subtle: var(--lc-color-accent-subtle);
+  --_on-tone: var(--lc-color-on-accent);
+}
+
 :host([data-variant='success']) {
   --_tone: var(--lc-color-success);
   --_tone-subtle: var(--lc-color-success-subtle);
@@ -64,6 +71,10 @@
 :host([data-appearance='solid']) {
   background: var(--lc-badge-bg, var(--_tone));
   color: var(--lc-badge-color, var(--_on-tone));
+}
+
+:host([data-variant='accent'][data-appearance='solid']) {
+  background: var(--lc-badge-bg, var(--lc-color-accent));
 }
 
 :host([data-appearance='outline']) {

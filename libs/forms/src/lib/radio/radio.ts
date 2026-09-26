@@ -20,6 +20,8 @@ import { LcRadioGroup } from './radio-group';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.data-disabled]': 'isDisabled() || null',
+    '[attr.data-checked]': 'checked() || null',
+    '[attr.data-appearance]': 'group.appearance()',
   },
 })
 export class LcRadio {

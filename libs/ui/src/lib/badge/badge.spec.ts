@@ -42,6 +42,17 @@ describe('LcBadge', () => {
     expect(badge.getAttribute('data-size')).toBe('md');
   });
 
+  it('should support the accent variant for highlights', async () => {
+    const { fixture, host, badge } = await setup();
+
+    host.variant.set('accent');
+    host.appearance.set('solid');
+    await fixture.whenStable();
+
+    expect(badge.getAttribute('data-variant')).toBe('accent');
+    expect(badge.getAttribute('data-appearance')).toBe('solid');
+  });
+
   it('should project its content', async () => {
     const { badge } = await setup();
 

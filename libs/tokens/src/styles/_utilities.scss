@@ -1,0 +1,8 @@
+// Optional global utility classes. Opt in once in global styles:
+//
+//   @use '@lc/tokens/styles/utilities';
+@use 'typography';
+
+.lc-eyebrow {
+  @include typography.lc-eyebrow;
+}

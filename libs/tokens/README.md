@@ -27,11 +27,11 @@ npm i @fontsource-variable/bricolage-grotesque @fontsource-variable/instrument-s
 ]
 ```
 
-| Token | Font | Use |
-| --- | --- | --- |
+| Token                      | Font                | Use                                                                                    |
+| -------------------------- | ------------------- | -------------------------------------------------------------------------------------- |
 | `--lc-font-family-heading` | Bricolage Grotesque | Headings, prices (weight `--lc-font-weight-heading`, tracking `--lc-heading-tracking`) |
-| `--lc-font-family-base` | Instrument Sans | Body text, labels, buttons |
-| `--lc-font-family-mono` | Geist Mono | Eyebrows and tabular data (times, SKUs, IDs) |
+| `--lc-font-family-base`    | Instrument Sans     | Body text, labels, buttons                                                             |
+| `--lc-font-family-mono`    | Geist Mono          | Eyebrows and tabular data (times, SKUs, IDs)                                           |
 
 Then let `ThemeService` (from `@lc/core`) manage the theme. It sets `data-lc-theme="light|dark"` on `<html>`, follows the OS by default and persists the choice.
 
@@ -71,6 +71,28 @@ Any element can define its own theme or overrides:
 
 ```html
 <section data-lc-theme="dark" style="--lc-primary-600: #15803d">...</section>
+```
+
+## Eyebrow
+
+The eyebrow (mono, 11px, uppercase, tracked, muted) labels sections, table headers, data labels and steps. Use the mixin in component styles:
+
+```scss
+@use '@lc/tokens/styles' as lc;
+
+.kicker {
+  @include lc.lc-eyebrow;
+}
+```
+
+Or opt in to the global `.lc-eyebrow` class once:
+
+```scss
+@use '@lc/tokens/styles/utilities';
+```
+
+```html
+<p class="lc-eyebrow">Starters · 06</p>
 ```
 
 ## Breakpoints

@@ -1,8 +1,8 @@
 import * as path from 'node:path';
 import * as sass from 'sass';
 
-const compile = (): string =>
-  sass.compile(path.join(__dirname, '_index.scss'), { style: 'expanded' }).css;
+const compile = (file = '_index.scss'): string =>
+  sass.compile(path.join(__dirname, file), { style: 'expanded' }).css;
 
 const declaredTokens = (css: string, selector: RegExp): Set<string> => {
   const tokens = new Set<string>();
@@ -74,6 +74,30 @@ describe('tokens styles', () => {
 
   it('should not mix colors at runtime for the subtle status tokens', () => {
     expect(css).not.toContain('color-mix(');
+  });
+
+  it('should not emit utility classes unless the utilities file is used', () => {
+    expect(css).not.toContain('.lc-eyebrow');
+  });
+
+  it('should provide an opt-in eyebrow utility built on tokens', () => {
+    const utilities = compile('_utilities.scss');
+    const rule = utilities.match(/\.lc-eyebrow\s*\{([^}]*)\}/)?.[1] ?? '';
+
+    expect(rule).toContain('font-family: var(--lc-font-family-mono)');
+    expect(rule).toContain('font-size: var(--lc-font-size-2xs)');
+    expect(rule).toContain('text-transform: uppercase');
+    expect(rule).toContain('letter-spacing: 0.08em');
+    expect(rule).toContain('color: var(--lc-color-text-muted)');
+  });
+
+  it('should expose the eyebrow as a mixin through the index', () => {
+    const css = sass.compileString(
+      `@use 'index' as lc; .kicker { @include lc.lc-eyebrow; }`,
+      { loadPaths: [__dirname] },
+    ).css;
+
+    expect(css).toMatch(/\.kicker\s*\{[^}]*text-transform: uppercase/);
   });
 
   it('should expose spacing, radius, typography, shadow, motion and layer tokens', () => {

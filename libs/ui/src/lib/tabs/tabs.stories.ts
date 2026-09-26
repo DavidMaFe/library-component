@@ -23,6 +23,18 @@ type Story = StoryObj<LcTabs>;
 /** Arrow keys, `Home` and `End` move between tabs. */
 export const Default: Story = {};
 
+/** `count` adds a mono counter next to the label. */
+export const WithCounts: Story = {
+  render: () => ({
+    template: `
+      <lc-tabs label="Orders">
+        <lc-tab label="All" [count]="128">Every order.</lc-tab>
+        <lc-tab label="Pending" [count]="6">Orders waiting for payment.</lc-tab>
+        <lc-tab label="Shipped">Orders on their way.</lc-tab>
+      </lc-tabs>`,
+  }),
+};
+
 export const WithDisabledTab: Story = {
   render: () => ({
     template: `
